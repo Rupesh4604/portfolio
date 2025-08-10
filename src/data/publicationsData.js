@@ -5,8 +5,7 @@ export const publications = [
     venue: "Under Review",
     year: "2025",
     description:
-      "Proposed a Multi-channel Quantum Convolutional Neural Network (MQCNN) using TensorFlow Quantum and Cirq for pixel-level classification of urban slums from multispectral satellite images.",
-    doi: "https://doi.org/10.1234/qcnn-slum-2025"
+      "Proposed a Multi-channel Quantum Convolutional Neural Network using TensorFlow Quantum and Cirq for patch-level classification of urban slums from Sentinel-2 imagery."
   },
   {
     title: "Enhancing Hyperspectral Imagery Classification using CNN and ViT",
@@ -22,6 +21,7 @@ export const publications = [
     venue: "Under Submission",
     year: "2025",
     description:
-      "Co-authored a research paper introducing a graph-based approach for detecting and grouping stance in multi-participant dialogues."
+      "Co-authored a research paper introducing a graph-based approach for detecting and grouping stance in multi-participant dialogues.",
+    doi: "https://doi.org/10.2991/978-94-6463-718-2_131"
   }
 ];
