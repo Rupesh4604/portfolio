@@ -2,7 +2,7 @@ export const achievements = [
   {
     title: "Top 0.02 percentile GATE 2024 (Computer Science)",
     description:
-      "Top 0.02 percentile in GATE 2024 examination among 1.7 lakh+ candidates."
+      "Top 0.02 percentile in GATE 2024 examination among 1.2 lakh+ candidates."
   },
   {
     title: "Top Performer in Deep Learning for Computer Vision",
