@@ -2,11 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .card {
+        @apply rounded-2xl border shadow-sm bg-white text-slate-800 border-slate-200 dark:bg-surface-2 dark:text-slate-100 dark:border-surface-border;
+    }
+
+    .card-muted {
+        @apply text-slate-600 dark:text-slate-300;
+    }
+
+    .chip {
+        @apply text-xs px-2 py-1 rounded bg-slate-100 text-slate-700 ring-1 ring-slate-200/60 dark:bg-surface-chip dark:text-slate-200 dark:ring-surface-border;
+    }
+}
+
 /* subtle scrollbar styling */
-* {
+/* * {
     scrollbar-width: thin;
     scrollbar-color: rgb(71 85 105) transparent;
-    /* slate-600 */
 }
 
 *::-webkit-scrollbar {
@@ -16,6 +29,35 @@
 
 *::-webkit-scrollbar-thumb {
     background: rgb(71 85 105);
+    border-radius: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+} */
+
+/* Soft vignette for dark */
+html.dark body {
+    background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(30, 41, 59, .55) 0%, transparent 60%),
+        radial-gradient(1000px 500px at 110% 10%, rgba(15, 23, 42, .50) 0%, transparent 60%),
+        #0B1220;
+    /* night-950 */
+}
+
+/* Subtle scrollbars in dark */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #33435E transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #33435E;
     border-radius: 8px;
 }
 

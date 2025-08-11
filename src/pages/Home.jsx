@@ -5,43 +5,43 @@ export default function Home() {
     <>
       {/* Hero */}
       <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
-          {/* Rupesh&apos;s Portfolio */}
-          Rupesh Kumar Yadav Mediboyina
-        </h1>
-        <p className="mt-2 text-lg text-slate-700">
-          Master of Technology, GNR IIT Bombay · Deep Learning &amp; Computer Vision · LLMs Enthusiast
-        </p>
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight
+               text-slate-900 dark:text-white">
+  Rupesh Kumar Yadav Mediboyina
+</h1>
+<p className="mt-2 text-lg text-slate-700 dark:text-slate-300">
+  Master of Technology, GNR IIT Bombay · Deep Learning & Computer Vision · LLMs Enthusiast
+</p>
       </header>
 
       {/* Education */}
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">Education</h2>
         <div className="space-y-4">
-          <div className="rounded-xl border bg-white p-4 shadow-sm">
-            <strong>Indian Institute of Technology, Bombay</strong>
-            <div className="text-sm text-slate-600">
+              <div className="card p-4">
+      <strong className="text-slate-900 dark:text-white">Indian Institute of Technology, Bombay</strong>
+            <div className="text-sm card-muted">
               Master of Technology, GNR, CSRE, 2026 — <em>CGPA: 9.05</em>
             </div>
           </div>
 
-          <div className="rounded-xl border bg-white p-4 shadow-sm">
-            <strong>National Institute Of Technology, Andhra Pradesh</strong>
-            <div className="text-sm text-slate-600">
+          <div className="card p-4">
+            <strong className="text-slate-900 dark:text-white">National Institute Of Technology, Andhra Pradesh</strong>
+            <div className="text-sm card-muted">
               Bachelor of Technology, Computer Science and Engineering, 2024 — <em>CGPA: 8.56</em>
             </div>
           </div>
 
-          <div className="rounded-xl border bg-white p-4 shadow-sm">
-            <strong>Sri Chaitanya Junior College</strong>
-            <div className="text-sm text-slate-600">
+          <div className="card p-4">
+            <strong className="text-slate-900 dark:text-white">Sri Chaitanya Junior College</strong>
+            <div className="text-sm card-muted">
               Board of Intermediate Education, Andhra Pradesh, 2020 — <em>CGPA: 9.86</em>
             </div>
           </div>
 
-          <div className="rounded-xl border bg-white p-4 shadow-sm">
-            <strong>Narayana E.M High School</strong>
-            <div className="text-sm text-slate-600">
+          <div className="card p-4">
+            <strong className="text-slate-900 dark:text-white">Narayana E.M High School</strong>
+            <div className="text-sm card-muted">
               Board of Secondary Education, Andhra Pradesh, 2018 — <em>CGPA: 10</em>
             </div>
           </div>

@@ -11,7 +11,8 @@ import Achievements from "./pages/Achievements.jsx";
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-slate-50 text-slate-800">
+      <div className="min-h-screen bg-slate-50 text-slate-800
+                dark:bg-night-950 dark:text-slate-100">
         <Navbar />
         <main className="mx-auto max-w-6xl px-6 py-10">
           <Routes>

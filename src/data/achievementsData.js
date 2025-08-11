@@ -1,3 +1,14 @@
+// {
+//   title: "...",
+//   description: "...",
+//   longDescription: "Full detail or <br/> formatted HTML",
+//   organization: "...",   // for positions
+//   duration: "...",       // for positions
+//   image: "src/assets/logo.png",
+//   link: "https://...",
+//   highlights: ["Point A", "Point B"]
+// }
+
 export const achievements = [
   {
     title: "Top 0.02 percentile GATE 2024 (Computer Science)",
@@ -23,6 +34,7 @@ export const positions = [
     title: "General Secretary, TASKFORCE",
     organization: "NIT Andhra Pradesh",
     duration: "2023–24",
+    image: "https://media.licdn.com/dms/image/v2/D562DAQF_HpsZxWOSrQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1719318208845?e=1755558000&v=beta&t=pbsgv_2e2MWB-Ab0mg7YtoBOvjf17N_QzfpV5bZ0jyo",
     description:
       "Served as General Secretary of the Taskforce Club at NIT Andhra Pradesh for the academic year 2023-24. Organized numerous institute-level events and advanced various central government initiatives, including ODOP (One District One Product) and Swachh Bharat 3.0. Conducted tree plantation drives, Blood donation camps and also facilitated coordination among various institute clubs. Additionally, assisted in organizing the college's technical and cultural festivals."
   },
@@ -30,6 +42,7 @@ export const positions = [
     title: "Joint Secretary, Computer Science and Engineering Association (CSEA)",
     organization: "NIT Andhra Pradesh",
     duration: "2022–23",
+    image: "https://media.licdn.com/dms/image/v2/D562DAQGCV2aJ5OEDag/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1709033768784?e=1755558000&v=beta&t=ePtpay2HBlO-PrKqqN3NbHgpKK61EdBJj7ZV84160xs",
     description:
       "Organized technical workshops, coding competitions, TECH EXPO, UI/UX and design contests, and academic support sessions for CSE students, while mentoring juniors and serving as Acting Secretary to lead the team during the institute’s technical fest."
   },
@@ -37,6 +50,7 @@ export const positions = [
     title: "Campus Ambassador",
     organization: "Analytics India Magazine",
     duration: "2022–23",
+    link: "https://theorg.com/org/analytics-india-magazine/org-chart/mediboyina-rupesh-kumar-yadav",
     description:
       "Promoted data science outreach activities and built engagement with the student community on behalf of AIM."
   },
@@ -71,4 +85,4 @@ export const positions = [
 ];
 
 
-  // "Oversaw and coordinated student-led initiatives, managed teams, and organized major campus-wide events."
+

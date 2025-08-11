@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="/src/input.css" />
     <title>Rupesh.dev</title>
     <script>
-      (function () {
+      (() => {
         try {
-          const stored = localStorage.getItem("theme");
-          const shouldDark = stored
-            ? stored === "dark"
-            : window.matchMedia("(prefers-color-scheme: dark)").matches;
-          document.documentElement.classList.toggle("dark", shouldDark);
+          const s = localStorage.getItem("theme");
+          const dark = s
+            ? s === "dark"
+            : matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
         } catch {}
       })();
     </script>
