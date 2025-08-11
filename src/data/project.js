@@ -4,8 +4,8 @@ export const projectsOld = [
     description:
       "Engineered a LangChain and Google Gemini powered multi-agent system with intelligent query triage, dual-source RAG (Parent-Child retrieval, query expansion, Flashrank re-ranking), dynamic tool-use for internal/external data access, and guardrail validation for reliable, domain-specific query handling.",
     techStack: ["Langchain", "FAISS", "Gemini2.5", "Hierarchical RAG"],
-    link: "",
-    image: "",
+    link: "https://github.com/Rupesh4604/Intelligent-Multi-Agent-Knowledge-Assistant",
+    image: "https://raw.githubusercontent.com/Rupesh4604/Intelligent-Multi-Agent-Knowledge-Assistant/main/agent.png",
     videoEmbed: ""
   },
   {
@@ -23,7 +23,7 @@ export const projectsOld = [
       "ProdHub is a modern, all-in-one web application built to help you organize, achieve, and grow. Seamlessly manage projects, tasks, habits, and your calendar from a single, intuitive platform—all with smart AI-powered features and robust security.",
     techStack: ["React.js", "Firebase", "Google APIs"],
     link: "https://github.com/Rupesh4604/ProdHub",
-    image: "src/assets/Prodhub.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/ProdHub/main/images/dashboard_2.png",
     videoEmbed: ""
   },
   {
@@ -79,7 +79,7 @@ export const projectsOld = [
       + "<br/> - Developed a robust tracking system that achieved 87% accuracy in person re-identification across different camera angles, with real-time processing capabilities on standard hardware.",
     techStack: ["YOLOv5", "Deep SORT", "Computer Vision", "Deep Learning"],
     link: "https://github.com/Rupesh4604/Pedestrian-Tracking-using-Deep-Learning",
-    image: "src/assets/person-tracking.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/Pedestrian-Tracking-using-Deep-Learning/main/person-tracking.png",
     videoEmbed: ""
   },
   {
