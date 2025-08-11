@@ -1,18 +1,18 @@
 import React from "react";
-// If you’re using ESM with "type":"module", include the extension:
-import { projects } from "../data/projectsData.js";
+import { projects } from "../data/projectsData.js"; // keep your original source
 
 export default function Projects() {
   return (
-    <main className="px-6 py-10 max-w-6xl mx-auto text-gray-800">
+    <>
       <h1 className="text-3xl font-bold mb-6">Projects</h1>
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, idx) => {
-          const stack = project.techStack ?? project.topics ?? []; // <- key fix
+          const stack = project.techStack ?? project.topics ?? [];
           return (
-            <div
+            <article
               key={idx}
-              className="border rounded-xl p-4 shadow-md hover:shadow-lg transition"
+              className="group rounded-2xl border bg-white p-4 shadow-sm hover:shadow-md transition"
             >
               {project.image && (
                 <img
@@ -23,31 +23,28 @@ export default function Projects() {
               )}
 
               {project.videoEmbed && (
-                <div className="mb-3">
+                <div className="mb-3 aspect-video">
                   <iframe
-                    width="100%"
-                    height="200"
+                    className="w-full h-full rounded-md"
                     src={project.videoEmbed}
                     title={project.title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="rounded-md"
                   />
                 </div>
               )}
 
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+              <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
 
-              {/* render <br/> in description */}
               <div
-                className="text-sm mb-2"
+                className="text-sm mb-2 text-slate-700"
                 dangerouslySetInnerHTML={{ __html: project.description }}
               />
 
-              <div className="flex flex-wrap gap-2 text-xs text-gray-600">
+              <div className="flex flex-wrap gap-2 text-xs">
                 {stack.map((tech, i) => (
-                  <span key={i} className="bg-gray-100 px-2 py-1 rounded-md">
+                  <span key={i} className="bg-slate-100 text-slate-700 px-2 py-1 rounded-md">
                     {tech}
                   </span>
                 ))}
@@ -58,15 +55,15 @@ export default function Projects() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-3 text-blue-600 hover:underline"
+                  className="inline-flex items-center gap-1 mt-3 text-blue-600 hover:underline"
                 >
                   View Project
                 </a>
               )}
-            </div>
+            </article>
           );
         })}
       </div>
-    </main>
+    </>
   );
 }
