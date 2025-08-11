@@ -1,6 +1,6 @@
 export const projects = [
   {
-    title: "Intelligent Multi-Agent Knowledge Assistant",
+    title: "Intelligent Multi-Agent RAG System",
     description:
       "Engineered a LangChain and Google Gemini powered multi-agent system with intelligent query triage, dual-source RAG (Parent-Child retrieval, query expansion, Flashrank re-ranking), dynamic tool-use for internal/external data access, and guardrail validation for reliable, domain-specific query handling.",
     techStack: ["Langchain", "FAISS", "Gemini2.5", "Hierarchical RAG"],
