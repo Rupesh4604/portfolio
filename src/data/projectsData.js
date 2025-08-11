@@ -49,7 +49,7 @@ export const projects = [
     description:
       "Built a 3D Convolutional Neural Network in PyTorch for multi-band Sentinel-2 imagery. Handles patch-based inference and full image reconstruction for slum boundary detection.",
     techStack: ["PyTorch", "3D CNN", "Sentinel-2"],
-    link: "https://github.com/your-3dcnn-project",
+    link: "",
     image: "src/assets/cnn.png",
     videoEmbed: ""
   },
@@ -59,7 +59,7 @@ export const projects = [
       "Interactive Web Application for Disaster Preparedness - Built a responsive web application utilizing Leaflet.js and the Geolocation API to identify nearby emergency facilities and display flood risk zones with user-interactive filtering options.",
     techStack: ["JavaScript", "Leaflet.js", "Geolocation API", "Overpass API"],
     link: "https://github.com/Rupesh4604/Emergency-Services-Locator",
-    image: "",
+    image: "https://raw.githubusercontent.com/Rupesh4604/Emergency-Services-Locator/main/images/ios.png",
     videoEmbed: ""
   },
   {

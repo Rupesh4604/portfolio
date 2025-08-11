@@ -13,7 +13,8 @@ export default function Publications() {
           >
             <h3 className="text-xl font-semibold mb-1">{pub.title}</h3>
             <p className="text-sm text-gray-700 mb-1">{pub.authors}</p>
-            <p className="text-sm text-gray-600 mb-1">{pub.venue} — {pub.year}</p>
+            {/* <p className="text-sm text-gray-600 mb-1">{pub.venue} — {pub.year}</p> */}
+            <p className="text-sm text-gray-600 mb-1">{pub.venue} </p>
             <p className="text-sm text-gray-700 mb-2">{pub.description}</p>
             {pub.doi && (
               <a

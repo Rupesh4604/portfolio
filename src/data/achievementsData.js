@@ -31,7 +31,7 @@ export const positions = [
     organization: "NIT Andhra Pradesh",
     duration: "2022–23",
     description:
-      "Organized technical workshops, coding competitions, and academic support sessions for CSE students."
+      "Organized technical workshops, coding competitions, TECH EXPO, UI/UX and design contests, and academic support sessions for CSE students, while mentoring juniors and serving as Acting Secretary to lead the team during the institute’s technical fest."
   },
   {
     title: "Campus Ambassador",
