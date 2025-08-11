@@ -49,33 +49,39 @@ export default function Home() {
       </section>
 
       {/* Technical Skills */}
-      <section className="mb-10">
+      <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">Technical Skills</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-xl border bg-white p-4 shadow-sm">
-            <h3 className="font-semibold mb-2">Languages</h3>
-            <ul className="list-disc list-inside text-sm space-y-1">
-              <li>Python</li><li>C/C++</li><li>Java</li>
-              <li>JavaScript</li><li>SQL</li><li>ROS2</li>
-            </ul>
-          </div>
-
-          <div className="rounded-xl border bg-white p-4 shadow-sm">
-            <h3 className="font-semibold mb-2">Libraries &amp; Frameworks</h3>
-            <ul className="list-disc list-inside text-sm space-y-1">
-              <li>Keras</li><li>TensorFlow</li><li>PyTorch</li>
-              <li>Node.js</li><li>React.js</li><li>Flask</li><li>Streamlit</li>
-            </ul>
-          </div>
-
-          <div className="rounded-xl border bg-white p-4 shadow-sm">
-            <h3 className="font-semibold mb-2">Tools &amp; Platforms</h3>
-            <ul className="list-disc list-inside text-sm space-y-1">
-              <li>Linux</li><li>Git</li><li>VS Code</li><li>MySQL</li>
-              <li>Tableau</li><li>PostgreSQL</li><li>MongoDB</li>
-              <li>ArcGIS</li><li>MLFlow</li><li>AirFlow</li><li>BigQuery</li><li>PySpark</li>
-            </ul>
-          </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Languages",
+              items: ["Python", "C/C++", "Java", "JavaScript", "SQL", "Robot Operating System (ROS2)", "MATLAB", "R", "Bash", "HTML", "CSS", "TypeScript"],
+            },
+            {
+              title: "Libraries & Frameworks",
+              items: ["Keras", "TensorFlow", "PyTorch", "Node.js", "React.js", "Flask", "Streamlit", "OpenStreetMap", "OpenCV", "LangChain"],
+            },
+            {
+              title: "Tools & Platforms",
+              items: ["Linux", "Git", "VS Code", "MySQL", "Tableau", "PostgreSQL", "MongoDB", "ArcGIS", "MLFlow", "AirFlow", "BigQuery", "PySpark"],
+            },
+          ].map((col) => (
+            <div key={col.title}
+              className="rounded-2xl border bg-white/70 dark:bg-slate-900/60 backdrop-blur
+                        p-5 shadow-sm dark:border-slate-700">
+              <h3 className="font-semibold mb-3 text-slate-900 dark:text-slate-100">{col.title}</h3>
+              <div className="flex flex-wrap gap-2">
+                {col.items.map((x) => (
+                  <span key={x}
+                    className="px-2.5 py-1 text-xs rounded-md
+                              bg-slate-100 text-slate-700
+                              dark:bg-slate-800 dark:text-slate-200">
+                    {x}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </>
