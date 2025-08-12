@@ -7,6 +7,7 @@ import Projects from "./pages/Projects.jsx";
 import Internships from "./pages/Internships.jsx";
 import Publications from "./pages/Publications.jsx";
 import Achievements from "./pages/Achievements.jsx";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             © {new Date().getFullYear()} Rupesh. All rights reserved.
           </footer>
         </main>
+        <SpeedInsights />
       </div>
     </Router>
   );

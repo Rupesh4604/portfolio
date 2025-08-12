@@ -7,7 +7,7 @@ export const projects = [
       "Engineered a LangChain and Google Gemini powered multi-agent system with intelligent query triage, dual-source RAG (Parent-Child retrieval, query expansion, Flashrank re-ranking), dynamic tool-use for internal/external data access, and guardrail validation for reliable, domain-specific query handling.",
     techStack: ["Langchain", "FAISS", "Gemini2.5", "Hierarchical RAG"],
     link: "https://github.com/Rupesh4604/Intelligent-Multi-Agent-Knowledge-Assistant",
-    image: "src/assets/agent.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/agent.png",
     videoEmbed: ""
   },
   {
@@ -18,7 +18,7 @@ export const projects = [
       "A research-driven implementation of MQCNN using TensorFlow Quantum and Cirq for pixel-level slum classification from Sentinel-2 imagery. Includes custom quantum convolutional layers and MCQI encoding.",
     techStack: ["TensorFlow Quantum", "Cirq", "Keras", "Satellite Imagery"],
     link: "https://github.com/your-qcnn-project",
-    image: "src/assets/mqcnn.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/Quantum-Convolutional-Neural-Network-for-Slum-Classification/main/mqcnn.png",
     videoEmbed: ""
   },
   {
@@ -32,7 +32,7 @@ export const projects = [
       + "<br/> - Designed a real-time, persistent data architecture using Firestore, ensuring data integrity and user privacy through secure authentication and data rules.",
     techStack: ["React.js", "Firebase", "Google APIs"],
     link: "https://github.com/Rupesh4604/ProdHub",
-    image: "src/assets/Prodhub.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/ProdHub/main/images/dashboard_2.png",
     videoEmbed: ""
   },
   {
@@ -47,7 +47,7 @@ export const projects = [
       + "<br/> - Integrated Google Charts for dynamic visualization of sensor data through maps, tables, and time-series graphs.",
     techStack: ["JavaScript", "Google Charts", "istSOS", "Docker"],
     link: "https://github.com/Rupesh4604/SOS-WebClient-Interface",
-    image: "src/assets/sos.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/SOS-WebClient-Interface/main/sos.png",
     videoEmbed: ""
   },
   {
@@ -58,7 +58,7 @@ export const projects = [
       "A client-server-based interoperable Geographic Information System (GIS) for visualizing, querying, and analyzing geospatial data using OGC-compliant WMS and WFS services with advanced map interaction and analysis features. This system allows seamless access to GeoServer-hosted spatial layers through an interactive web dashboard built with OpenLayers.",
     techStack: ["JavaScript", "OpenLayers", "GeoServer", "Apache Tomcat", "PostgreSQL", "PostGIS"],
     link: "https://github.com/Rupesh4604/GeoWebClient",
-    image: "src/assets/geowebclient.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/GeoWebClient/main/geowebclient.png",
     videoEmbed: ""
   },
   {
@@ -69,7 +69,7 @@ export const projects = [
       "Built a 3D Convolutional Neural Network in PyTorch for multi-band Sentinel-2 imagery. Handles patch-based inference and full image reconstruction for slum boundary detection.",
     techStack: ["PyTorch", "3D CNN", "Sentinel-2"],
     link: "",
-    image: "src/assets/cnn.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/cnn.png",
     videoEmbed: ""
   },
   {
@@ -92,7 +92,7 @@ export const projects = [
       + "<br/> - Co-authored the paper \"Enhancing Hyperspectral Imagery Classification using CNN and ViT\", accepted at ICICA-2024, and leveraged tools like EarthMapper, Spectralformer, and HVT for experimentation.",
     techStack: ["pytorch", "deep learning", "transformers"],
     link: "",
-    image: "src/assets/arch.jpg",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/arch.jpg",
     videoEmbed: ""
   },
   {
@@ -104,7 +104,7 @@ export const projects = [
       + "<br/> - Developed a robust tracking system that achieved 87% accuracy in person re-identification across different camera angles, with real-time processing capabilities on standard hardware.",
     techStack: ["YOLOv5", "Deep SORT", "Computer Vision", "Deep Learning"],
     link: "https://github.com/Rupesh4604/Pedestrian-Tracking-using-Deep-Learning",
-    image: "src/assets/person-tracking.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/Pedestrian-Tracking-using-Deep-Learning/main/person-tracking.png",
     videoEmbed: ""
   },
   {
