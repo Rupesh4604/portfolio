@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "../components/Modal.jsx";
+import Modal from "../components/modal.jsx";
 import { projects } from "../data/projectsData.js";
 
 export default function Projects() {

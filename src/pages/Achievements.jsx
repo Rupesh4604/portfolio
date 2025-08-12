@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "../components/Modal.jsx"; // the scrollable modal we built earlier
+import Modal from "../components/modal.jsx";
 import { achievements, positions } from "../data/achievementsData";
 
 export default function AchievementsAndPositions() {
