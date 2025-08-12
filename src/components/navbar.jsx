@@ -15,6 +15,7 @@ const nav = [
   { to: "/internships", label: "Internships" },
   { to: "/publications", label: "Publications" },
   { to: "/achievements", label: "Achievements" },
+  { to: "/open-source-env", label: "OpenSourceEnv" },
 ];
 
 export default function Navbar() {
@@ -34,9 +35,16 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50
-                       bg-white/70 backdrop-blur border-b border-slate-200
-                       dark:bg-night-950/70 dark:border-surface-border">
+    <header
+  className="
+    sticky top-0 z-50 border-b
+    border-slate-200 dark:border-surface-border
+    bg-white/95 dark:bg-night-950/95
+    md:bg-white/80 md:dark:bg-night-950/80
+    supports-[backdrop-filter]:backdrop-blur-md
+    shadow-sm
+  "
+>
       <nav className="mx-auto max-w-6xl px-4 sm:px-6 h-14 flex items-center justify-between">
         {/* Brand */}
         <span className="text-slate-900 dark:text-white font-semibold">Rupesh</span>

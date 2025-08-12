@@ -7,6 +7,7 @@ import Projects from "./pages/Projects.jsx";
 import Internships from "./pages/Internships.jsx";
 import Publications from "./pages/Publications.jsx";
 import Achievements from "./pages/Achievements.jsx";
+import OpenSourceEnv from "./pages/OpenSourceEnv.jsx";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/internships" element={<Internships />} />
             <Route path="/publications" element={<Publications />} />
             <Route path="/achievements" element={<Achievements />} />
+            <Route path="/open-source-env" element={<OpenSourceEnv />} />
           </Routes>
           <footer className="mt-16 border-t pt-6 text-sm text-slate-500">
             © {new Date().getFullYear()} Rupesh. All rights reserved.
