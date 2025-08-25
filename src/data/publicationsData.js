@@ -2,7 +2,7 @@ export const publications = [
   {
     title: "Quantum Convolutional Neural Network for Slum Classification using Sentinel-2 Imagery",
     authors: "Archana G Pai, R. K. Y. Mediboyina.",
-    venue: "Under Review - 2025",
+    venue: "Under Review at Quantum Information Processing (QIP) Journal.",
     year: "2025",
     description:
       "Proposed a Multi-channel Quantum Convolutional Neural Network using TensorFlow Quantum and Cirq for patch-level classification of urban slums from Sentinel-2 imagery.",
