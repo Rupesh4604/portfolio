@@ -18,7 +18,7 @@ export const projects = [
       "A research-driven implementation of MQCNN using TensorFlow Quantum and Cirq for pixel-level slum classification from Sentinel-2 imagery. Includes custom quantum convolutional layers and MCQI encoding.",
     techStack: ["TensorFlow Quantum", "Cirq", "Keras", "Satellite Imagery"],
     link: "https://github.com/your-qcnn-project",
-    image: "https://raw.githubusercontent.com/Rupesh4604/Quantum-Convolutional-Neural-Network-for-Slum-Classification/main/mqcnn.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/mqcnn.png",
     videoEmbed: ""
   },
   {
@@ -40,7 +40,7 @@ export const projects = [
     description:
       "Browser client for OGC SOS (istSOS) with real-time discovery and Google Charts.",
     longDescription:
-            "SOS WebClient Interface (istSOS Integration) is a lightweight, browser-based application designed to interact with OGC-compliant Sensor Observation Service (SOS) endpoints, particularly those hosted using istSOS."
+      "SOS WebClient Interface (istSOS Integration) is a lightweight, browser-based application designed to interact with OGC-compliant Sensor Observation Service (SOS) endpoints, particularly those hosted using istSOS."
       + "<br/> - The system enables users to dynamically discover, filter, and visualize sensor data through a user-friendly interface, combining real-time mapping, tabular output, and time-series charts."
       + "<br/> - Designed a lightweight browser-based client to interact with OGC-compliant Sensor Observation Service (SOS) endpoints, specifically istSOS."
       + "<br/> - Implemented real-time sensor discovery and metadata display with interactive, map-based visualization for intuitive sensor exploration."
@@ -80,7 +80,7 @@ export const projects = [
       "Developed a deep learning model for 4× image super-resolution specifically tailored for gaming imagery, enhancing visual fidelity and detail.",
     techStack: ["PyTorch", "CNN", "Image Processing"],
     link: "",
-    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/cnn.png",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/hr.png",
     videoEmbed: ""
   },
   {
