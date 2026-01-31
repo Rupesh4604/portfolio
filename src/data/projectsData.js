@@ -73,6 +73,17 @@ export const projects = [
     videoEmbed: ""
   },
   {
+    title: "Image-Super-Resolution",
+    description:
+      "Deep Learning-Based 4× Image Super-Resolution for Gaming Imagery.",
+    longDescription:
+      "Developed a deep learning model for 4× image super-resolution specifically tailored for gaming imagery, enhancing visual fidelity and detail.",
+    techStack: ["PyTorch", "CNN", "Image Processing"],
+    link: "",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/cnn.png",
+    videoEmbed: ""
+  },
+  {
     title: "Emergency Services and Flood Zones Locator",
     description:
       "Leaflet web app to locate nearby emergency services and visualize flood risk zones.",
