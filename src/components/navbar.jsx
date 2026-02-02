@@ -35,78 +35,80 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header
-  className="
-    sticky top-0 z-50 border-b
-    border-slate-200 dark:border-surface-border
-    bg-white/95 dark:bg-night-950/95
-    md:bg-white/80 md:dark:bg-night-950/80
-    supports-[backdrop-filter]:backdrop-blur-md
-    shadow-sm
-  "
->
-      <nav className="mx-auto max-w-6xl px-4 sm:px-6 h-14 flex items-center justify-between">
-        {/* Brand */}
-        <span className="text-slate-900 dark:text-white font-semibold">Rupesh</span>
+    <>
+      <header
+        className="
+          sticky top-0 z-50 border-b
+          border-slate-200 dark:border-surface-border
+          bg-white/95 dark:bg-night-950/95
+          md:bg-white/80 md:dark:bg-night-950/80
+          supports-[backdrop-filter]:backdrop-blur-md
+          shadow-sm
+        "
+      >
+        <nav className="mx-auto max-w-6xl px-4 sm:px-6 h-14 flex items-center justify-between">
+          {/* Brand */}
+          <span className="text-slate-900 dark:text-white font-semibold">Rupesh</span>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-1">
-          {nav.map((n) => (
-            <li key={n.to}>
-              <NavLink
-                to={n.to}
-                end={n.to === "/"}
-                className={({ isActive }) =>
-                  `${linkBase} ${isActive ? linkActive : linkIdle}`
-                }
-              >
-                {n.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center gap-1">
+            {nav.map((n) => (
+              <li key={n.to}>
+                <NavLink
+                  to={n.to}
+                  end={n.to === "/"}
+                  className={({ isActive }) =>
+                    `${linkBase} ${isActive ? linkActive : linkIdle}`
+                  }
+                >
+                  {n.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-2">
-          <div className="hidden md:block">
-            <ThemeToggle />
-          </div>
+          {/* Right controls */}
+          <div className="flex items-center gap-2">
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
 
-          {/* Hamburger (mobile) */}
-          <button
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg
+            {/* Hamburger (mobile) */}
+            <button
+              className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg
                        border border-slate-200 dark:border-surface-border
                        bg-white/70 dark:bg-night-900/70 backdrop-blur
                        hover:bg-white dark:hover:bg-night-900 transition"
-            aria-label="Open menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {/* 3 bars → X animation */}
-            <span className="relative block w-5 h-3.5">
-              <span
-                className={`absolute inset-x-0 top-0 h-0.5 rounded
+              aria-label="Open menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {/* 3 bars → X animation */}
+              <span className="relative block w-5 h-3.5">
+                <span
+                  className={`absolute inset-x-0 top-0 h-0.5 rounded
                             bg-slate-700 dark:bg-slate-200 transition
                             ${open ? "translate-y-1.5 rotate-45" : ""}`}
-              />
-              <span
-                className={`absolute inset-x-0 top-1.5 h-0.5 rounded
+                />
+                <span
+                  className={`absolute inset-x-0 top-1.5 h-0.5 rounded
                             bg-slate-700 dark:bg-slate-200 transition
                             ${open ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`absolute inset-x-0 bottom-0 h-0.5 rounded
+                />
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-0.5 rounded
                             bg-slate-700 dark:bg-slate-200 transition
                             ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
-              />
-            </span>
-          </button>
-        </div>
-      </nav>
+                />
+              </span>
+            </button>
+          </div>
+        </nav>
+      </header>
 
       {/* Mobile sheet */}
       <div
-        className={`md:hidden fixed inset-0 z-40 ${open ? "" : "pointer-events-none"}`}
+        className={`md:hidden fixed inset-0 z-[60] ${open ? "" : "pointer-events-none"}`}
       >
         {/* Backdrop */}
         <div
@@ -151,6 +153,6 @@ export default function Navbar() {
           </nav>
         </div>
       </div>
-    </header>
+    </>
   );
 }
