@@ -34,7 +34,7 @@ export const positions = [
     title: "General Secretary, TASKFORCE",
     organization: "NIT Andhra Pradesh",
     duration: "2023–24",
-    image: "https://media.licdn.com/dms/image/v2/D562DAQF_HpsZxWOSrQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1719318208845?e=1755558000&v=beta&t=pbsgv_2e2MWB-Ab0mg7YtoBOvjf17N_QzfpV5bZ0jyo",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/1.png",
     description:
       "Served as General Secretary of the Taskforce Club at NIT Andhra Pradesh for the academic year 2023-24. Organized numerous institute-level events and advanced various central government initiatives, including ODOP (One District One Product) and Swachh Bharat 3.0. Conducted tree plantation drives, Blood donation camps and also facilitated coordination among various institute clubs. Additionally, assisted in organizing the college's technical and cultural festivals."
   },
@@ -42,7 +42,7 @@ export const positions = [
     title: "Joint Secretary, Computer Science and Engineering Association (CSEA)",
     organization: "NIT Andhra Pradesh",
     duration: "2022–23",
-    image: "https://media.licdn.com/dms/image/v2/D562DAQGCV2aJ5OEDag/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1709033768784?e=1755558000&v=beta&t=ePtpay2HBlO-PrKqqN3NbHgpKK61EdBJj7ZV84160xs",
+    image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/2.png",
     description:
       "Organized technical workshops, coding competitions, TECH EXPO, UI/UX and design contests, and academic support sessions for CSE students, while mentoring juniors and serving as Acting Secretary to lead the team during the institute’s technical fest."
   },

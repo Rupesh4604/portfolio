@@ -29,7 +29,7 @@ export default function Internships() {
               </span>
             </div>
             <p className="text-slate-700 dark:text-slate-300 font-medium">Master of Technology, GNR, CSRE</p>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">CGPA: 9.05</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">CGPA: 9.45</p>
           </div>
 
           {/* NIT Andhra Pradesh */}

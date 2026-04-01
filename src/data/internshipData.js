@@ -11,7 +11,7 @@ export const internships = [
     techStack: ["Deep Learning", "YOLOv8", "ROS2", "LiDAR", "Sensor Fusion"]
   },
   {
-    role: "Machine Learning Intern/Project Trainee",
+    role: "Machine Learning Intern",
     organization: "Hindustan Aeronautics Ltd (HAL), Nasik",
     duration: "May 2022 - July 2022",
     description:
