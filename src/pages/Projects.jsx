@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../components/modal.jsx";
 import { projects } from "../data/projectsData.js";
+import { Helmet } from "react-helmet-async";
 
 export default function Projects() {
   const [open, setOpen] = useState(false);
@@ -8,6 +9,11 @@ export default function Projects() {
 
   return (
     <>
+      <Helmet>
+        <title>Projects | M Rupesh Kumar Yadav</title>
+        <meta name="description" content="Explore projects built by M Rupesh Kumar Yadav, including ProdHub, AI integrations, and full-stack web applications." />
+        <link rel="canonical" href="https://rupesh-dev.vercel.app/projects" />
+      </Helmet>
       <h1 className="text-3xl font-bold mb-6">Projects</h1>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
