@@ -1,6 +1,7 @@
 // src/pages/OpenSourceEnv.jsx
 import React, { useState } from "react";
 import Modal from "../components/modal.jsx";
+import { Helmet } from "react-helmet-async";
 
 /* --- small helper for the Email chips --- */
 function ContactEmails() {
@@ -63,6 +64,11 @@ export default function OpenSourceEnv() {
 
   return (
     <>
+      <Helmet>
+        <title>OpenSourceEnv & ProdHub | M Rupesh Kumar Yadav</title>
+        <meta name="description" content="Discover OpenSourceEnv and ProdHub, an AI-powered personal productivity hub built by M Rupesh Kumar Yadav." />
+        <link rel="canonical" href="https://rupesh-dev.vercel.app/open-source-env" />
+      </Helmet>
       {/* Hero */}
       <header className="mb-10">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">

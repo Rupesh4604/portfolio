@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>M Rupesh Kumar Yadav | Home</title>
+        <meta name="description" content="Welcome to the portfolio of M Rupesh Kumar Yadav. Explore my skills in Full Stack Development, AI, and major projects like ProdHub." />
+        <link rel="canonical" href="https://rupesh-dev.vercel.app/" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex flex-col justify-center items-start mb-20 pt-10">
         <div className="absolute top-0 right-0 -z-10 opacity-30 dark:opacity-20 pointer-events-none">
