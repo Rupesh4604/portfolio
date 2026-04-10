@@ -2,32 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/input.css" />
-    <title>M Rupesh Kumar Yadav | Software Engineer & AI Developer</title>
+    <title>M Rupesh Kumar Yadav | Software Engineer &amp; AI Developer</title>
 
     <meta name="application-name" content="Rupesh.dev" />
     <meta name="description" content="Portfolio of M Rupesh Kumar Yadav, a Software Engineer and AI Developer. Explore my projects like ProdHub, open-source initiatives like OpenSourceEnv, and more." />
-    <meta name="keywords" content="M Rupesh Kumar Yadav, Software Engineer, Full Stack Developer, AI Developer, ProdHub, OpenSourceEnv, React, Portfolio" />
+    <meta name="keywords" content="M Rupesh Kumar Yadav, Software Engineer, Full Stack Developer, AI Developer, Deep Learning Researcher, Computer Vision Engineer, IIT Bombay, MTech, LangChain, ProdHub, OpenSourceEnv, React, Remote Sensing, Portfolio" />
     <meta name="author" content="M Rupesh Kumar Yadav" />
+    <meta name="robots" content="index, follow" />
 
     <meta property="og:site_name" content="Rupesh.dev" />
-    <meta property="og:title" content="M Rupesh Kumar Yadav | Software Engineer & AI Developer" />
+    <meta property="og:title" content="M Rupesh Kumar Yadav | Software Engineer &amp; AI Developer" />
     <meta property="og:description" content="Portfolio of M Rupesh Kumar Yadav, a Software Engineer and AI Developer. Explore my projects like ProdHub and open-source initiatives." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rupesh-dev.vercel.app/" />
+    <meta property="og:image" content="https://rupesh-dev.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="M Rupesh Kumar Yadav — Software Engineer &amp; AI Developer" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="M Rupesh Kumar Yadav | Software Engineer & AI Developer" />
+    <meta name="twitter:title" content="M Rupesh Kumar Yadav | Software Engineer &amp; AI Developer" />
     <meta name="twitter:description" content="Portfolio of M Rupesh Kumar Yadav, a Software Engineer and AI Developer. Explore my projects like ProdHub and open-source initiatives." />
+    <meta name="twitter:image" content="https://rupesh-dev.vercel.app/og-image.png" />
+    <meta name="twitter:creator" content="@RupeshKumar4604" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "M Rupesh Kumar Yadav",
+      "url": "https://rupesh-dev.vercel.app/",
+      "jobTitle": "Software Engineer & AI Developer",
+      "description": "M.Tech student at IIT Bombay specializing in Deep Learning, Computer Vision and Large Language Models.",
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Indian Institute of Technology Bombay" },
+        { "@type": "CollegeOrUniversity", "name": "National Institute of Technology Andhra Pradesh" }
+      ],
+      "sameAs": [
+        "https://github.com/Rupesh4604",
+        "https://www.linkedin.com/in/mediboyina-rupesh-kumar-yadav-8b7a14205/",
+        "https://x.com/RupeshKumar4604"
+      ]
+    }
+    </script>
+
     <script>
       (() => {
         try {
           const s = localStorage.getItem("theme");
-          const dark = s
-            ? s === "dark"
-            : matchMedia("(prefers-color-scheme: dark)").matches;
+          const dark = s ? s === "dark" : true;
           document.documentElement.classList.toggle("dark", dark);
         } catch {}
       })();

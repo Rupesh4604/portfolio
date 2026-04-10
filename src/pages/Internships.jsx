@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../components/modal.jsx";
 import { internships } from "../data/internshipData";
+import { Helmet } from "react-helmet-async";
 
 export default function Internships() {
   const [open, setOpen] = useState(false);
@@ -8,7 +9,12 @@ export default function Internships() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-8">Internships & Education</h1>
+      <Helmet>
+        <title>Internships &amp; Education | M Rupesh Kumar Yadav</title>
+        <meta name="description" content="Academic background and professional internships of M Rupesh Kumar Yadav — M.Tech at IIT Bombay (CGPA 9.45), B.Tech at NIT Andhra Pradesh, research internships in AI and remote sensing." />
+        <link rel="canonical" href="https://rupesh-dev.vercel.app/internships" />
+      </Helmet>
+      <h1 className="text-3xl font-bold mb-8">Internships &amp; Education</h1>
 
       {/* Education Section */}
       <section className="mb-12 animate-slide-up">
@@ -75,10 +81,13 @@ export default function Internships() {
         {internships.map((item, idx) => (
           <article
             key={idx}
+            role="button"
+            tabIndex={0}
             onClick={() => { setActive(item); setOpen(true); }}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { setActive(item); setOpen(true); } }}
             className="cursor-pointer rounded-2xl border bg-white/70 dark:bg-slate-900/60
                        backdrop-blur p-4 shadow-sm hover:shadow-lg transition
-                       border-slate-200 dark:border-slate-700"
+                       border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-accent-500/50"
           >
             <h3 className="text-xl font-semibold mb-1">{item.role}</h3>
             <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
@@ -124,6 +133,8 @@ export default function Internships() {
               <img
                 src={active.image}
                 alt={active.role}
+                loading="lazy"
+                decoding="async"
                 className="w-full rounded-lg mb-3 max-h-[30vh] object-contain"
               />
             )}

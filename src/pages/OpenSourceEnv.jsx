@@ -1,5 +1,6 @@
 // src/pages/OpenSourceEnv.jsx
 import React, { useState } from "react";
+import DOMPurify from "dompurify";
 import Modal from "../components/modal.jsx";
 import { Helmet } from "react-helmet-async";
 
@@ -235,7 +236,7 @@ export default function OpenSourceEnv() {
               </a>
 
               <a
-                href="http://t.me/openSourceEnv" target="_blank" rel="noreferrer"
+                href="https://t.me/openSourceEnv" target="_blank" rel="noreferrer"
                 className="block rounded-xl border border-slate-200 dark:border-surface-border p-3 bg-white dark:bg-surface-2 hover:shadow-sm"
               >
                 <div className="flex items-center justify-between">
@@ -347,7 +348,7 @@ export default function OpenSourceEnv() {
             <p className="text-sm text-slate-700 dark:text-slate-300">{active.tagline}</p>
             <div
               className="prose prose-slate max-w-none dark:prose-invert mt-3"
-              dangerouslySetInnerHTML={{ __html: active.longDescription }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(active.longDescription) }}
             />
           </>
         )}

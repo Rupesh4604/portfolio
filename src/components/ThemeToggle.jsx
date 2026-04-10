@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function ThemeToggle() {
   const getInitial = () => {
     const s = localStorage.getItem("theme");
-    return s ? s === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return s ? s === "dark" : true;
   };
   const [dark, setDark] = useState(getInitial);
 
@@ -15,6 +15,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(d => !d)}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       className="inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm
                  bg-white/70 dark:bg-night-950/70 backdrop-blur
                  hover:bg-white dark:hover:bg-night-900

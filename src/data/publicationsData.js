@@ -30,5 +30,3 @@ export const publications = [
     doi: "https://doi.org/10.2991/978-94-6463-718-2_131"
   }
 ];
-
-// This paper presents a novel approach to urban slum classification using a Multi-channel Quantum Convolutional Neural Network (MQCNN) powered by TensorFlow Quantum and Cirq. The proposed method leverages the unique capabilities of quantum computing to enhance the feature extraction process from Sentinel-2 imagery, enabling more accurate and efficient classification of urban slums at the patch level.

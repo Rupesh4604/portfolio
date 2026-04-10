@@ -20,7 +20,7 @@ export default function Modal({ open, onClose, title, children, footer }) {
       className="fixed inset-0 z-50 flex items-center justify-center
                  bg-black/60 backdrop-blur-sm p-4"
       onMouseDown={onClose}
-      aria-modal="true" role="dialog"
+      aria-modal="true" role="dialog" aria-labelledby="modal-title"
     >
       <div
         className="w-full max-w-3xl rounded-2xl border shadow-xl
@@ -29,7 +29,7 @@ export default function Modal({ open, onClose, title, children, footer }) {
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b dark:border-slate-700">
-          <h3 className="text-xl font-semibold">{title}</h3>
+          <h3 id="modal-title" className="text-xl font-semibold">{title}</h3>
           <button
             onClick={onClose}
             className="rounded-md px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-800"

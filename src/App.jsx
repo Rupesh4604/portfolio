@@ -1,15 +1,16 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/navbar.jsx";
-import Home from "./pages/Home.jsx";
-import Projects from "./pages/Projects.jsx";
-import Internships from "./pages/Internships.jsx";
-import Publications from "./pages/Publications.jsx";
-import Achievements from "./pages/Achievements.jsx";
-import OpenSourceEnv from "./pages/OpenSourceEnv.jsx";
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { HelmetProvider } from "react-helmet-async";
+
+const Home = lazy(() => import("./pages/Home.jsx"));
+const Projects = lazy(() => import("./pages/Projects.jsx"));
+const Internships = lazy(() => import("./pages/Internships.jsx"));
+const Publications = lazy(() => import("./pages/Publications.jsx"));
+const Achievements = lazy(() => import("./pages/Achievements.jsx"));
+const OpenSourceEnv = lazy(() => import("./pages/OpenSourceEnv.jsx"));
 
 export default function App() {
   return (
@@ -19,6 +20,11 @@ export default function App() {
                 dark:bg-night-950 dark:text-slate-100">
         <Navbar />
         <main className="mx-auto max-w-6xl px-6 py-10">
+          <Suspense fallback={
+            <div className="flex items-center justify-center min-h-[60vh]">
+              <div className="w-8 h-8 border-4 border-accent-500 border-t-transparent rounded-full animate-spin" />
+            </div>
+          }>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
@@ -27,6 +33,7 @@ export default function App() {
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/open-source-env" element={<OpenSourceEnv />} />
           </Routes>
+          </Suspense>
           <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 pt-8 pb-10">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">

@@ -17,7 +17,7 @@ export const projects = [
     longDescription:
       "A research-driven implementation of MQCNN using TensorFlow Quantum and Cirq for pixel-level slum classification from Sentinel-2 imagery. Includes custom quantum convolutional layers and MCQI encoding.",
     techStack: ["TensorFlow Quantum", "Cirq", "Keras", "Satellite Imagery"],
-    link: "https://github.com/your-qcnn-project",
+    link: "https://github.com/Rupesh4604/Quantum-Convolutional-Neural-Network-for-Slum-Classification",
     image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/mqcnn.png",
     videoEmbed: ""
   },

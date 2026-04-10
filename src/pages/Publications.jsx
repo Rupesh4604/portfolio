@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import DOMPurify from "dompurify";
 import Modal from "../components/modal.jsx";
 import { publications } from "../data/publicationsData";
+import { Helmet } from "react-helmet-async";
 
 export default function Publications() {
   const [open, setOpen] = useState(false);
@@ -8,14 +10,23 @@ export default function Publications() {
 
   return (
     <>
+      <Helmet>
+        <title>Publications | M Rupesh Kumar Yadav</title>
+        <meta name="description" content="Peer-reviewed research papers by M Rupesh Kumar Yadav on Quantum Neural Networks, Hyperspectral Imagery Classification, and Graph-Based stance grouping — published in QIP, PReMI, IIT Delhi." />
+        <link rel="canonical" href="https://rupesh-dev.vercel.app/publications" />
+      </Helmet>
       <h1 className="text-3xl font-bold mb-6">Publications</h1>
 
       <div className="grid gap-6">
         {publications.map((pub, idx) => (
           <article key={idx}
+            role="button"
+            tabIndex={0}
             onClick={() => { setActive(pub); setOpen(true); }}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { setActive(pub); setOpen(true); } }}
             className="cursor-pointer rounded-2xl border bg-white/70 dark:bg-slate-900/60
-                       backdrop-blur p-4 shadow-sm hover:shadow-lg transition dark:border-slate-700">
+                       backdrop-blur p-4 shadow-sm hover:shadow-lg transition dark:border-slate-700
+                       focus:outline-none focus:ring-2 focus:ring-accent-500/50">
             <h3 className="text-xl font-semibold">{pub.title}</h3>
             <p className="text-sm text-slate-700 dark:text-slate-300">{pub.authors}</p>
             <p className="text-sm text-slate-500">{pub.venue}</p>
@@ -64,7 +75,7 @@ export default function Publications() {
               <div className="mt-4">
                 <h4 className="font-semibold mb-2">Notes</h4>
                 <div className="text-sm text-slate-700 dark:text-slate-300"
-                     dangerouslySetInnerHTML={{ __html: active.notes }} />
+                     dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(active.notes) }} />
               </div>
             )}
           </>

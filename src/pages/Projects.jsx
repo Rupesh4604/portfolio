@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DOMPurify from "dompurify";
 import Modal from "../components/modal.jsx";
 import { projects } from "../data/projectsData.js";
 import { Helmet } from "react-helmet-async";
@@ -20,18 +21,23 @@ export default function Projects() {
         {projects.map((p, idx) => (
           <article
             key={idx}
+            role="button"
+            tabIndex={0}
             onClick={() => {
               setActive(p);
               setOpen(true);
             }}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { setActive(p); setOpen(true); } }}
             className="group cursor-pointer rounded-2xl border bg-white/70 dark:bg-slate-900/60
                        backdrop-blur p-4 shadow-sm hover:shadow-lg transition
-                       border-slate-200 dark:border-slate-700"
+                       border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-accent-500/50"
           >
             {p.image && (
               <img
                 src={p.image}
                 alt={p.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-44 object-cover rounded-lg mb-3"
               />
             )}
@@ -77,6 +83,8 @@ export default function Projects() {
                 <img
                   src={active.image}
                   alt={active.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full rounded-lg max-h-[40vh] object-contain"
                 />
               )}
@@ -85,7 +93,7 @@ export default function Projects() {
             {active.longDescription ? (
               <div
                 className="prose prose-slate max-w-none dark:prose-invert"
-                dangerouslySetInnerHTML={{ __html: active.longDescription }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(active.longDescription) }}
               />
             ) : (
               <p className="text-slate-700 dark:text-slate-300">{active.description}</p>

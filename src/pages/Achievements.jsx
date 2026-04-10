@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import DOMPurify from "dompurify";
 import Modal from "../components/modal.jsx";
 import { achievements, positions } from "../data/achievementsData";
+import { Helmet } from "react-helmet-async";
 
 export default function AchievementsAndPositions() {
   const [open, setOpen] = useState(false);
@@ -10,14 +12,22 @@ export default function AchievementsAndPositions() {
 
   return (
     <>
+      <Helmet>
+        <title>Achievements | M Rupesh Kumar Yadav</title>
+        <meta name="description" content="Awards, certifications, competitions, and positions of responsibility held by M Rupesh Kumar Yadav — IIT Bombay M.Tech researcher and AI engineer." />
+        <link rel="canonical" href="https://rupesh-dev.vercel.app/achievements" />
+      </Helmet>
       <h1 className="text-3xl font-bold mb-6">Achievements</h1>
 
       <div className="grid gap-6 mb-12 sm:grid-cols-2">
         {achievements.map((item, idx) => (
           <article
             key={idx}
+            role="button"
+            tabIndex={0}
             onClick={() => openModal({ _type: "achievement", ...item })}
-            className="card p-5 hover:shadow-md transition cursor-pointer"
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") openModal({ _type: "achievement", ...item }); }}
+            className="card p-5 hover:shadow-md transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-500/50"
           >
             <h3 className="text-lg font-semibold mb-1 text-slate-900 dark:text-white">
               {item.title}
@@ -32,8 +42,11 @@ export default function AchievementsAndPositions() {
         {positions.map((pos, idx) => (
           <article
             key={idx}
+            role="button"
+            tabIndex={0}
             onClick={() => openModal({ _type: "position", ...pos })}
-            className="card p-5 hover:shadow-md transition cursor-pointer"
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") openModal({ _type: "position", ...pos }); }}
+            className="card p-5 hover:shadow-md transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-500/50"
           >
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
               {pos.title}
@@ -96,7 +109,7 @@ export default function AchievementsAndPositions() {
             {active.longDescription ? (
               <div
                 className="prose prose-slate max-w-none dark:prose-invert"
-                dangerouslySetInnerHTML={{ __html: active.longDescription }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(active.longDescription) }}
               />
             ) : (
               <p className="text-sm text-slate-700 dark:text-slate-300 mt-2">
