@@ -83,6 +83,3 @@ export const positions = [
       "Worked in Design Wing, Social Media and PR Team for the term 2021-22. Also worked as the Coordinator for CSEA Interaction 2022"
   }
 ];
-
-
-

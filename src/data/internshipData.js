@@ -21,5 +21,3 @@ export const internships = [
     techStack: ["Predictive Modeling", "Machine Learning", "EDA", "Data Visualization"]
   }
 ];
-
-  // Worked on LiDAR and camera fusion for object detection. Focused on YOLOv8 integration with ROS2, model comparison (YOLOv7, YOLOv8, Complex-YOLO), and deployment on autonomous vehicles.
