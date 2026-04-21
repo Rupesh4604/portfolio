@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 export default function Modal({ open, onClose, title, children, footer }) {
+  const mouseDownOnBackdropRef = useRef(false);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -19,7 +21,11 @@ export default function Modal({ open, onClose, title, children, footer }) {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center
                  bg-black/60 backdrop-blur-sm p-4"
-      onMouseDown={onClose}
+      onMouseDown={(e) => { mouseDownOnBackdropRef.current = e.target === e.currentTarget; }}
+      onMouseUp={(e) => {
+        if (mouseDownOnBackdropRef.current && e.target === e.currentTarget) onClose();
+        mouseDownOnBackdropRef.current = false;
+      }}
       aria-modal="true" role="dialog" aria-labelledby="modal-title"
     >
       <div

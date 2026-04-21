@@ -14,6 +14,36 @@ export default function Publications() {
         <title>Publications | M Rupesh Kumar Yadav</title>
         <meta name="description" content="Peer-reviewed research papers by M Rupesh Kumar Yadav on Quantum Neural Networks, Hyperspectral Imagery Classification, and Graph-Based stance grouping — published in QIP, PReMI, IIT Delhi." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/publications" />
+        <meta property="og:title" content="Publications | M Rupesh Kumar Yadav" />
+        <meta property="og:description" content="Peer-reviewed research on Quantum Neural Networks, Hyperspectral Imagery Classification, and Graph-Based stance grouping." />
+        <meta property="og:url" content="https://rupesh-dev.vercel.app/publications" />
+        <meta name="twitter:title" content="Publications | M Rupesh Kumar Yadav" />
+        <meta name="twitter:description" content="Peer-reviewed research on Quantum Neural Networks, Hyperspectral Imagery Classification, and Graph-Based stance grouping." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Publications", "item": "https://rupesh-dev.vercel.app/publications" }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": publications.map((p, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "item": {
+              "@type": "ScholarlyArticle",
+              "name": p.title,
+              "headline": p.title,
+              "author": { "@type": "Person", "name": "M Rupesh Kumar Yadav" },
+              "datePublished": p.year ?? p.date ?? undefined,
+              "publisher": p.venue ?? p.publisher ?? undefined,
+              "url": p.link ?? undefined
+            }
+          }))
+        })}</script>
       </Helmet>
       <h1 className="text-3xl font-bold mb-6">Publications</h1>
 
@@ -50,7 +80,7 @@ export default function Publications() {
         title={active?.title || "Publication"}
         footer={
           active?.doi && (
-            <a href={active.doi} target="_blank" rel="noreferrer"
+            <a href={active.doi} target="_blank" rel="noopener noreferrer"
                className="text-blue-600 hover:underline text-sm">View DOI ↗</a>
           )
         }

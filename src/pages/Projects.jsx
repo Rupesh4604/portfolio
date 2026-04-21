@@ -12,8 +12,38 @@ export default function Projects() {
     <>
       <Helmet>
         <title>Projects | M Rupesh Kumar Yadav</title>
-        <meta name="description" content="Explore projects built by M Rupesh Kumar Yadav, including ProdHub, AI integrations, and full-stack web applications." />
+        <meta name="description" content="Explore projects by M Rupesh Kumar Yadav — multi-agent RAG systems, quantum CNN for remote sensing, AI productivity apps (ProdHub), and full-stack applications." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/projects" />
+        <meta property="og:title" content="Projects | M Rupesh Kumar Yadav" />
+        <meta property="og:description" content="Multi-agent RAG, Quantum CNN, ProdHub and more — projects by M Rupesh Kumar Yadav." />
+        <meta property="og:url" content="https://rupesh-dev.vercel.app/projects" />
+        <meta name="twitter:title" content="Projects | M Rupesh Kumar Yadav" />
+        <meta name="twitter:description" content="Multi-agent RAG, Quantum CNN, ProdHub and more — projects by M Rupesh Kumar Yadav." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://rupesh-dev.vercel.app/projects" }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": projects.slice(0, 20).map((p, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": p.title,
+              "description": p.description,
+              "url": p.link,
+              "image": p.image,
+              "keywords": (p.techStack ?? p.topics ?? []).join(", "),
+              "author": { "@type": "Person", "name": "M Rupesh Kumar Yadav" }
+            }
+          }))
+        })}</script>
       </Helmet>
       <h1 className="text-3xl font-bold mb-6">Projects</h1>
 
@@ -69,7 +99,7 @@ export default function Projects() {
             <a
               href={active.link}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline"
             >
               View Project ↗

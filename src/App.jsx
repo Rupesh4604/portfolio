@@ -37,12 +37,12 @@ export default function App() {
           <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 pt-8 pb-10">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
-                © 2026 M Rupesh Kumar Yadav. All rights reserved.
+                © {new Date().getFullYear()} M Rupesh Kumar Yadav. All rights reserved.
               </p>
 
               <div className="flex items-center gap-6">
                 {/* GitHub */}
-                <a href="https://github.com/Rupesh4604" target="_blank" rel="noreferrer"
+                <a href="https://github.com/Rupesh4604" target="_blank" rel="noopener noreferrer"
                   className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                   aria-label="GitHub">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -51,7 +51,7 @@ export default function App() {
                 </a>
 
                 {/* LinkedIn */}
-                <a href="https://www.linkedin.com/in/mediboyina-rupesh-kumar-yadav-8b7a14205/" target="_blank" rel="noreferrer"
+                <a href="https://www.linkedin.com/in/mediboyina-rupesh-kumar-yadav-8b7a14205/" target="_blank" rel="noopener noreferrer"
                   className="text-slate-400 hover:text-blue-700 dark:hover:text-blue-500 transition-colors"
                   aria-label="LinkedIn">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -60,7 +60,7 @@ export default function App() {
                 </a>
 
                 {/* Twitter / X */}
-                <a href="https://x.com/RupeshKumar4604" target="_blank" rel="noreferrer"
+                <a href="https://x.com/RupeshKumar4604" target="_blank" rel="noopener noreferrer"
                   className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                   aria-label="X (Twitter)">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

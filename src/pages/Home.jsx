@@ -6,9 +6,14 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>M Rupesh Kumar Yadav | Home</title>
-        <meta name="description" content="Welcome to the portfolio of M Rupesh Kumar Yadav. Explore my skills in Full Stack Development, AI, and major projects like ProdHub." />
+        <title>M Rupesh Kumar Yadav | Software Engineer &amp; AI Developer</title>
+        <meta name="description" content="Portfolio of M Rupesh Kumar Yadav — Software Engineer and AI Developer, M.Tech at IIT Bombay. Deep Learning, Computer Vision, LLMs and open-source projects." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/" />
+        <meta property="og:title" content="M Rupesh Kumar Yadav | Software Engineer & AI Developer" />
+        <meta property="og:description" content="Portfolio of M Rupesh Kumar Yadav — Software Engineer and AI Developer, M.Tech at IIT Bombay." />
+        <meta property="og:url" content="https://rupesh-dev.vercel.app/" />
+        <meta name="twitter:title" content="M Rupesh Kumar Yadav | Software Engineer & AI Developer" />
+        <meta name="twitter:description" content="Portfolio of M Rupesh Kumar Yadav — Software Engineer and AI Developer, M.Tech at IIT Bombay." />
       </Helmet>
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex flex-col justify-center items-start mb-20 pt-10">

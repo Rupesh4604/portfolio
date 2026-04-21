@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /assets/
+
+# Block noisy AI scrapers (opt-in; remove if you want them to index)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
 
 Sitemap: https://rupesh-dev.vercel.app/sitemap.xml

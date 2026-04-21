@@ -1,38 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
   <url>
     <loc>https://rupesh-dev.vercel.app/</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://rupesh-dev.vercel.app/og-image.jpg</image:loc>
+      <image:title>M Rupesh Kumar Yadav — Software Engineer &amp; AI Developer</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://rupesh-dev.vercel.app/projects</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://rupesh-dev.vercel.app/open-source-env</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://rupesh-dev.vercel.app/internships</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rupesh-dev.vercel.app/publications</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rupesh-dev.vercel.app/achievements</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

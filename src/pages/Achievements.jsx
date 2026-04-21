@@ -16,6 +16,19 @@ export default function AchievementsAndPositions() {
         <title>Achievements | M Rupesh Kumar Yadav</title>
         <meta name="description" content="Awards, certifications, competitions, and positions of responsibility held by M Rupesh Kumar Yadav — IIT Bombay M.Tech researcher and AI engineer." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/achievements" />
+        <meta property="og:title" content="Achievements | M Rupesh Kumar Yadav" />
+        <meta property="og:description" content="Awards, certifications, and positions of responsibility held by M Rupesh Kumar Yadav." />
+        <meta property="og:url" content="https://rupesh-dev.vercel.app/achievements" />
+        <meta name="twitter:title" content="Achievements | M Rupesh Kumar Yadav" />
+        <meta name="twitter:description" content="Awards, certifications, and positions of responsibility held by M Rupesh Kumar Yadav." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Achievements", "item": "https://rupesh-dev.vercel.app/achievements" }
+          ]
+        })}</script>
       </Helmet>
       <h1 className="text-3xl font-bold mb-6">Achievements</h1>
 
@@ -70,7 +83,7 @@ export default function AchievementsAndPositions() {
             <a
               href={active.link}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-accent-500 hover:underline"
             >
               Open Link ↗

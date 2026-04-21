@@ -48,7 +48,7 @@ export default function OpenSourceEnv() {
     tech: ["React.js", "Firebase", "Google APIs", "Gemini"],
     longDescription: `
       <p><strong>ProdHub</strong> is a modern, all-in-one web application built to help you organize, achieve, and grow. Seamlessly manage projects, tasks, habits, and your calendar from a single, intuitive platform—all with smart AI-powered features and robust security.</p>
-      <p><strong>Try ProdHub Now:</strong> <a href="https://my-productivity-hub-5a3ba.web.app/" target="_blank" rel="noreferrer">my-productivity-hub-5a3ba.web.app</a></p>
+      <p><strong>Try ProdHub Now:</strong> <a href="https://my-productivity-hub-5a3ba.web.app/" target="_blank" rel="noopener noreferrer">my-productivity-hub-5a3ba.web.app</a></p>
       <br />
       <h3><strong>Key Features</strong></h3>
       <ul>
@@ -66,9 +66,33 @@ export default function OpenSourceEnv() {
   return (
     <>
       <Helmet>
-        <title>OpenSourceEnv & ProdHub | M Rupesh Kumar Yadav</title>
-        <meta name="description" content="Discover OpenSourceEnv and ProdHub, an AI-powered personal productivity hub built by M Rupesh Kumar Yadav." />
+        <title>OpenSourceEnv &amp; ProdHub | M Rupesh Kumar Yadav</title>
+        <meta name="description" content="OpenSourceEnv — open-source learning initiative covering Deep Learning, ML, AI, Data Science, Web Dev, DBMS, and DSA. Featuring ProdHub, an AI-powered personal productivity hub by M Rupesh Kumar Yadav." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/open-source-env" />
+        <meta property="og:title" content="OpenSourceEnv & ProdHub | M Rupesh Kumar Yadav" />
+        <meta property="og:description" content="Open-source learning initiative and ProdHub — an AI-powered personal productivity hub." />
+        <meta property="og:url" content="https://rupesh-dev.vercel.app/open-source-env" />
+        <meta name="twitter:title" content="OpenSourceEnv & ProdHub | M Rupesh Kumar Yadav" />
+        <meta name="twitter:description" content="Open-source learning initiative and ProdHub — an AI-powered personal productivity hub." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "OpenSourceEnv", "item": "https://rupesh-dev.vercel.app/open-source-env" }
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "ProdHub",
+          "applicationCategory": "ProductivityApplication",
+          "operatingSystem": "Web",
+          "description": "AI-powered personal productivity hub with projects, tasks, habits and smart scheduling powered by Google Gemini.",
+          "url": "https://my-productivity-hub-5a3ba.web.app/",
+          "author": { "@type": "Person", "name": "M Rupesh Kumar Yadav" },
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        })}</script>
       </Helmet>
       {/* Hero */}
       <header className="mb-10">
@@ -121,14 +145,14 @@ export default function OpenSourceEnv() {
 
             <div className="mt-auto flex flex-wrap gap-3">
               <a
-                href="https://github.com/openSourceEnv" target="_blank" rel="noreferrer"
+                href="https://github.com/openSourceEnv" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-lg bg-accent-500 hover:bg-accent-400 text-white"
               >
                 GitHub ↗
               </a>
               <a
                 href="https://www.notion.so/Teamspace-Home-913399bce8764b36ad8e928a0083af45?pvs=21"
-                target="_blank" rel="noreferrer"
+                target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-lg border border-surface-border
                            bg-white dark:bg-surface-2 text-slate-700 dark:text-slate-200 hover:dark:bg-surface-3"
               >
@@ -160,12 +184,12 @@ export default function OpenSourceEnv() {
               </button>
 
               <div className="mt-3 flex flex-wrap gap-3">
-                <a href={prodhub.github} target="_blank" rel="noreferrer"
+                <a href={prodhub.github} target="_blank" rel="noopener noreferrer"
                    className="inline-flex items-center px-3 py-2 rounded-lg border border-surface-border
                               bg-white dark:bg-surface-2 text-slate-700 dark:text-slate-200 hover:dark:bg-surface-3">
                   GitHub ↗
                 </a>
-                <a href={prodhub.live} target="_blank" rel="noreferrer"
+                <a href={prodhub.live} target="_blank" rel="noopener noreferrer"
                    className="inline-flex items-center px-3 py-2 rounded-lg bg-accent-500 hover:bg-accent-400 text-white">
                   Live Demo ↗
                 </a>
@@ -200,13 +224,13 @@ export default function OpenSourceEnv() {
 
             <div className="mt-5 flex flex-wrap gap-3">
               <a
-                href="https://forms.gle/cwSLtKeJtyTRS3Cq7" target="_blank" rel="noreferrer"
+                href="https://forms.gle/cwSLtKeJtyTRS3Cq7" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-lg bg-accent-500 hover:bg-accent-400 text-white"
               >
                 Fill the Contributor Form ↗
               </a>
               <a
-                href="https://github.com/openSourceEnv" target="_blank" rel="noreferrer"
+                href="https://github.com/openSourceEnv" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-lg border border-surface-border
                            bg-white dark:bg-surface-2 text-slate-700 dark:text-slate-200 hover:dark:bg-surface-3"
               >
@@ -222,7 +246,7 @@ export default function OpenSourceEnv() {
             <div className="space-y-3">
               <a
                 href="https://join.slack.com/t/opensourceenv/shared_invite/zt-3b0wkmqqf-~C0ddraEgMqPHoT4nJQ5JQ"
-                target="_blank" rel="noreferrer"
+                target="_blank" rel="noopener noreferrer"
                 className="block rounded-xl border border-slate-200 dark:border-surface-border p-3 bg-white dark:bg-surface-2 hover:shadow-sm"
               >
                 <div className="flex items-center justify-between">
@@ -236,7 +260,7 @@ export default function OpenSourceEnv() {
               </a>
 
               <a
-                href="https://t.me/openSourceEnv" target="_blank" rel="noreferrer"
+                href="https://t.me/openSourceEnv" target="_blank" rel="noopener noreferrer"
                 className="block rounded-xl border border-slate-200 dark:border-surface-border p-3 bg-white dark:bg-surface-2 hover:shadow-sm"
               >
                 <div className="flex items-center justify-between">
@@ -250,7 +274,7 @@ export default function OpenSourceEnv() {
               </a>
 
               <a
-                href="https://discord.gg/ZydDAs87" target="_blank" rel="noreferrer"
+                href="https://discord.gg/ZydDAs87" target="_blank" rel="noopener noreferrer"
                 className="block rounded-xl border border-slate-200 dark:border-surface-border p-3 bg-white dark:bg-surface-2 hover:shadow-sm"
               >
                 <div className="flex items-center justify-between">
@@ -268,7 +292,7 @@ export default function OpenSourceEnv() {
                 <a
                   className="underline"
                   href="https://join.slack.com/t/opensourceenv/shared_invite/zt-3b0wkmqqf-~C0ddraEgMqPHoT4nJQ5JQ"
-                  target="_blank" rel="noreferrer"
+                  target="_blank" rel="noopener noreferrer"
                 >
                   link
                 </a>
@@ -289,14 +313,14 @@ export default function OpenSourceEnv() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="https://github.com/openSourceEnv"
-                target="_blank" rel="noreferrer"
+                target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-lg bg-accent-500 hover:bg-accent-400 text-white"
               >
                 GitHub ↗
               </a>
               <a
                 href="https://www.notion.so/Teamspace-Home-913399bce8764b36ad8e928a0083af45?pvs=21"
-                target="_blank" rel="noreferrer"
+                target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-lg border border-surface-border
                            bg-white dark:bg-surface-2 text-slate-700 dark:text-slate-200 hover:dark:bg-surface-3"
               >
@@ -322,7 +346,7 @@ export default function OpenSourceEnv() {
                 <a
                   href={active.github}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-3 py-2 rounded-lg border border-surface-border
                              bg-white dark:bg-surface-2 text-slate-700 dark:text-slate-200 hover:dark:bg-surface-3"
                 >
@@ -333,7 +357,7 @@ export default function OpenSourceEnv() {
                 <a
                   href={active.live}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-3 py-2 rounded-lg bg-accent-500 hover:bg-accent-400 text-white"
                 >
                   Open App ↗

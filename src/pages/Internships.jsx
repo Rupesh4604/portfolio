@@ -11,8 +11,21 @@ export default function Internships() {
     <>
       <Helmet>
         <title>Internships &amp; Education | M Rupesh Kumar Yadav</title>
-        <meta name="description" content="Academic background and professional internships of M Rupesh Kumar Yadav — M.Tech at IIT Bombay (CGPA 9.45), B.Tech at NIT Andhra Pradesh, research internships in AI and remote sensing." />
+        <meta name="description" content="Academic background and professional internships of M Rupesh Kumar Yadav — M.Tech at IIT Bombay, B.Tech at NIT Andhra Pradesh, research internships in AI and remote sensing." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/internships" />
+        <meta property="og:title" content="Internships & Education | M Rupesh Kumar Yadav" />
+        <meta property="og:description" content="M.Tech at IIT Bombay, B.Tech at NIT Andhra Pradesh, and research internships in AI and remote sensing." />
+        <meta property="og:url" content="https://rupesh-dev.vercel.app/internships" />
+        <meta name="twitter:title" content="Internships & Education | M Rupesh Kumar Yadav" />
+        <meta name="twitter:description" content="M.Tech at IIT Bombay, B.Tech at NIT Andhra Pradesh, and research internships in AI and remote sensing." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Internships", "item": "https://rupesh-dev.vercel.app/internships" }
+          ]
+        })}</script>
       </Helmet>
       <h1 className="text-3xl font-bold mb-8">Internships &amp; Education</h1>
 
@@ -119,7 +132,7 @@ export default function Internships() {
         title={active?.role || "Internship"}
         footer={
           active?.link && (
-            <a href={active.link} target="_blank" rel="noreferrer"
+            <a href={active.link} target="_blank" rel="noopener noreferrer"
               className="text-blue-600 hover:underline text-sm">
               View More ↗
             </a>

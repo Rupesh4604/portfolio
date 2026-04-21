@@ -1,5 +1,10 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+  "rewrites": [
+    {
+      "source": "/((?!sitemap\\.xml|robots\\.txt|favicon\\.svg|favicon\\.png|apple-touch-icon\\.png|og-image\\.(png|jpg)|site\\.webmanifest|assets/.*).*)",
+      "destination": "/"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -7,13 +12,21 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "X-DNS-Prefetch-Control", "value": "on" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com https://vercel.live https://my-productivity-hub-5a3ba.web.app; connect-src 'self' https://vitals.vercel-insights.com; frame-ancestors 'none';"
+          "value": "default-src 'self'; script-src 'self' 'sha256-sjCA2vcqpw3KwUe/1WepP6dXGh+qDy26CWI12W1GO8E=' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https://raw.githubusercontent.com https://my-productivity-hub-5a3ba.web.app; connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
         }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]
 }
-
