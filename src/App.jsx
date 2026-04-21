@@ -11,6 +11,7 @@ const Internships = lazy(() => import("./pages/Internships.jsx"));
 const Publications = lazy(() => import("./pages/Publications.jsx"));
 const Achievements = lazy(() => import("./pages/Achievements.jsx"));
 const OpenSourceEnv = lazy(() => import("./pages/OpenSourceEnv.jsx"));
+const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
             <Route path="/publications" element={<Publications />} />
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/open-source-env" element={<OpenSourceEnv />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           </Suspense>
           <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 pt-8 pb-10">

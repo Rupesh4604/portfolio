@@ -20,8 +20,8 @@ function ContactEmails() {
 
       {/* stack on mobile, 2 columns on md+ */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <button className={chip} onClick={() => copy("opesourceenv@gmail.com")} title="Click to copy">
-          opesourceenv@gmail.com <span className="text-xs opacity-70">Copy</span>
+        <button className={chip} onClick={() => copy("opensourceenv@gmail.com")} title="Click to copy">
+          opensourceenv@gmail.com <span className="text-xs opacity-70">Copy</span>
         </button>
         <button className={chip} onClick={() => copy("rupesh32003@gmail.com")} title="Click to copy">
           rupesh32003@gmail.com <span className="text-xs opacity-70">Copy</span>
