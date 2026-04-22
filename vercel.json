@@ -3,7 +3,7 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/((?!sitemap\\.xml|robots\\.txt|favicon\\.svg|favicon\\.png|apple-touch-icon\\.png|og-image\\.(png|jpg)|site\\.webmanifest|assets/.*|projects|internships|publications|achievements|open-source-env).*)",
+      "source": "/:path*",
       "destination": "/"
     }
   ],
@@ -31,13 +31,49 @@
       ]
     },
     {
-      "source": "/(og-image\\.(png|jpg)|favicon\\.(svg|png)|apple-touch-icon\\.png|site\\.webmanifest)",
+      "source": "/og-image.png",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800" }
       ]
     },
     {
-      "source": "/(sitemap\\.xml|robots\\.txt)",
+      "source": "/og-image.jpg",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/favicon.svg",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/favicon.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/apple-touch-icon.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/site.webmanifest",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]

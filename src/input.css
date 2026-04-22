@@ -1,22 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 @layer components {
   .card {
-    @apply rounded-2xl border shadow-sm bg-white text-slate-800 border-slate-200 dark:bg-surface-2 dark:text-slate-100 dark:border-surface-border transition-all duration-300;
+    border-radius: 1rem;
+    border: 1px solid rgb(226 232 240);
+    background: #fff;
+    color: rgb(30 41 59);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: all 300ms;
+  }
+  html.dark .card {
+    background: #141f33;
+    color: rgb(241 245 249);
+    border-color: #22314a;
   }
   .card:hover {
-    @apply shadow-md transform -translate-y-1;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transform: translateY(-0.25rem);
   }
   .card-muted {
-    @apply text-slate-600 dark:text-slate-300;
+    color: rgb(71 85 105);
+  }
+  html.dark .card-muted {
+    color: rgb(203 213 225);
   }
   .chip {
-    @apply text-xs px-2 py-1 rounded bg-slate-100 text-slate-700 ring-1 ring-slate-200/60 dark:bg-surface-chip dark:text-slate-200 dark:ring-surface-border transition-colors duration-200;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background: rgb(241 245 249);
+    color: rgb(51 65 85);
+    box-shadow: inset 0 0 0 1px rgb(226 232 240 / 0.6);
+    transition: background-color 200ms;
+  }
+  html.dark .chip {
+    background: #0d2243;
+    color: rgb(226 232 240);
+    box-shadow: inset 0 0 0 1px #22314a;
   }
   .chip:hover {
-    @apply bg-slate-200 dark:bg-surface-3;
+    background: rgb(226 232 240);
+  }
+  html.dark .chip:hover {
+    background: #18253d;
   }
 }
 
@@ -34,7 +62,13 @@
     animation-delay: 0.4s;
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400;
+    background-image: linear-gradient(to right, rgb(37 99 235), rgb(79 70 229));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  html.dark .text-gradient {
+    background-image: linear-gradient(to right, rgb(96 165 250), rgb(129 140 248));
   }
 }
 
