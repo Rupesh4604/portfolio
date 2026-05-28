@@ -97,7 +97,7 @@ export const projects = [
   {
     title: "Hyperspectral Imagery Classification",
     description:
-      "Compared 3DCNN, GCN, CNN, and ViT for HSI;presented at PReMI 2025 conference paper.",
+      "Compared 3DCNN, GCN, CNN, and ViT for HSI; presented at PReMI 2025 conference paper.",
     longDescription:
       "Implemented and compared advanced deep learning architectures such as 3DCNN, GCNs, CNNs, and Vision Transformers (ViT) to enhance spectral-spatial feature learning for hyperspectral imagery classification."
       + "<br/> - Authored the paper \"Enhancing Hyperspectral Imagery Classification using CNN and ViT\", PReMI 2025, and leveraged tools like EarthMapper, Spectralformer, and HVT for experimentation.",
