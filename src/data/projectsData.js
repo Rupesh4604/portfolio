@@ -78,7 +78,7 @@ export const projects = [
       "Deep Learning-Based 4× Image Super-Resolution for Gaming Imagery.",
     longDescription:
       "Developed a deep learning model for 4× image super-resolution specifically tailored for gaming imagery, enhancing visual fidelity and detail.",
-    techStack: ["PyTorch", "CNN", "Image Processing"],
+    techStack: ["PyTorch", "CNN", "Image Processing","Super-Resolution"],
     link: "",
     image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/hr.png",
     videoEmbed: ""
@@ -97,10 +97,10 @@ export const projects = [
   {
     title: "Hyperspectral Imagery Classification",
     description:
-      "Compared 3DCNN, GCN, CNN, and ViT for HSI; co-authored ICICA-2024 paper.",
+      "Compared 3DCNN, GCN, CNN, and ViT for HSI;presented at PReMI 2025 conference paper.",
     longDescription:
       "Implemented and compared advanced deep learning architectures such as 3DCNN, GCNs, CNNs, and Vision Transformers (ViT) to enhance spectral-spatial feature learning for hyperspectral imagery classification."
-      + "<br/> - Co-authored the paper \"Enhancing Hyperspectral Imagery Classification using CNN and ViT\", accepted at ICICA-2024, and leveraged tools like EarthMapper, Spectralformer, and HVT for experimentation.",
+      + "<br/> - Authored the paper \"Enhancing Hyperspectral Imagery Classification using CNN and ViT\", PReMI 2025, and leveraged tools like EarthMapper, Spectralformer, and HVT for experimentation.",
     techStack: ["pytorch", "deep learning", "transformers"],
     link: "",
     image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/arch.jpg",
