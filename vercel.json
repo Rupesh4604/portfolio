@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/internships", "destination": "/experience", "permanent": true },
+    { "source": "/achievements", "destination": "/experience", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/:path*",

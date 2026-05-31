@@ -12,9 +12,9 @@ const linkActive =
 const nav = [
   { to: "/", label: "Home" },
   { to: "/projects", label: "Projects" },
-  { to: "/internships", label: "Internships" },
+  { to: "/experience", label: "Experience" },
   { to: "/publications", label: "Publications" },
-  { to: "/achievements", label: "Achievements" },
+  { to: "/beyond", label: "Beyond" },
   { to: "/open-source-env", label: "OpenSourceEnv" },
 ];
 

@@ -26,10 +26,10 @@ export const routes = [
     priority: 0.9,
   },
   {
-    path: '/internships',
-    title: 'Internships & Education | M Rupesh Kumar Yadav',
+    path: '/experience',
+    title: 'Experience | M Rupesh Kumar Yadav',
     description:
-      'Academic background and professional internships of M Rupesh Kumar Yadav — M.Tech at IIT Bombay, B.Tech at NIT Andhra Pradesh, research internships in AI and remote sensing.',
+      'Experience of M Rupesh Kumar Yadav — education at IIT Bombay & NIT Andhra Pradesh, professional roles, research internships in AI and remote sensing, achievements, and positions of responsibility.',
     changefreq: 'monthly',
     priority: 0.7,
   },
@@ -42,10 +42,10 @@ export const routes = [
     priority: 0.7,
   },
   {
-    path: '/achievements',
-    title: 'Achievements | M Rupesh Kumar Yadav',
+    path: '/beyond',
+    title: 'Beyond | M Rupesh Kumar Yadav',
     description:
-      'Awards, certifications, competitions, and positions of responsibility held by M Rupesh Kumar Yadav — IIT Bombay M.Tech researcher and AI engineer.',
+      'More from M Rupesh Kumar Yadav — personal blog, Quantum AI Hub, ProdHub productivity app, Google Scholar, and other sites.',
     changefreq: 'monthly',
     priority: 0.6,
   },

@@ -1,4 +1,20 @@
 // src/data/internshipData.js
+
+// Full-time / part-time jobs and professional roles.
+// Same shape as `internships` below — add entries here as your career grows.
+// {
+//   role: "Software Engineer",
+//   organization: "Company, Location",
+//   duration: "Aug 2026 - Present",
+//   description: "Short summary shown on the card (supports \\n line breaks).",
+//   longDescription: "Optional richer detail shown in the modal.",
+//   highlights: ["Point A", "Point B"],
+//   techStack: ["React", "Python"],
+//   link: "https://...",
+//   image: "https://..."
+// }
+export const work = [];
+
 export const internships = [
   {
     role: "Computer Vision and Research Intern",

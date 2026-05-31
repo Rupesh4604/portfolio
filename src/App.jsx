@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/navbar.jsx";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -7,9 +7,9 @@ import { HelmetProvider } from "react-helmet-async";
 
 import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects.jsx";
-import Internships from "./pages/Internships.jsx";
+import Experience from "./pages/Experience.jsx";
 import Publications from "./pages/Publications.jsx";
-import Achievements from "./pages/Achievements.jsx";
+import Beyond from "./pages/Beyond.jsx";
 import OpenSourceEnv from "./pages/OpenSourceEnv.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
@@ -24,10 +24,13 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/internships" element={<Internships />} />
+            <Route path="/experience" element={<Experience />} />
             <Route path="/publications" element={<Publications />} />
-            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/beyond" element={<Beyond />} />
             <Route path="/open-source-env" element={<OpenSourceEnv />} />
+            {/* Legacy URLs → consolidated Experience page */}
+            <Route path="/internships" element={<Navigate to="/experience" replace />} />
+            <Route path="/achievements" element={<Navigate to="/experience" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 pt-8 pb-10">
