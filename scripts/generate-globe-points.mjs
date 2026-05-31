@@ -50,7 +50,9 @@ for (let k = 0; k < CANDIDATES; k++) {
   const lat = Math.asin(y) * (180 / Math.PI);
   const lon = Math.atan2(z, x) * (180 / Math.PI);
 
-  const q = [Math.round(x * 127), Math.round(y * 127), Math.round(z * 127)];
+  // Negate X so the map isn't mirrored east–west when viewed from outside
+  // (camera at +Z): screen-right should be east of the central meridian.
+  const q = [Math.round(-x * 127), Math.round(y * 127), Math.round(z * 127)];
   if (isOcean(lon, lat)) {
     if (Math.random() < OCEAN_KEEP) ocean.push(q);
   } else {
