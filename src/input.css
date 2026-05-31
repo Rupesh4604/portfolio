@@ -70,6 +70,21 @@
   html.dark .text-gradient {
     background-image: linear-gradient(to right, rgb(96 165 250), rgb(129 140 248));
   }
+
+  /* Infinite horizontal marquee (featured projects) */
+  .animate-marquee {
+    animation: marquee 55s linear infinite;
+    will-change: transform;
+  }
+  /* Fade the left/right edges so cards slide in/out softly */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right, transparent, #000 6%, #000 94%, transparent
+    );
+    mask-image: linear-gradient(
+      to right, transparent, #000 6%, #000 94%, transparent
+    );
+  }
 }
 
 @keyframes fadeIn {
@@ -80,6 +95,16 @@
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
 }
 
 /* Soft vignette for dark */

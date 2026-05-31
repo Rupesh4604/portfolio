@@ -11,9 +11,9 @@ export const SITE = {
 export const routes = [
   {
     path: '/',
-    title: 'M Rupesh Kumar Yadav | Software Engineer & AI Developer',
+    title: 'M Rupesh Kumar Yadav | Data Scientist & AI Developer',
     description:
-      'Portfolio of M Rupesh Kumar Yadav — Software Engineer and AI Developer, M.Tech at IIT Bombay. Projects in Deep Learning, Computer Vision, LLMs, RAG systems, and open-source work (ProdHub, OpenSourceEnv).',
+      'Portfolio of M Rupesh Kumar Yadav — Data Scientist and AI Developer, M.Tech at IIT Bombay. Projects in Machine Learning, Deep Learning, Computer Vision, LLMs, RAG systems, and geospatial AI (ProdHub, OpenSourceEnv).',
     changefreq: 'weekly',
     priority: 1.0,
   },
