@@ -157,10 +157,12 @@ function DepthGlobe({ dark }) {
 
   return (
     <group ref={group} rotation={[INIT_X, INIT_Y, 0]}>
-      {/* solid sphere occludes back-facing points → real front/back depth */}
+      {/* solid sphere occludes back-facing points → real front/back depth.
+          In dark mode it's a touch lighter than the page bg (#0B1220) so ocean
+          basins read as the globe's surface instead of see-through holes. */}
       <mesh>
         <sphereGeometry args={[RADIUS * 0.965, 48, 48]} />
-        <meshBasicMaterial color={dark ? "#0B1220" : "#EEF2FB"} />
+        <meshBasicMaterial color={dark ? "#16243E" : "#E7ECF6"} />
       </mesh>
       {data && (
         <>
