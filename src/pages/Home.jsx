@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { projects } from "../data/projectsData";
+
+/* 3D globe is heavy (three.js) — load it only on the Home route, after first paint */
+const Globe3D = lazy(() => import("../components/Globe3D"));
 
 /* Top projects to feature in the rolling marquee */
 const featured = projects.slice(0, 6);
@@ -26,6 +29,35 @@ function Avatar() {
           />
         )}
       </div>
+    </div>
+  );
+}
+
+/* Hero centerpiece: animated 3D globe, with a static photo fallback
+   (used while three.js loads, and for users who prefer reduced motion). */
+function HeroVisual() {
+  const reduceMotion = useMemo(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    []
+  );
+
+  if (reduceMotion) return <Avatar />;
+
+  return (
+    <div className="relative h-72 w-72 md:h-96 md:w-96">
+      {/* soft glow behind the globe (subtler in light mode to avoid a milky blob) */}
+      <div className="absolute inset-8 rounded-full bg-gradient-to-tr from-blue-500/15 to-indigo-500/15 dark:from-blue-500/40 dark:to-indigo-500/40 blur-3xl pointer-events-none" />
+      <Suspense
+        fallback={
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Avatar />
+          </div>
+        }
+      >
+        <Globe3D />
+      </Suspense>
     </div>
   );
 }
@@ -131,9 +163,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: avatar */}
+          {/* Right: animated 3D globe (static photo fallback) */}
           <div className="flex justify-center lg:justify-end animate-fade-in">
-            <Avatar />
+            <HeroVisual />
           </div>
         </div>
       </section>

@@ -17,6 +17,13 @@ export default defineConfig({
           if (id.includes('react-dom')) return 'vendor-react-dom'
           if (id.includes('/react/') || id.endsWith('/react') || id.includes('react/jsx-runtime')) return 'vendor-react'
           if (id.includes('react-router')) return 'vendor-router'
+          // 3D stack: kept in its own chunk so it loads only via the lazy
+          // Globe3D import (Home route), never on the eager critical path.
+          if (
+            id.includes('node_modules/three') ||
+            id.includes('@react-three') ||
+            id.includes('react-reconciler')
+          ) return 'vendor-three'
           if (id.includes('framer-motion')) return 'vendor-framer'
           if (id.includes('dompurify')) return 'vendor-dompurify'
           if (id.includes('react-helmet-async')) return 'vendor-helmet'
