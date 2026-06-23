@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { projects } from "../data/projectsData";
@@ -71,22 +71,51 @@ function MarqueeCard({ p }) {
   );
 }
 
+/* Cyclic animated roles for the hero section */
+function RoleCycler() {
+  const roles = [
+    "LLM & Agentic Systems Engineer",
+    "Applied ML / Deep Learning Engineer",
+    "Data Scientist",
+    "Data Scientist @ Esri R&D"
+  ];
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % roles.length);
+        setFade(true);
+      }, 300); // fade duration
+    }, 3000); // swap every 3s
+    return () => clearInterval(interval);
+  }, [roles.length]);
+
+  return (
+    <span className={`inline-block text-gradient transition-opacity duration-300 min-h-[1.5em] ${fade ? "opacity-100" : "opacity-0"}`}>
+      {roles[index]}
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <>
       <Helmet>
-        <title>M Rupesh Kumar Yadav | Data Scientist &amp; AI Developer</title>
-        <meta name="description" content="Portfolio of M Rupesh Kumar Yadav — Data Scientist and AI Developer, M.Tech at IIT Bombay. Machine Learning, Deep Learning, Computer Vision, LLMs, and geospatial AI projects." />
+        <title>M Rupesh Kumar Yadav | LLM &amp; AI Engineer · Data Scientist</title>
+        <meta name="description" content="LLM & AI Engineer and Data Scientist. I build and deploy LLM-powered and agentic systems, fine-tune and serve deep-learning models, and apply ML to hard real-world data (NLP, vision, geospatial). M.Tech, IIT Bombay. Data Scientist @ Esri R&D." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/" />
-        <meta property="og:title" content="M Rupesh Kumar Yadav | Data Scientist & AI Developer" />
-        <meta property="og:description" content="Portfolio of M Rupesh Kumar Yadav — Data Scientist and AI Developer, M.Tech at IIT Bombay." />
+        <meta property="og:title" content="M Rupesh Kumar Yadav | LLM &amp; AI Engineer · Data Scientist" />
+        <meta property="og:description" content="LLM & AI Engineer and Data Scientist. I build and deploy LLM-powered and agentic systems, fine-tune and serve deep-learning models, and apply ML at scale. M.Tech, IIT Bombay." />
         <meta property="og:url" content="https://rupesh-dev.vercel.app/" />
-        <meta name="twitter:title" content="M Rupesh Kumar Yadav | Data Scientist & AI Developer" />
-        <meta name="twitter:description" content="Portfolio of M Rupesh Kumar Yadav — Data Scientist and AI Developer, M.Tech at IIT Bombay." />
+        <meta name="twitter:title" content="M Rupesh Kumar Yadav | LLM &amp; AI Engineer · Data Scientist" />
+        <meta name="twitter:description" content="LLM & AI Engineer and Data Scientist. I build and deploy LLM-powered and agentic systems, fine-tune and serve deep-learning models, and apply ML at scale. M.Tech, IIT Bombay." />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center mb-20 pt-10">
+      <section className="relative min-h-[70vh] flex items-center mb-16 pt-6">
         <div className="absolute top-0 right-0 -z-10 opacity-30 dark:opacity-20 pointer-events-none">
           <div className="w-96 h-96 bg-blue-500/30 rounded-full blur-3xl absolute top-0 right-[-100px] animate-pulse"></div>
           <div className="w-80 h-80 bg-purple-500/30 rounded-full blur-3xl absolute top-[100px] right-[50px] animate-pulse animation-delay-200"></div>
@@ -95,38 +124,45 @@ export default function Home() {
         <div className="w-full flex flex-col-reverse lg:flex-row lg:items-center gap-10 lg:gap-16">
           {/* Left: copy */}
           <div className="max-w-2xl animate-fade-in">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 text-sm font-medium mb-6">
-              Open to Data Scientist roles · 2026
+            <span className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400 text-sm font-medium mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Data Scientist · Esri R&D (GeoAI)
             </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-5 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 leading-tight">
               Hi, I'm <br />
-              <span className="text-gradient">Rupesh Kumar</span>
+              <span className="text-slate-900 dark:text-white">Rupesh Kumar</span>
             </h1>
+            <div className="text-2xl md:text-3xl font-bold mb-6 min-h-[40px]">
+              <RoleCycler />
+            </div>
             <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-4 max-w-2xl leading-relaxed">
-              <strong className="text-slate-900 dark:text-slate-200">Data Scientist</strong> · M.Tech at IIT Bombay.
-              I turn data into models and decisions across <span className="text-indigo-600 dark:text-indigo-400">Machine Learning</span>, <span className="text-indigo-600 dark:text-indigo-400">Deep Learning</span>, <span className="text-indigo-600 dark:text-indigo-400">Computer Vision</span>, and LLMs.
+              I build and deploy LLM-powered and agentic systems, and apply deep learning to hard, real-world data from natural language to satellite imagery. M.Tech, IIT Bombay.
             </p>
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">
-              🔬 Currently researching geospatial &amp; remote-sensing deep learning at IIT Bombay (CSRE).
+              💼 Data Scientist at Esri R&D (GeoAI) · ex-DRDO &amp; HAL.
             </p>
 
-            <div className="flex flex-wrap gap-4 animate-slide-up animation-delay-200">
-              <Link to="/projects" className="px-7 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+            <div className="flex flex-wrap items-center gap-4 animate-slide-up animation-delay-200">
+              <Link to="/projects" className="px-7 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-semibold hover:opacity-90 transition-opacity shadow-md">
                 View Projects
+              </Link>
+              <Link to="/publications" className="px-7 py-3.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                Read Publications
               </Link>
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-7 py-3.5 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white rounded-xl font-semibold transition-colors"
+                className="px-5 py-3.5 inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white font-medium transition-colors"
+                aria-label="Download Resume"
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                 </svg>
-                Résumé
-              </a>
-              <a href="mailto:rupesh32003@gmail.com" className="px-7 py-3.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                Contact Me
+                Resume
               </a>
             </div>
           </div>
@@ -170,26 +206,35 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                title: "Languages",
-                items: ["Python", "C/C++", "Java", "JavaScript", "TypeScript", "SQL", "MATLAB", "R", "Bash", "HTML/CSS"],
+                title: "Programming Languages",
+                items: ["Python", "C/C++", "Java", "JavaScript", "TypeScript", "SQL", "MATLAB", "R", "Bash"],
                 icon: "💻"
               },
               {
                 title: "AI & ML Frameworks",
-                items: ["PyTorch", "TensorFlow", "Keras", "Scikit-Learn", "OpenCV", "LangChain", "Hugging Face"],
+                items: ["PyTorch", "TensorFlow", "Keras", "Scikit-Learn", "JAX", "Torchvision", "Hugging Face", "ONNX"],
                 icon: "🧠"
+              },
+              {
+                title: "LLM & Generative AI",
+                items: ["Transformers", "vLLM", "LangChain", "Agentic AI", "RAG", "Prompt Engineering", "Inference Optimization", "Multimodal Models"],
+                icon: "🤖"
+              },
+              {
+                title: "AI Engineering & MLOps",
+                items: ["MLflow", "Docker", "FastAPI", "Git", "AirFlow", "Spark", "BigQuery", "Cloud Platforms (AWS, GCP)"],
+                icon: "⚙️"
+              },
+              {
+                title: "Geospatial & Remote Sensing",
+                items: ["ArcGIS", "GDAL", "Rasterio", "Geospatial Intelligence", "GeoPandas", "GeoTIFF", "Satellite Imagery Analysis"],
+                icon: "🛰️"
               },
               {
                 title: "Dev & Tools",
                 items: ["React.js", "Node.js", "Git", "Docker", "Linux", "VS Code", "AWS", "MongoDB", "PostgreSQL"],
                 icon: "🛠️"
-              },
-              {
-                title: "Data & Others",
-                items: ["Tableau", "Spark", "BigQuery", "ROS2", "ArcGIS", "AirFlow", "MLFlow"],
-                icon: "📊"
               }
-
             ].map((group) => (
               <div key={group.title} className="bg-white dark:bg-surface-2 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-surface-border hover:shadow-md transition-shadow">
                 <h3 className="font-semibold text-lg mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">

@@ -40,15 +40,6 @@ export default function App() {
               </p>
 
               <div className="flex items-center gap-6">
-                {/* GitHub */}
-                <a href="https://github.com/Rupesh4604" target="_blank" rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-                  aria-label="GitHub">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                  </svg>
-                </a>
-
                 {/* LinkedIn */}
                 <a href="https://www.linkedin.com/in/mediboyina-rupesh-kumar-yadav-8b7a14205/" target="_blank" rel="noopener noreferrer"
                   className="text-slate-400 hover:text-blue-700 dark:hover:text-blue-500 transition-colors"
@@ -58,12 +49,30 @@ export default function App() {
                   </svg>
                 </a>
 
-                {/* Twitter / X */}
-                <a href="https://x.com/RupeshKumar4604" target="_blank" rel="noopener noreferrer"
+                {/* GitHub */}
+                <a href="https://github.com/Rupesh4604" target="_blank" rel="noopener noreferrer"
                   className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-                  aria-label="X (Twitter)">
+                  aria-label="GitHub">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  </svg>
+                </a>
+
+                {/* Medium */}
+                <a href="https://medium.com/@rupesh32003" target="_blank" rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                  aria-label="Medium">
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zM24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+                  </svg>
+                </a>
+
+                {/* ORCID */}
+                <a href="https://orcid.org/0000-0001-7148-0660" target="_blank" rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                  aria-label="ORCID">
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+                    <path d="M256,128c0,70.7-57.3,128-128,128S0,198.7,0,128S57.3,0,128,0S256,57.3,256,128z M81.9,89.5h-9.9v78.2h9.9V89.5z M77,69c3.6,0,6.5-2.9,6.5-6.5S80.6,56,77,56s-6.5,2.9-6.5,6.5S73.4,69,77,69z M186.7,118.8c0-23.7-13.6-32.3-33-32.3c-17,0-27.8,9.7-27.8,9.7V89.5h-9.4v78.2h9.4v-38.6c0-12.8,7.4-18.4,16.8-18.4c9.1,0,14.6,5.7,14.6,18.4v38.6h9.4V118.8z"/>
                   </svg>
                 </a>
 

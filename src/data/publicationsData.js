@@ -20,6 +20,20 @@ export const publications = [
     doi: "https://link.springer.com/chapter/10.1007/978-3-032-18477-1_34"
   },
   {
+    title: "Slum Detection Using U-Net Attention Gate on Mid-Resolution Satellite Imagery",
+    // TODO: confirm full author list & order
+    authors: "R. K. Y. Mediboyina et al. (co-author)",
+    venue: "Journal of the Indian Society of Remote Sensing (Springer)",
+    year: "2026",
+    description:
+      "Co-authored work on an attention-gated U-Net for slum detection from Sentinel-2 imagery (all bands up to 20 m) over Mumbai, with four spectral indices and an ignore mask, and cross-city transfer to Jakarta.",
+    abstract: "Slum detection has emerged as a critical area of research in urban studies and remote sensing, driven by the need for effective urban planning, resource allocation, and policy intervention during disaster management. Detecting slums from satellite imagery presents a significant challenge due to variations in building materials, density, spatial organization, and local environmental factors, making it difficult to establish a universal detection approach. This study makes use of all bands of Sentinel-2 up to 20 m along with four spectral indices and an ignore mask to detect slum pockets in Mumbai. An attention mechanism is incorporated into U-Net architectures to enhance feature representation and improve classification performance. The model was further evaluated for generalization and transferability on a patch from the Jakarta dataset, where it demonstrated strong performance in slum classification. This work can be used by government bodies to continuously track and monitor the growth of slum areas and assist decision-makers in making informed decisions. Our proposed method with the attention module focuses on the most relevant spatial and contextual information within the image, strengthening discriminative feature learning and achieving superior results for slum detection.",
+    notes:
+      "<strong>My role (co-author):</strong> validated the methodology, implemented and corrected the codebase, and fixed errors in the model/training code to ensure reproducible results.<br/><br/><em>Published 18 June 2026.</em>",
+    // TODO: add DOI / paper link when available
+    doi: ""
+  },
+  {
     title: "Graph-Based Stance Grouping in Multi-Participant Discussions",
     authors: "Co-Aurthor Rupesh Kumar Yadav Mediboyina.",
     venue: "Advances in Computer Science Research, Proceedings of the International Conference on Sustainability Innovation in Computing and Engineering (ICSICE 2024)",
