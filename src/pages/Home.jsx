@@ -21,6 +21,10 @@ function Avatar() {
           <img
             src="/profile.jpg"
             alt="M Rupesh Kumar Yadav"
+            width="346"
+            height="486"
+            fetchPriority="high"
+            decoding="async"
             onError={() => setErr(true)}
             className="h-full w-full object-cover object-top"
           />

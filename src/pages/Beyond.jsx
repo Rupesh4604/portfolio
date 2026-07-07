@@ -7,13 +7,13 @@ export default function Beyond() {
     <>
       <Helmet>
         <title>Beyond | M Rupesh Kumar Yadav</title>
-        <meta name="description" content="More from M Rupesh Kumar Yadav — personal blog, Quantum AI Hub, ProdHub productivity app, Google Scholar, and other sites." />
+        <meta name="description" content="More from M Rupesh Kumar Yadav — GeoFM Lab (geospatial foundation models), personal blog, Quantum AI Hub, ProdHub productivity app, Google Scholar, and other sites." />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/beyond" />
         <meta property="og:title" content="Beyond | M Rupesh Kumar Yadav" />
-        <meta property="og:description" content="Blog, Quantum AI Hub, ProdHub, Google Scholar, and other places M Rupesh Kumar Yadav exists on the web." />
+        <meta property="og:description" content="GeoFM Lab, blog, Quantum AI Hub, ProdHub, Google Scholar, and other places M Rupesh Kumar Yadav exists on the web." />
         <meta property="og:url" content="https://rupesh-dev.vercel.app/beyond" />
         <meta name="twitter:title" content="Beyond | M Rupesh Kumar Yadav" />
-        <meta name="twitter:description" content="Blog, Quantum AI Hub, ProdHub, Google Scholar, and other sites by M Rupesh Kumar Yadav." />
+        <meta name="twitter:description" content="GeoFM Lab, blog, Quantum AI Hub, ProdHub, Google Scholar, and other sites by M Rupesh Kumar Yadav." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",

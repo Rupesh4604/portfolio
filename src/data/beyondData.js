@@ -11,6 +11,14 @@
 
 export const beyondLinks = [
   {
+    title: "GeoFM Lab",
+    url: "https://rupesh4604.github.io/Awesome-Geospatial-Vision-Language-Foundation-Models/Index.html",
+    description:
+      "Geospatial Vision & Vision-Language Foundation Models - living landscape, learning roadmap, and next-gen gap map.",
+    category: "Research",
+    icon: "🛰️",
+  },
+  {
     title: "Blog",
     url: "https://rupesh4604.github.io/",
     description: "Personal blog - notes, write-ups, and things I'm learning.",
