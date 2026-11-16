@@ -151,7 +151,7 @@
     border: 1px solid var(--ln);
     border-radius: var(--radius-card);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 600px), not all and (pointer: coarse) {
     html.dark .cd { backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
   }
   .cd-lift { transition: transform .35s var(--ease-out), border-color .3s; }
@@ -197,7 +197,7 @@
   /* Row hover indent (A/C +10px, D +24px) */
   .row-indent { transition: padding .3s var(--ease-out); }
   .row-indent:hover { padding-left: 10px; }
-  @media (max-width: 767.98px) {
+  @media (max-width: 599.98px) and (pointer: coarse) {
     html.dark .row-indent:hover { padding-left: 24px; }
   }
   .row-indent .row-title { transition: color .2s; }

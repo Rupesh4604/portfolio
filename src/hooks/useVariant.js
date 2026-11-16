@@ -1,37 +1,38 @@
 import { useSyncExternalStore } from "react";
 import { isDark, subscribeTheme } from "../lib/theme.js";
 
-// Variant = theme × breakpoint.
-//   light            -> 'A' Editorial (all widths)
-//   dark  >= 768px   -> 'C' Glass
-//   dark  <  768px   -> 'D' Bold
-// Colours come from CSS tokens; use this hook only for structural swaps.
+// Variant = theme × device.
+//   light                                   -> 'A' Editorial (all widths)
+//   dark, phone (touch screen under 600px)  -> 'D' Bold
+//   dark, anything else                     -> 'C' Glass (tablets, laptops, narrow windows)
+// isPhone is the LAYOUT breakpoint (< 768px: phone header bar, menu sheet, stacked footer),
+// independent of the variant, so a narrow laptop window shows Glass in the compact layout.
+// Colours come from CSS tokens (src/styles/tokens.css uses the same PHONE query).
 
-const QUERY = "(min-width: 768px)";
+const WIDE = "(min-width: 768px)";
+const PHONE = "(max-width: 599.98px) and (pointer: coarse)";
 
-function isWide() {
-  return typeof window === "undefined" || !window.matchMedia
-    ? true
-    : window.matchMedia(QUERY).matches;
-}
+const mq = (q) => (typeof window !== "undefined" && window.matchMedia ? window.matchMedia(q) : null);
 
 function subscribe(callback) {
   const offTheme = subscribeTheme(callback);
-  const mql = typeof window !== "undefined" && window.matchMedia ? window.matchMedia(QUERY) : null;
-  mql?.addEventListener("change", callback);
+  const lists = [mq(WIDE), mq(PHONE)].filter(Boolean);
+  lists.forEach((l) => l.addEventListener("change", callback));
   return () => {
     offTheme();
-    mql?.removeEventListener("change", callback);
+    lists.forEach((l) => l.removeEventListener("change", callback));
   };
 }
 
-// Encode both inputs in one primitive so the snapshot is stable between calls.
-const snapshot = () => (isDark() ? "d" : "l") + (isWide() ? "w" : "p");
+// Encode all inputs in one primitive so the snapshot is stable between calls.
+const snapshot = () =>
+  (isDark() ? "d" : "l") + (mq(WIDE)?.matches ?? true ? "w" : "n") + (mq(PHONE)?.matches ? "p" : "o");
 
 export default function useVariant() {
-  const key = useSyncExternalStore(subscribe, snapshot, () => "lw");
+  const key = useSyncExternalStore(subscribe, snapshot, () => "lwo");
   const dark = key[0] === "d";
-  const isPhone = key[1] === "p";
-  const variant = !dark ? "A" : isPhone ? "D" : "C";
+  const isPhone = key[1] === "n";
+  const phoneDevice = key[2] === "p";
+  const variant = !dark ? "A" : phoneDevice ? "D" : "C";
   return { variant, isPhone, dark };
 }

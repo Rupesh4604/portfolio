@@ -9,7 +9,8 @@ import { site, nav, links } from "../../data/siteData.js";
 
 const items = [{ to: "/", label: "Home" }, ...nav];
 
-// Full-screen phone menu. A = cream + serif items, D = teal + Geist 600 items.
+// Full-screen compact menu. A = cream + serif items, D = teal + Geist 600 items,
+// C (Glass in a narrow window or on a tablet) = frosted dark sheet + Geist 500 items.
 export default function MobileMenu({ open, variant, onClose }) {
   const panel = useRef(null);
   const closeBtn = useRef(null);
@@ -19,6 +20,8 @@ export default function MobileMenu({ open, variant, onClose }) {
 
   if (!open) return null;
   const bold = variant === "D";
+  const glass = variant === "C";
+  const line = bold ? "border-[rgba(6,32,30,.18)]" : glass ? "border-white/10" : "border-[#E4E4DF]";
 
   return createPortal(
     <div
@@ -28,7 +31,11 @@ export default function MobileMenu({ open, variant, onClose }) {
       role="dialog"
       aria-modal="true"
       className={`fixed inset-0 z-50 flex flex-col overflow-y-auto ${
-        bold ? "bg-[#4FB3A9] text-[#06201E]" : "bg-[#F7F7F4] text-[#111418]"
+        bold
+          ? "bg-[#4FB3A9] text-[#06201E]"
+          : glass
+            ? "bg-[rgba(10,13,16,.9)] text-[#ECEDEA] backdrop-blur-[22px] backdrop-saturate-[1.4]"
+            : "bg-[#F7F7F4] text-[#111418]"
       }`}
       style={{ animation: "menu-in .3s var(--ease-out)" }}
     >
@@ -40,7 +47,7 @@ export default function MobileMenu({ open, variant, onClose }) {
           onClick={onClose}
           aria-label="Close menu"
           className={`inline-flex h-12 w-12 items-center justify-center rounded-xl border ${
-            bold ? "border-[rgba(6,32,30,.3)]" : "border-[#E4E4DF]"
+            bold ? "border-[rgba(6,32,30,.3)]" : glass ? "border-white/10 bg-white/5" : "border-[#E4E4DF]"
           }`}
         >
           <CloseIcon size={22} />
@@ -48,11 +55,11 @@ export default function MobileMenu({ open, variant, onClose }) {
       </div>
 
       <nav aria-label="Main">
-      <ul className={`mt-4 border-t ${bold ? "border-[rgba(6,32,30,.18)]" : "border-[#E4E4DF]"}`}>
+      <ul className={`mt-4 border-t ${line}`}>
         {items.map((it, n) => {
           const cur = isCurrent(it.to);
           return (
-            <li key={it.label} className={`border-b ${bold ? "border-[rgba(6,32,30,.18)]" : "border-[#E4E4DF]"}`}>
+            <li key={it.label} className={`border-b ${line}`}>
               <SiteLink
                 to={it.to}
                 onClick={onClose}
@@ -60,7 +67,9 @@ export default function MobileMenu({ open, variant, onClose }) {
                 className={`flex min-h-16 items-center gap-3.5 px-[22px] leading-none ${
                   bold
                     ? "text-[38px] font-semibold tracking-[-1.6px]"
-                    : `font-display text-[36px] ${cur ? "text-[#0E6B66]" : ""}`
+                    : glass
+                      ? `text-[36px] font-medium tracking-[-0.03em] ${cur ? "text-[#7FD1C6]" : ""}`
+                      : `font-display text-[36px] ${cur ? "text-[#0E6B66]" : ""}`
                 }`}
                 style={{ animation: `menu-in .4s var(--ease-out) ${40 + n * 35}ms both` }}
               >

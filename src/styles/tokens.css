@@ -2,8 +2,9 @@
   Portfolio redesign tokens. Copied from design-handoff/tokens.css (Geist family renamed to the @fontsource-variable name).
   Variant rule:
     light (html:not(.dark))            -> A  Editorial   (all widths)
-    dark  (html.dark) and width >= 768 -> C  Glass
-    dark  (html.dark) and width <  768 -> D  Bold
+    dark  (html.dark), phones          -> D  Bold   (touch screen narrower than 600px)
+    dark  (html.dark), everything else -> C  Glass  (tablets, laptops, narrow desktop windows)
+  Keep these two media queries in sync with src/hooks/useVariant.js.
   Components read only these variables; never hard-code a variant colour in JSX.
 */
 
@@ -42,8 +43,8 @@
   --ease-spring: cubic-bezier(.3, 1.3, .5, 1);
 }
 
-/* C · Glass (dark, tablet/desktop) */
-@media (min-width: 768px) {
+/* C · Glass (dark, not a phone) */
+@media (min-width: 600px), not all and (pointer: coarse) {
   html.dark {
     --bg: #0A0D10;
     --bg-2: rgba(255, 255, 255, .05);
@@ -77,7 +78,7 @@
 }
 
 /* D · Bold (dark, phone) */
-@media (max-width: 767.98px) {
+@media (max-width: 599.98px) and (pointer: coarse) {
   html.dark {
     --bg: #0B0C0D;
     --bg-2: #4FB3A9;          /* teal footer band */

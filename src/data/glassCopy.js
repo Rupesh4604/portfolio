@@ -1,4 +1,4 @@
-// Wording for the C · Glass variant (dark, >=768px), taken from the Glass design
+// Wording for the C · Glass variant (dark mode on everything but phones), taken from the Glass design
 // templates (design-handoff/reference/*C.dc.html, Glass.dc.html).
 // Rule: the template wins on wording, the data files win on facts (years, counts,
 // authors, tools, real posts). Overrides are keyed by the data title so links,

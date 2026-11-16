@@ -69,7 +69,7 @@ function HeaderA({ onSearch }) {
   );
 }
 
-/* C · Glass floating pill (dark, >=768px) */
+/* C · Glass floating pill (dark, not a phone, >=768px wide) */
 function HeaderC({ onSearch }) {
   const scrolled = useScrolled(6);
   return (
