@@ -8,18 +8,18 @@ export default function Beyond() {
       <Helmet>
         <title>Beyond | M Rupesh Kumar Yadav</title>
         <meta name="description" content="More from M Rupesh Kumar Yadav — GeoFM Lab (geospatial foundation models), personal blog, Quantum AI Hub, ProdHub productivity app, Google Scholar, and other sites." />
-        <link rel="canonical" href="https://rupesh-dev.vercel.app/beyond" />
+        <link rel="canonical" href="https://rupeshmediboyina.dev/beyond" />
         <meta property="og:title" content="Beyond | M Rupesh Kumar Yadav" />
         <meta property="og:description" content="GeoFM Lab, blog, Quantum AI Hub, ProdHub, Google Scholar, and other places M Rupesh Kumar Yadav exists on the web." />
-        <meta property="og:url" content="https://rupesh-dev.vercel.app/beyond" />
+        <meta property="og:url" content="https://rupeshmediboyina.dev/beyond" />
         <meta name="twitter:title" content="Beyond | M Rupesh Kumar Yadav" />
         <meta name="twitter:description" content="GeoFM Lab, blog, Quantum AI Hub, ProdHub, Google Scholar, and other sites by M Rupesh Kumar Yadav." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
-            { "@type": "ListItem", "position": 2, "name": "Beyond", "item": "https://rupesh-dev.vercel.app/beyond" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeshmediboyina.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "Beyond", "item": "https://rupeshmediboyina.dev/beyond" }
           ]
         })}</script>
       </Helmet>

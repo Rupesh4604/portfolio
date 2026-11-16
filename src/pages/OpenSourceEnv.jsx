@@ -68,18 +68,18 @@ export default function OpenSourceEnv() {
       <Helmet>
         <title>OpenSourceEnv &amp; ProdHub | M Rupesh Kumar Yadav</title>
         <meta name="description" content="OpenSourceEnv — open-source learning initiative covering Deep Learning, ML, AI, Data Science, Web Dev, DBMS, and DSA. Featuring ProdHub, an AI-powered personal productivity hub by M Rupesh Kumar Yadav." />
-        <link rel="canonical" href="https://rupesh-dev.vercel.app/open-source-env" />
+        <link rel="canonical" href="https://rupeshmediboyina.dev/open-source-env" />
         <meta property="og:title" content="OpenSourceEnv & ProdHub | M Rupesh Kumar Yadav" />
         <meta property="og:description" content="Open-source learning initiative and ProdHub — an AI-powered personal productivity hub." />
-        <meta property="og:url" content="https://rupesh-dev.vercel.app/open-source-env" />
+        <meta property="og:url" content="https://rupeshmediboyina.dev/open-source-env" />
         <meta name="twitter:title" content="OpenSourceEnv & ProdHub | M Rupesh Kumar Yadav" />
         <meta name="twitter:description" content="Open-source learning initiative and ProdHub — an AI-powered personal productivity hub." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
-            { "@type": "ListItem", "position": 2, "name": "OpenSourceEnv", "item": "https://rupesh-dev.vercel.app/open-source-env" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeshmediboyina.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "OpenSourceEnv", "item": "https://rupeshmediboyina.dev/open-source-env" }
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({

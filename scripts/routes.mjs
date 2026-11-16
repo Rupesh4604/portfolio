@@ -2,7 +2,7 @@
 // Keep meta in sync with each page's <Helmet>.
 
 export const SITE = {
-  origin: 'https://rupesh-dev.vercel.app',
+  origin: 'https://rupeshmediboyina.dev',
   defaultImage: '/og-image.jpg',
   defaultImageType: 'image/jpeg',
   twitterHandle: '@RupeshKumar4604',

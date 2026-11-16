@@ -1,0 +1,110 @@
+/*
+  Portfolio redesign tokens. Copied from design-handoff/tokens.css (Geist family renamed to the @fontsource-variable name).
+  Variant rule:
+    light (html:not(.dark))            -> A  Editorial   (all widths)
+    dark  (html.dark) and width >= 768 -> C  Glass
+    dark  (html.dark) and width <  768 -> D  Bold
+  Components read only these variables; never hard-code a variant colour in JSX.
+*/
+
+:root {
+  /* A · Editorial (light) */
+  --bg: #F7F7F4;
+  --bg-2: #EFEFEA;          /* footer band */
+  --sf: #FFFFFF;            /* card surface */
+  --ink: #111418;
+  --i2: #4A5260;            /* secondary text */
+  --mu: #646B75;            /* muted text, passes 4.5:1 on --bg */
+  --ln: #E4E4DF;            /* hairlines */
+  --ac: #0E6B66;            /* accent */
+  --ac-hover: #0A4F4B;
+  --tint: #E3F1EF;          /* tag / placeholder fill */
+  --acink: #0A4F4B;         /* text on --tint */
+  --err: #B42318;
+  --hdr-bg: rgba(247, 247, 244, .86);
+
+  --font-sans: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --display-weight: 400;
+  --display-tracking: -0.015em;
+  --h1-page: clamp(56px, 7vw, 104px);
+  --h1-home: clamp(46px, 5.8vw, 86px);
+
+  --radius-card: 14px;
+  --radius-btn: 8px;
+
+  --wrap: 1200px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --section: clamp(96px, 11vw, 160px);
+
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-swap: cubic-bezier(.7, 0, .2, 1);
+  --ease-spring: cubic-bezier(.3, 1.3, .5, 1);
+}
+
+/* C · Glass (dark, tablet/desktop) */
+@media (min-width: 768px) {
+  html.dark {
+    --bg: #0A0D10;
+    --bg-2: rgba(255, 255, 255, .05);
+    --sf: rgba(255, 255, 255, .05);
+    --ink: #ECEDEA;
+    --i2: #C2C7CC;
+    --mu: #9AA1A8;
+    --ln: rgba(255, 255, 255, .10);
+    --ac: #7FD1C6;
+    --ac-hover: #9FD8D1;
+    --tint: rgba(79, 179, 169, .15);
+    --acink: #9FD8D1;
+    --err: #FF9B8F;
+    --hdr-bg: rgba(18, 22, 26, .55);
+
+    --font-display: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+    --display-weight: 500;
+    --display-tracking: -0.035em;
+    --h1-page: clamp(48px, 5.6vw, 84px);
+    --h1-home: clamp(36px, 4.2vw, 62px);
+
+    --radius-card: 20px;
+    --radius-btn: 999px;
+
+    /* glass-only */
+    --glass-blur: blur(22px) saturate(140%);
+    --glow-teal: #0E6B66;
+    --glow-blue: #2B5C8A;
+    --spot: rgba(79, 179, 169, .17);
+  }
+}
+
+/* D · Bold (dark, phone) */
+@media (max-width: 767.98px) {
+  html.dark {
+    --bg: #0B0C0D;
+    --bg-2: #4FB3A9;          /* teal footer band */
+    --sf: #121416;
+    --ink: #F2F2EF;
+    --i2: #B0B6BB;
+    --mu: #8A9096;
+    --ln: #26292D;
+    --ac: #4FB3A9;
+    --ac-hover: #7FD1C6;
+    --tint: rgba(79, 179, 169, .12);
+    --acink: #7FD1C6;
+    --err: #FF9B8F;
+    --hdr-bg: rgba(11, 12, 13, .9);
+    --on-band: #06201E;       /* text on the teal footer band */
+
+    --font-display: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+    --display-weight: 600;
+    --display-tracking: -0.045em;
+    --h1-page: 56px;
+    --h1-home: 50px;
+
+    --radius-card: 8px;
+    --radius-btn: 999px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

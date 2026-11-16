@@ -88,13 +88,13 @@ export default function Projects() {
           name="description"
           content="Selected AI/ML engineering projects by M Rupesh Kumar Yadav across agentic systems, geospatial AI, remote sensing, computer vision, and full-stack ML applications."
         />
-        <link rel="canonical" href="https://rupesh-dev.vercel.app/projects" />
+        <link rel="canonical" href="https://rupeshmediboyina.dev/projects" />
         <meta property="og:title" content="Projects | M Rupesh Kumar Yadav" />
         <meta
           property="og:description"
           content="Selected AI/ML engineering projects across agentic systems, geospatial AI, remote sensing, computer vision, and full-stack ML applications."
         />
-        <meta property="og:url" content="https://rupesh-dev.vercel.app/projects" />
+        <meta property="og:url" content="https://rupeshmediboyina.dev/projects" />
         <meta name="twitter:title" content="Projects | M Rupesh Kumar Yadav" />
         <meta
           name="twitter:description"
@@ -105,8 +105,8 @@ export default function Projects() {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://rupesh-dev.vercel.app/" },
-              { "@type": "ListItem", position: 2, name: "Projects", item: "https://rupesh-dev.vercel.app/projects" },
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://rupeshmediboyina.dev/" },
+              { "@type": "ListItem", position: 2, name: "Projects", item: "https://rupeshmediboyina.dev/projects" },
             ],
           })}
         </script>

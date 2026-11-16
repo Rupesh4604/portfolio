@@ -1,5 +1,93 @@
 @import "tailwindcss";
+@import "./styles/tokens.css";
+/* Legacy palette (night-*, surface-*, accent-*) — still used by pages not yet rebuilt. Remove in cleanup step. */
 @config "../tailwind.config.js";
+
+/* Map design tokens to Tailwind utilities.
+   `inline` entries resolve straight to the variant tokens (bg-bg, text-ink, border-ln…).
+   Non-inline entries share the token's own name: the layered default here is overridden
+   at runtime by the unlayered values in tokens.css, so no var() self-reference. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-sf: var(--sf);
+  --color-ink: var(--ink);
+  --color-i2: var(--i2);
+  --color-mu: var(--mu);
+  --color-ln: var(--ln);
+  --color-ac: var(--ac);
+  --color-ac-hover: var(--ac-hover);
+  --color-tint: var(--tint);
+  --color-acink: var(--acink);
+  --color-err: var(--err);
+  --color-hdr: var(--hdr-bg);
+  --color-on-band: var(--on-band, #06201E);
+}
+@theme {
+  --font-display: "Instrument Serif", Georgia, serif;
+  --radius-card: 14px;
+  --radius-btn: 8px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-swap: cubic-bezier(.7, 0, .2, 1);
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--ac);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .wrap {
+    max-width: var(--wrap);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    box-sizing: border-box;
+  }
+  .display {
+    font-family: var(--font-display);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+  }
+  .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ac);
+    animation: pulse-ring 2.4s infinite;
+  }
+  .glass {
+    background: var(--sf);
+    border: 1px solid var(--ln);
+    backdrop-filter: var(--glass-blur, blur(22px) saturate(140%));
+    -webkit-backdrop-filter: var(--glass-blur, blur(22px) saturate(140%));
+  }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ac) 45%, transparent); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@keyframes glow-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(60px, 40px) scale(1.12); }
+}
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes marquee-x { to { transform: translateX(-50%); } }
 
 @layer components {
   .card {
@@ -107,18 +195,10 @@
   .animate-marquee { animation: none; }
 }
 
-/* Soft vignette for dark */
-html.dark body {
-  background:
-    radial-gradient(1200px 600px at 20% -10%, rgba(30, 41, 59, .55) 0%, transparent 60%),
-    radial-gradient(1000px 500px at 110% 10%, rgba(15, 23, 42, .50) 0%, transparent 60%),
-    #0B1220;
-}
-
 /* Subtle scrollbars */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #33435E transparent;
+  scrollbar-color: var(--ln) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -127,7 +207,7 @@ html.dark body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #33435E;
+  background: var(--ln);
   border-radius: 8px;
 }
 

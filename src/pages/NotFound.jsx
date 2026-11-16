@@ -8,7 +8,7 @@ export default function NotFound() {
       <Helmet>
         <title>404 — Not Found | M Rupesh Kumar Yadav</title>
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://rupesh-dev.vercel.app/" />
+        <link rel="canonical" href="https://rupeshmediboyina.dev/" />
       </Helmet>
       <section className="min-h-[60vh] flex flex-col items-center justify-center text-center">
         <p className="text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Error 404</p>

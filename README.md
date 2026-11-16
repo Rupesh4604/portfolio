@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-Production site: [https://rupesh-dev.vercel.app](https://rupesh-dev.vercel.app)
+Production site: [https://rupeshmediboyina.dev](https://rupeshmediboyina.dev)
 
 Modern portfolio website for M Rupesh Kumar Yadav, built with React + Vite and styled using Tailwind CSS. The project includes SEO-focused prerendering, sitemap generation, and Vercel-ready configuration.
 

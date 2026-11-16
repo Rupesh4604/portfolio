@@ -88,18 +88,18 @@ export default function Experience() {
       <Helmet>
         <title>Experience | M Rupesh Kumar Yadav</title>
         <meta name="description" content="Experience of M Rupesh Kumar Yadav — education at IIT Bombay & NIT Andhra Pradesh, professional roles, research internships in AI & remote sensing, achievements, and positions of responsibility." />
-        <link rel="canonical" href="https://rupesh-dev.vercel.app/experience" />
+        <link rel="canonical" href="https://rupeshmediboyina.dev/experience" />
         <meta property="og:title" content="Experience | M Rupesh Kumar Yadav" />
         <meta property="og:description" content="Education, work experience, internships, achievements, and positions of responsibility of M Rupesh Kumar Yadav." />
-        <meta property="og:url" content="https://rupesh-dev.vercel.app/experience" />
+        <meta property="og:url" content="https://rupeshmediboyina.dev/experience" />
         <meta name="twitter:title" content="Experience | M Rupesh Kumar Yadav" />
         <meta name="twitter:description" content="Education, work experience, internships, achievements, and positions of responsibility of M Rupesh Kumar Yadav." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupesh-dev.vercel.app/" },
-            { "@type": "ListItem", "position": 2, "name": "Experience", "item": "https://rupesh-dev.vercel.app/experience" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeshmediboyina.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "Experience", "item": "https://rupeshmediboyina.dev/experience" }
           ]
         })}</script>
       </Helmet>

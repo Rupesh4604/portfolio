@@ -99,7 +99,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "M Rupesh Kumar Yadav",
-    url: "https://rupesh-dev.vercel.app/",
+    url: "https://rupeshmediboyina.dev/",
     jobTitle: "AI/ML Engineer & Researcher",
     affiliation: {
       "@type": "Organization",
@@ -126,13 +126,13 @@ export default function Home() {
           name="description"
           content="AI/ML engineer and researcher at Esri R&D working on multimodal AI, geospatial intelligence, vision-language models, agentic systems, computer vision, and remote sensing."
         />
-        <link rel="canonical" href="https://rupesh-dev.vercel.app/" />
+        <link rel="canonical" href="https://rupeshmediboyina.dev/" />
         <meta property="og:title" content="M Rupesh Kumar Yadav - AI/ML Engineer & Researcher" />
         <meta
           property="og:description"
           content="AI/ML engineer and researcher at Esri R&D working across multimodal AI, geospatial intelligence, agentic systems, computer vision, and remote sensing."
         />
-        <meta property="og:url" content="https://rupesh-dev.vercel.app/" />
+        <meta property="og:url" content="https://rupeshmediboyina.dev/" />
         <meta name="twitter:title" content="M Rupesh Kumar Yadav - AI/ML Engineer & Researcher" />
         <meta
           name="twitter:description"

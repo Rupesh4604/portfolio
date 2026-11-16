@@ -30,13 +30,13 @@ export default function Publications() {
           name="description"
           content="Research publications by M Rupesh Kumar Yadav across quantum machine learning, remote sensing, hyperspectral imagery, computer vision, and graph-based NLP."
         />
-        <link rel="canonical" href="https://rupesh-dev.vercel.app/publications" />
+        <link rel="canonical" href="https://rupeshmediboyina.dev/publications" />
         <meta property="og:title" content="Research Publications | M Rupesh Kumar Yadav" />
         <meta
           property="og:description"
           content="Research publications across quantum machine learning, remote sensing, hyperspectral imagery, computer vision, and graph-based NLP."
         />
-        <meta property="og:url" content="https://rupesh-dev.vercel.app/publications" />
+        <meta property="og:url" content="https://rupeshmediboyina.dev/publications" />
         <meta name="twitter:title" content="Research Publications | M Rupesh Kumar Yadav" />
         <meta
           name="twitter:description"
@@ -47,8 +47,8 @@ export default function Publications() {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://rupesh-dev.vercel.app/" },
-              { "@type": "ListItem", position: 2, name: "Research Publications", item: "https://rupesh-dev.vercel.app/publications" },
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://rupeshmediboyina.dev/" },
+              { "@type": "ListItem", position: 2, name: "Research Publications", item: "https://rupeshmediboyina.dev/publications" },
             ],
           })}
         </script>
