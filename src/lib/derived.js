@@ -3,6 +3,7 @@ import { publications } from "../data/publicationsData.js";
 import { work } from "../data/internshipData.js";
 import { education } from "../data/educationData.js";
 import { beyondLinks } from "../data/beyondData.js";
+import { posts } from "../data/postsData.js";
 
 const numWords = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
 export const countWord = (n) => numWords[n] ?? String(n);
@@ -48,4 +49,14 @@ export const credentials = [
 ].filter(Boolean);
 
 export const blog = beyondLinks.find((l) => l.category === "Writing");
+
+// Posts worth surfacing: everything except housekeeping ("meta") posts. Newest first.
+export const articles = posts.filter((p) => !p.tags.includes("meta"));
+export const feedUrl = "https://rupesh4604.github.io/feed.xml";
+
+export const fmtDate = (iso) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+
+// "machine-learning" -> "Machine learning"
+export const tagLabel = (t = "") => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, " ");
 export const paperCollections = beyondLinks.filter((l) => l.category === "Research");

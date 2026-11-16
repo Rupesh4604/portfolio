@@ -153,7 +153,7 @@ function FooterD() {
       <div className="bg-[#4FB3A9] px-5 pb-[30px] pt-[34px] text-[#06201E]">
         <p className="m-0 text-[clamp(16px,1.3vw,19px)]">Have an interesting problem?</p>
         <SiteLink
-          to={links.email}
+          to="/contact"
           className="mt-2 inline-block text-[clamp(56px,7.2vw,108px)] font-semibold leading-none tracking-[-0.045em] text-[#06201E] transition-transform duration-[350ms] ease-[var(--ease-out)] hover:translate-x-2 hover:text-black"
         >
           Let's talk.

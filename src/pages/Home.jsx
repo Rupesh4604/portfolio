@@ -9,7 +9,8 @@ import {
   paperSplit,
   currentRole,
   credentials,
-  blog,
+  articles,
+  fmtDate,
   paperCollections,
 } from "../lib/derived";
 import useVariant from "../hooks/useVariant";
@@ -160,13 +161,19 @@ function HomeA() {
 
       <section className="wrap grid max-w-[1240px] gap-[clamp(64px,7vw,112px)] pt-[var(--section)] md:grid-cols-2">
         <div>
-          <SectionHeadA title="Writing" to={blog?.url ?? links.blog} cta="Blog" />
-          <SiteLink to={blog?.url ?? links.blog} className="group block border-y border-ln py-[22px] text-ink">
-            <span className="display block text-[28px] leading-[1.2] transition-colors group-hover:text-ac">
-              {blog?.description}
-            </span>
-            <span className="mt-1.5 block text-sm text-mu">{(blog?.url ?? links.blog).replace(/^https?:\/\/|\/$/g, "")} ↗</span>
-          </SiteLink>
+          <SectionHeadA title="Writing" to="/beyond" cta="Blog" />
+          <ul className="m-0 list-none border-b border-ln p-0">
+            {articles.slice(0, 2).map((p) => (
+              <li key={p.url} className="border-t border-ln">
+                <SiteLink to={p.url} className="group block py-[22px] text-ink">
+                  <span className="display block text-[28px] leading-[1.2] transition-colors group-hover:text-ac">{p.title}</span>
+                  <span className="mt-1.5 block text-sm text-mu">
+                    {fmtDate(p.date)} · {p.readMin} min read
+                  </span>
+                </SiteLink>
+              </li>
+            ))}
+          </ul>
         </div>
         <div>
           <SectionHeadA title="Research" to="/publications" cta="Publications" />
@@ -289,15 +296,20 @@ function HomeC() {
           </div>
         </SpotlightCard>
 
-        {blog && (
+        {articles[0] && (
           <SpotlightCard as="div" className="p-2 min-[900px]:col-span-3">
-            <SiteLink to={blog.url} className="gl-inner flex items-center justify-between gap-6 px-7 py-[26px] text-ink">
-              <span>
-                <span className={`block ${lb}`}>Writing</span>
-                <span className="mt-2 block text-2xl font-medium tracking-[-0.02em]">{blog.description}</span>
-              </span>
-              <span className="whitespace-nowrap text-sm text-mu">Read the blog ↗</span>
-            </SiteLink>
+            <div className="gl-inner flex flex-wrap items-center justify-between gap-6 px-7 py-[26px]">
+              <SiteLink to={articles[0].url} className="group min-w-0 text-ink">
+                <span className={`block ${lb}`}>Latest post</span>
+                <span className="mt-2 block text-2xl font-medium tracking-[-0.02em] transition-colors group-hover:text-ac">
+                  {articles[0].title}
+                </span>
+                <span className="mt-1 block text-sm text-mu">
+                  {fmtDate(articles[0].date)} · {articles[0].readMin} min read
+                </span>
+              </SiteLink>
+              <Link to="/beyond" className="whitespace-nowrap text-sm text-mu hover:text-ink">All posts →</Link>
+            </div>
           </SpotlightCard>
         )}
       </div>
@@ -321,10 +333,10 @@ function HomeD() {
       </p>
       <div className="mt-[22px] px-5">
         <SiteLink
-          to={links.email}
+          to="/contact"
           className="inline-flex min-h-[52px] items-center gap-2 rounded-full border border-[#3A3F44] px-[22px] text-[15px] text-ink transition-colors hover:border-ink hover:bg-ink hover:text-bg"
         >
-          Get in touch ↗
+          Get in touch →
         </SiteLink>
       </div>
 

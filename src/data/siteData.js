@@ -10,13 +10,13 @@ export const site = {
   timeZone: "Asia/Kolkata",
 };
 
-// Primary navigation. Contact points at email until the /contact page lands (build step 4).
+// Primary navigation.
 export const nav = [
   { to: "/projects", label: "Projects" },
   { to: "/publications", label: "Research" },
   { to: "/beyond", label: "Blog" },
   { to: "/experience", label: "Career" },
-  { to: `mailto:${site.email}`, label: "Contact" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export const links = {

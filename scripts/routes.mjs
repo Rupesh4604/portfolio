@@ -43,11 +43,19 @@ export const routes = [
   },
   {
     path: '/beyond',
-    title: 'Beyond | M Rupesh Kumar Yadav',
+    title: 'Blog | M Rupesh Kumar Yadav',
     description:
-      'More from M Rupesh Kumar Yadav — personal blog, Quantum AI Hub, ProdHub productivity app, Google Scholar, and other sites.',
+      'Writing by M Rupesh Kumar Yadav — notes on transformers and machine learning, book notes — plus GeoFM Lab, Quantum AI Hub, ProdHub and other places on the web.',
     changefreq: 'monthly',
     priority: 0.6,
+  },
+  {
+    path: '/contact',
+    title: 'Contact | M Rupesh Kumar Yadav',
+    description:
+      'Get in touch with M Rupesh Kumar Yadav (Rupesh Mediboyina) about research collaborations, multimodal models, agents and inference.',
+    changefreq: 'yearly',
+    priority: 0.5,
   },
   {
     path: '/open-source-env',

@@ -1,70 +1,156 @@
-import React from "react";
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { posts } from "../data/postsData";
 import { beyondLinks } from "../data/beyondData";
+import { articles, feedUrl, fmtDate, tagLabel } from "../lib/derived";
+import Page from "../components/site/Page.jsx";
+import PageHeader from "../components/site/PageHeader.jsx";
+import ChipGroup from "../components/site/ChipGroup.jsx";
+import SiteLink from "../components/site/SiteLink.jsx";
 
-export default function Beyond() {
+const ALL = "all";
+const featured = articles[0];
+// Chips: each post's first tag is its topic.
+const topics = [...new Set(posts.map((p) => p.tags[0]).filter(Boolean))];
+const elsewhere = beyondLinks.filter((l) => l.category !== "Writing");
+
+function Meta() {
   return (
-    <>
-      <Helmet>
-        <title>Beyond | M Rupesh Kumar Yadav</title>
-        <meta name="description" content="More from M Rupesh Kumar Yadav — GeoFM Lab (geospatial foundation models), personal blog, Quantum AI Hub, ProdHub productivity app, Google Scholar, and other sites." />
-        <link rel="canonical" href="https://rupeshmediboyina.dev/beyond" />
-        <meta property="og:title" content="Beyond | M Rupesh Kumar Yadav" />
-        <meta property="og:description" content="GeoFM Lab, blog, Quantum AI Hub, ProdHub, Google Scholar, and other places M Rupesh Kumar Yadav exists on the web." />
-        <meta property="og:url" content="https://rupeshmediboyina.dev/beyond" />
-        <meta name="twitter:title" content="Beyond | M Rupesh Kumar Yadav" />
-        <meta name="twitter:description" content="GeoFM Lab, blog, Quantum AI Hub, ProdHub, Google Scholar, and other sites by M Rupesh Kumar Yadav." />
-        <script type="application/ld+json">{JSON.stringify({
+    <Helmet>
+      <title>Blog | M Rupesh Kumar Yadav</title>
+      <meta
+        name="description"
+        content="Writing by M Rupesh Kumar Yadav — notes on transformers and machine learning, book notes — plus GeoFM Lab, Quantum AI Hub, ProdHub and other places on the web."
+      />
+      <link rel="canonical" href="https://rupeshmediboyina.dev/beyond" />
+      <meta property="og:title" content="Blog | M Rupesh Kumar Yadav" />
+      <meta property="og:description" content="Notes on machine learning, book notes, and other places M Rupesh Kumar Yadav writes and builds on the web." />
+      <meta property="og:url" content="https://rupeshmediboyina.dev/beyond" />
+      <meta name="twitter:title" content="Blog | M Rupesh Kumar Yadav" />
+      <meta name="twitter:description" content="Notes on machine learning, book notes, and other places M Rupesh Kumar Yadav writes and builds on the web." />
+      <link rel="alternate" type="application/atom+xml" title="Rupesh's Blog" href={feedUrl} />
+      <script type="application/ld+json">
+        {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeshmediboyina.dev/" },
-            { "@type": "ListItem", "position": 2, "name": "Beyond", "item": "https://rupeshmediboyina.dev/beyond" }
-          ]
-        })}</script>
-      </Helmet>
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://rupeshmediboyina.dev/" },
+            { "@type": "ListItem", position: 2, name: "Blog", item: "https://rupeshmediboyina.dev/beyond" },
+          ],
+        })}
+      </script>
+    </Helmet>
+  );
+}
 
-      <header className="mb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-          Beyond
-        </h1>
-        <p className="mt-3 text-lg text-slate-700 dark:text-slate-300 max-w-2xl">
-          Other places I write, build, and publish blogs, side projects, and academic profiles.
-        </p>
-      </header>
+function RssIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+      <path d="M5 19a1 1 0 1 0 0-.01M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" />
+    </svg>
+  );
+}
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {beyondLinks.map((link) => (
-          <a
-            key={link.url}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group card p-6 flex flex-col h-full hover:shadow-lg hover:-translate-y-0.5 transition
-                       focus:outline-none focus:ring-2 focus:ring-accent-500/50"
-          >
-            <div className="flex items-start justify-between gap-3 mb-3">
-              <span className="text-3xl" aria-hidden="true">{link.icon}</span>
-              {link.category && (
-                <span className="text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-600
-                                 dark:bg-slate-800 dark:text-slate-300">
-                  {link.category}
-                </span>
-              )}
-            </div>
+export default function Beyond() {
+  const [topic, setTopic] = useState(ALL);
+  const chips = useMemo(
+    () => [
+      { value: ALL, label: "All", count: posts.length },
+      ...topics.map((t) => ({ value: t, label: tagLabel(t), count: posts.filter((p) => p.tags[0] === t).length })),
+    ],
+    []
+  );
+  const rows = topic === ALL ? posts : posts.filter((p) => p.tags[0] === topic);
 
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-white
-                           group-hover:text-accent-500 transition-colors">
-              {link.title}
+  return (
+    <Page className="page-enter">
+      <Meta />
+      <PageHeader
+        title="Blog"
+        lead="Notes on machine learning papers and ideas, book notes, and other things I keep on the web."
+        aside={
+          <SiteLink to={feedUrl} className="inline-flex min-h-11 items-center gap-2 text-[15px] text-ac hover:text-ac-hover">
+            <RssIcon />
+            Subscribe via RSS
+          </SiteLink>
+        }
+      />
+
+      {featured && (
+        <SiteLink
+          to={featured.url}
+          className="cd group mt-[clamp(48px,6vw,88px)] grid items-center gap-[clamp(24px,4vw,56px)] p-3.5 text-ink transition-colors hover:border-ac md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]"
+        >
+          <div className="p-[clamp(12px,2vw,28px)]">
+            <div className="text-sm text-mu">Latest</div>
+            <h2 className="display m-0 mt-3.5 text-[clamp(30px,3.4vw,44px)] leading-[1.15] transition-colors group-hover:text-ac">
+              {featured.title}
             </h2>
-            <p className="text-sm card-muted mt-1 flex-1">{link.description}</p>
+            <p className="m-0 mt-4 text-[17px] leading-[1.6] text-i2">{featured.summary}</p>
+            <div className="mt-[22px] flex flex-wrap items-center gap-2">
+              <span className="tag">{tagLabel(featured.tags[0])}</span>
+              <span className="text-sm text-mu">
+                {fmtDate(featured.date)} · {featured.readMin} min read
+              </span>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            className="h-[200px] rounded-[calc(var(--radius-card)-4px)] transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.015] md:h-[340px]"
+            style={{
+              background:
+                "radial-gradient(260px circle at 70% 30%, rgba(79,179,169,.35), transparent 70%), linear-gradient(var(--ln) 1px, transparent 1px) 0 0/24px 24px, linear-gradient(90deg, var(--ln) 1px, transparent 1px) 0 0/24px 24px, var(--tint)",
+            }}
+          />
+        </SiteLink>
+      )}
 
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent-500">
-              Visit ↗
-            </span>
-          </a>
-        ))}
-      </div>
-    </>
+      <section aria-labelledby="posts" className="mt-[clamp(72px,9vw,128px)]">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+          <h2 id="posts" className="display m-0 text-[clamp(30px,3.4vw,40px)] tracking-[-0.02em]">All posts</h2>
+          <ChipGroup label="Filter by topic" options={chips} value={topic} onChange={setTopic} />
+        </div>
+        <ul className="m-0 list-none border-b border-ln p-0">
+          {rows.map((p) => (
+            <li key={p.url} className="border-t border-ln">
+              <SiteLink
+                to={p.url}
+                className="row-indent grid grid-cols-[minmax(0,1fr)_24px] items-baseline gap-6 py-7 text-ink md:grid-cols-[120px_minmax(0,1fr)_100px_28px]"
+              >
+                <span className="hidden text-sm text-mu md:block">{fmtDate(p.date)}</span>
+                <span className="min-w-0">
+                  <span className="row-title display block text-[clamp(22px,2.2vw,28px)] leading-[1.2]">{p.title}</span>
+                  <span className="mt-3 flex flex-wrap items-center gap-2">
+                    {p.tags.slice(0, 2).map((t, i) => (
+                      <span key={t} className={i === 0 ? "tag" : "tag-line"}>{tagLabel(t)}</span>
+                    ))}
+                    <span className="text-sm text-mu md:hidden">
+                      {fmtDate(p.date)} · {p.readMin} min
+                    </span>
+                  </span>
+                </span>
+                <span className="hidden text-right text-sm text-mu md:block">{p.readMin} min read</span>
+                <span className="row-arrow justify-self-end text-mu" aria-hidden="true">↗</span>
+              </SiteLink>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {elsewhere.length > 0 && (
+        <section aria-labelledby="elsewhere" className="mt-[clamp(72px,9vw,128px)]">
+          <h2 id="elsewhere" className="display m-0 mb-5 text-[clamp(30px,3.4vw,40px)] tracking-[-0.02em]">Elsewhere</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {elsewhere.map((l) => (
+              <SiteLink key={l.title} to={l.url} className="cd cd-lift block p-6 text-ink">
+                <div className="text-[13px] text-mu">{l.category}</div>
+                <div className="mt-2.5 text-[19px] font-medium leading-[1.3]">{l.title} ↗</div>
+                <div className="mt-1.5 text-sm leading-[1.5] text-i2">{l.description}</div>
+              </SiteLink>
+            ))}
+          </div>
+        </section>
+      )}
+    </Page>
   );
 }

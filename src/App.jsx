@@ -7,6 +7,7 @@ import SiteHeader from "./components/site/SiteHeader.jsx";
 import SiteFooter from "./components/site/SiteFooter.jsx";
 import MobileMenu from "./components/site/MobileMenu.jsx";
 import GlowBackground from "./components/site/GlowBackground.jsx";
+import CommandPalette from "./components/site/CommandPalette.jsx";
 import Page from "./components/site/Page.jsx";
 import useVariant from "./hooks/useVariant.js";
 
@@ -17,6 +18,7 @@ import Publications from "./pages/Publications.jsx";
 import Beyond from "./pages/Beyond.jsx";
 import OpenSourceEnv from "./pages/OpenSourceEnv.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Contact from "./pages/Contact.jsx";
 
 // Pages below are rebuilt in steps 2–4; until then they keep the old container.
 const legacy = (el) => <Page legacy>{el}</Page>;
@@ -27,8 +29,28 @@ function Shell() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef(null);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
-  // CommandPalette arrives in build step 4; the buttons are wired to this handler.
-  const openSearch = useCallback(() => {}, []);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const openSearch = useCallback(() => setSearchOpen(true), []);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
+
+  // Global shortcuts: ⌘K / Ctrl+K toggles search; "/" opens it unless typing.
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((o) => !o);
+        return;
+      }
+      const t = e.target;
+      const typing = t instanceof HTMLElement && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+      if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,7 +77,8 @@ function Shell() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/publications" element={<Publications />} />
-          <Route path="/beyond" element={legacy(<Beyond />)} />
+          <Route path="/beyond" element={<Beyond />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/open-source-env" element={legacy(<OpenSourceEnv />)} />
           {/* Legacy URLs → consolidated Experience page */}
           <Route path="/internships" element={<Navigate to="/experience" replace />} />
@@ -65,6 +88,7 @@ function Shell() {
         <SiteFooter />
       </div>
       {isPhone && <MobileMenu open={menuOpen} variant={variant} onClose={closeMenu} />}
+      <CommandPalette open={searchOpen} onClose={closeSearch} />
     </div>
   );
 }
