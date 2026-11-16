@@ -5,7 +5,8 @@ import useReducedMotion from "../../hooks/useReducedMotion.js";
 //   mode "fade":  fade + drop + blur (A, C). `gradient` fills the word teal (C).
 //   mode "slide": old word slides up out, new word enters from below (D); line clipped.
 // Reduced motion: first word only.
-export default function RotatingWord({ words, mode = "fade", gradient = false, every = 2600, className = "" }) {
+// `suffix` (e.g. ",") sits inside the reserved box so short words don't leave a gap before it.
+export default function RotatingWord({ words, mode = "fade", gradient = false, every = 2600, className = "", suffix = "" }) {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
   const [phase, setPhase] = useState("in"); // in | out | pre
@@ -45,9 +46,18 @@ export default function RotatingWord({ words, mode = "fade", gradient = false, e
       </span>
     );
   }
+  // Reserve the longest word's width so line breaks (and the heading height) never jump.
+  const longest = words.reduce((a, b) => (b.length > a.length ? b : a), "");
   return (
-    <span className={cls} aria-live="off">
-      {word}
+    <span className={`rw-stack ${className}`} aria-live="off">
+      <span className={`rw-sizer ${gradient ? "rw-grad" : ""}`} aria-hidden="true">
+        {longest}
+        {suffix}
+      </span>
+      <span>
+        <span className={cls.replace(className, "")}>{word}</span>
+        {suffix && <span className="not-italic text-ink">{suffix}</span>}
+      </span>
     </span>
   );
 }

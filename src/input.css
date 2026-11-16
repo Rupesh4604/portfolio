@@ -75,6 +75,9 @@
 
   /* RotatingWord */
   .rw { display: inline-block; }
+  .rw-stack { display: inline-grid; justify-items: start; white-space: nowrap; }
+  .rw-stack > * { grid-area: 1 / 1; }
+  .rw-sizer { visibility: hidden; }
   .rw-fade {
     transition: opacity .38s var(--ease-out), transform .38s var(--ease-out), filter .38s;
   }

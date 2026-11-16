@@ -35,8 +35,15 @@ const jsonLd = {
     { "@type": "CollegeOrUniversity", name: "Indian Institute of Technology Bombay" },
     { "@type": "CollegeOrUniversity", name: "National Institute of Technology Andhra Pradesh" },
   ],
-  sameAs: [links.github, links.linkedin, links.orcid, links.scholar],
-  knowsAbout: ["Multimodal AI", "AI agents", "Vision-language models", "Inference optimization", "Computer vision"],
+  sameAs: [links.github, links.linkedin, links.orcid, "https://medium.com/@rupesh32003", links.scholar],
+  knowsAbout: [
+    "Multimodal AI",
+    "Vision-language models",
+    "Agentic AI systems",
+    "Computer vision",
+    "Geospatial intelligence",
+    "Remote sensing",
+  ],
 };
 
 function Meta() {
@@ -85,8 +92,9 @@ function HomeA() {
       <section className="wrap max-w-[1240px] pb-2 pt-[clamp(40px,10vw,150px)]">
         <h1 className="display m-0 text-[clamp(40px,5.8vw,86px)] leading-[1.04]">
           I build{" "}
-          <RotatingWord words={home.rotatingA} className="italic text-ac" />,<br className="hidden md:inline" /> and
-          the systems that run them.
+          <RotatingWord words={home.rotatingA} className="italic text-ac" suffix="," />
+          <br />
+          and the systems that run them.
         </h1>
         <div className="mt-[clamp(28px,4vw,56px)] grid items-end gap-10 md:gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
           <div>
