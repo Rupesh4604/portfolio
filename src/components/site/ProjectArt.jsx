@@ -323,10 +323,7 @@ export function ArtCarousel({ title, className = "", interval = 4200 }) {
     <div
       ref={ref}
       className={`relative overflow-hidden rounded-[calc(var(--radius-card)-4px)] ${className}`}
-      style={{
-        background:
-          "linear-gradient(var(--ln) 1px, transparent 1px) 0 0/24px 24px, linear-gradient(90deg, var(--ln) 1px, transparent 1px) 0 0/24px 24px, var(--tint)",
-      }}
+      style={{ background: "var(--tint)" }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
