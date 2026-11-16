@@ -51,7 +51,7 @@ function Shell() {
       <div className="relative z-[1]">
         <SiteHeader ref={menuButton} menuOpen={menuOpen} onMenu={() => setMenuOpen(true)} onSearch={openSearch} />
         <Routes>
-          <Route path="/" element={legacy(<Home />)} />
+          <Route path="/" element={<Home />} />
           <Route path="/projects" element={legacy(<Projects />)} />
           <Route path="/experience" element={legacy(<Experience />)} />
           <Route path="/publications" element={legacy(<Publications />)} />
