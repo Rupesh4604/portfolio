@@ -1,0 +1,277 @@
+/*
+  Rupesh Kumar · shared site theme (portable)
+  Source of truth: src/styles/tokens.css + src/input.css in the portfolio repo.
+  Plain CSS, no build step. Drop into any site (blog, GeoFM, Quantum papers…).
+
+  Fonts (add to <head>):
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap">
+
+  Three modes:
+    A  Editorial  light                          html (no .dark)
+    C  Glass      dark on laptops, tablets       html.dark, any screen that is not a phone
+    D  Bold       dark on phones                 html.dark, touch screen narrower than 600px
+  Force one mode anywhere (a whole site or one block): data-variant="editorial" | "glass" | "bold".
+  Components read only the variables below; never hard-code a mode colour in a component.
+*/
+
+/* ───────── A · Editorial (light, default) ───────── */
+:root,
+[data-variant="editorial"] {
+  --bg: #F7F7F4;            /* page */
+  --bg-2: #EFEFEA;          /* footer card, quiet bands */
+  --sf: #FFFFFF;            /* card surface */
+  --ink: #111418;           /* headings, primary text */
+  --i2: #4A5260;            /* body text */
+  --mu: #646B75;            /* meta, captions (4.5:1 on --bg) */
+  --ln: #E4E4DF;            /* hairlines, borders */
+  --ac: #0E6B66;            /* accent: links, italics, active */
+  --ac-hover: #0A4F4B;
+  --tint: #E3F1EF;          /* tag / icon-circle fill */
+  --acink: #0A4F4B;         /* text on --tint */
+  --err: #B42318;
+  --hdr-bg: rgba(247, 247, 244, .86);
+  --shadow-card: 0 5px 18px rgba(28, 41, 32, .03);
+  --shadow-lift: 0 12px 28px rgba(28, 41, 32, .08);
+
+  --font-sans: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --display-weight: 400;
+  --display-tracking: -0.015em;
+  --h1-page: clamp(56px, 7vw, 104px);
+  --h1-home: clamp(38px, 5.4vw, 74px);
+  --h2: clamp(30px, 3.4vw, 42px);
+
+  --radius-card: 14px;
+  --radius-btn: 8px;
+
+  --wrap: 1200px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --section: clamp(96px, 11vw, 160px);
+
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-swap: cubic-bezier(.7, 0, .2, 1);
+
+  /* used only by Glass, defined here so every var() resolves */
+  --glass-blur: none;
+  --glow-teal: transparent;
+  --glow-blue: transparent;
+  --spot: transparent;
+  --on-band: #06201E;
+  --btn-hover-bg: var(--ac);  /* Editorial: ink button turns teal */
+  --row-nudge: 10px;
+  --footer-radius: 22px;      /* rounded inset card */
+  --footer-inset: clamp(12px, 2vw, 28px);
+  --footer-ink: var(--ink);
+}
+
+/* ───────── C · Glass (dark, not a phone) ───────── */
+[data-variant="glass"] {
+  --bg: #0A0D10;
+  --bg-2: rgba(255, 255, 255, .05);
+  --sf: rgba(255, 255, 255, .05);
+  --ink: #ECEDEA;
+  --i2: #C2C7CC;
+  --mu: #A9B0B8;
+  --ln: rgba(255, 255, 255, .10);
+  --ac: #7FD1C6;
+  --ac-hover: #9FD8D1;
+  --tint: rgba(79, 179, 169, .15);
+  --acink: #9FD8D1;
+  --err: #FF9B8F;
+  --hdr-bg: rgba(18, 22, 26, .55);
+  --shadow-card: none;
+  --shadow-lift: 0 8px 30px -8px rgba(79, 179, 169, .55);
+
+  --font-display: var(--font-sans);
+  --display-weight: 500;
+  --display-tracking: -0.035em;
+  --h1-page: clamp(48px, 5.6vw, 84px);
+  --h1-home: clamp(36px, 4.2vw, 62px);
+  --h2: clamp(28px, 3vw, 40px);
+
+  --radius-card: 20px;
+  --radius-btn: 999px;
+
+  --glass-blur: blur(22px) saturate(140%);
+  --glow-teal: #0E6B66;
+  --glow-blue: #2B5C8A;
+  --spot: rgba(79, 179, 169, .17);
+  --btn-hover-bg: #ECEDEA;    /* Glass: stays light, gains a teal glow */
+  color-scheme: dark;
+}
+
+/* ───────── D · Bold (dark, phone) ───────── */
+[data-variant="bold"] {
+  --bg: #0B0C0D;
+  --bg-2: #4FB3A9;          /* teal footer band */
+  --sf: #121416;
+  --ink: #F2F2EF;
+  --i2: #B0B6BB;
+  --mu: #8A9096;
+  --ln: #26292D;
+  --ac: #4FB3A9;
+  --ac-hover: #7FD1C6;
+  --tint: rgba(79, 179, 169, .12);
+  --acink: #7FD1C6;
+  --err: #FF9B8F;
+  --hdr-bg: rgba(11, 12, 13, .9);
+  --shadow-card: none;
+  --shadow-lift: none;
+  --on-band: #06201E;       /* text on the teal band */
+
+  --font-display: var(--font-sans);
+  --display-weight: 600;
+  --display-tracking: -0.045em;
+  --h1-page: 56px;
+  --h1-home: 50px;
+  --h2: 34px;
+
+  --radius-card: 8px;
+  --radius-btn: 999px;
+
+  --glass-blur: none;
+  --btn-hover-bg: #F2F2EF;
+  --row-nudge: 24px;
+  --footer-radius: 0px;       /* full-bleed teal band */
+  --footer-inset: 0px;
+  --footer-ink: var(--on-band);
+  color-scheme: dark;
+}
+
+/* Automatic choice when the site uses a .dark class on <html> (no data-variant set). */
+@media (min-width: 600px), not all and (pointer: coarse) {
+  html.dark:not([data-variant]) {
+    --bg: #0A0D10; --bg-2: rgba(255,255,255,.05); --sf: rgba(255,255,255,.05);
+    --ink: #ECEDEA; --i2: #C2C7CC; --mu: #A9B0B8; --ln: rgba(255,255,255,.10);
+    --ac: #7FD1C6; --ac-hover: #9FD8D1; --tint: rgba(79,179,169,.15); --acink: #9FD8D1;
+    --err: #FF9B8F; --hdr-bg: rgba(18,22,26,.55); --shadow-card: none; --shadow-lift: 0 8px 30px -8px rgba(79,179,169,.55);
+    --font-display: var(--font-sans); --display-weight: 500; --display-tracking: -0.035em;
+    --h1-page: clamp(48px, 5.6vw, 84px); --h1-home: clamp(36px, 4.2vw, 62px); --h2: clamp(28px, 3vw, 40px);
+    --radius-card: 20px; --radius-btn: 999px;
+    --glass-blur: blur(22px) saturate(140%); --glow-teal: #0E6B66; --glow-blue: #2B5C8A; --spot: rgba(79,179,169,.17);
+    --btn-hover-bg: #ECEDEA; --row-nudge: 10px;
+    color-scheme: dark;
+  }
+}
+@media (max-width: 599.98px) and (pointer: coarse) {
+  html.dark:not([data-variant]) {
+    --bg: #0B0C0D; --bg-2: #4FB3A9; --sf: #121416;
+    --ink: #F2F2EF; --i2: #B0B6BB; --mu: #8A9096; --ln: #26292D;
+    --ac: #4FB3A9; --ac-hover: #7FD1C6; --tint: rgba(79,179,169,.12); --acink: #7FD1C6;
+    --err: #FF9B8F; --hdr-bg: rgba(11,12,13,.9); --shadow-card: none; --shadow-lift: none; --on-band: #06201E;
+    --font-display: var(--font-sans); --display-weight: 600; --display-tracking: -0.045em;
+    --h1-page: 56px; --h1-home: 50px; --h2: 34px;
+    --radius-card: 8px; --radius-btn: 999px; --glass-blur: none;
+    --btn-hover-bg: #F2F2EF; --row-nudge: 24px; --footer-radius: 0px; --footer-inset: 0px; --footer-ink: #06201E;
+    color-scheme: dark;
+  }
+}
+
+/* ───────── Base ───────── */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 3px;
+}
+a { color: var(--ac); }
+a:hover { color: var(--ac-hover); }
+
+/* ───────── Type ───────── */
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); box-sizing: border-box; }
+.display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); }
+.h1-home { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: var(--h1-home); line-height: 1.02; margin: 0; text-wrap: balance; }
+.h1-page { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: var(--h1-page); line-height: .98; margin: 0; }
+.h2 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: var(--h2); line-height: 1.05; margin: 0; }
+.h1-home em, .h2 em { font-style: italic; color: var(--ac); }          /* Editorial: serif italic accent */
+.lead { font-size: 17px; line-height: 1.6; color: var(--i2); max-width: 62ch; }
+.meta { font-size: 13px; color: var(--mu); }
+
+/* ───────── Buttons and links ───────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px;
+  border-radius: var(--radius-btn); border: 1px solid transparent;
+  background: var(--ink); color: var(--bg); font: inherit; font-size: 15px; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-1px); background: var(--btn-hover-bg); color: var(--bg); box-shadow: var(--shadow-lift); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px;
+  border-radius: 999px; border: 1px solid color-mix(in srgb, var(--ac) 45%, var(--ln));
+  background: transparent; color: var(--ac); font: inherit; font-size: 14px; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: background .2s, border-color .2s;
+}
+.btn-ghost:hover { background: var(--tint); border-color: var(--ac); }
+.lk { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; color: var(--ac); text-decoration: none; }
+.lk:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ───────── Surfaces ───────── */
+.cd {
+  position: relative; background: var(--sf); border: 1px solid var(--ln);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+}
+.cd-lift { transition: transform .35s var(--ease-out), border-color .3s, box-shadow .3s; }
+.cd-lift:hover { transform: translateY(-4px); border-color: var(--ac); box-shadow: var(--shadow-lift); }
+/* Glass spotlight card: set --x/--y from pointermove for the moving light */
+.spot { overflow: hidden; }
+.spot::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), var(--spot), transparent 60%);
+}
+.spot:hover::before { opacity: 1; }
+/* Glass ambient glow: put .glow as the first child of a position:relative page wrapper */
+.glow { position: absolute; inset: 0; z-index: 0; overflow: clip; pointer-events: none; }
+.glow i { position: absolute; border-radius: 50%; filter: blur(140px); animation: glow-drift 22s ease-in-out infinite alternate; }
+.glow i:nth-child(1) { width: 720px; height: 720px; left: -260px; top: -300px; background: var(--glow-teal); opacity: .5; }
+.glow i:nth-child(2) { width: 560px; height: 560px; right: -200px; top: 600px; background: var(--glow-blue); opacity: .35; animation-delay: -9s; }
+
+/* ───────── Small parts ───────── */
+.chip {
+  height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--ln);
+  background: transparent; color: var(--i2); font: inherit; font-size: 14px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; transition: background .2s, color .2s, border-color .2s;
+}
+.chip:hover { border-color: var(--mu); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tag { display: inline-block; font-size: 12px; line-height: 1.5; padding: 2px 9px; border-radius: 5px; background: var(--tint); color: var(--acink); }
+.tag-line { display: inline-block; font-size: 12px; line-height: 1.5; padding: 2px 9px; border-radius: 5px; border: 1px solid var(--ln); color: var(--i2); }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 999px; background: var(--tint); color: var(--acink); font-size: 12px; font-weight: 500; }
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ac); animation: pulse-ring 2.4s infinite; }
+.chev {
+  display: inline-block; flex: none; width: 7px; height: 7px; margin: 0 2px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg); transition: transform .3s;
+}
+[aria-expanded="true"] > .chev { transform: translateY(1px) rotate(225deg); }
+/* List rows that nudge right on hover (Editorial/Glass 10px, Bold 24px) */
+.row { display: flex; justify-content: space-between; gap: 16px; padding-block: 18px; border-top: 1px solid var(--ln); color: var(--ink); text-decoration: none; transition: padding .3s var(--ease-out); }
+.row:hover { padding-left: var(--row-nudge); color: var(--ac); }
+
+/* ───────── Header and footer ───────── */
+.site-header { position: sticky; top: 0; z-index: 40; background: var(--hdr-bg); border-bottom: 1px solid var(--ln); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+/* Glass: floating pill nav instead of a bar */
+.nav-pill { display: inline-flex; align-items: center; gap: 24px; height: 52px; padding: 0 10px 0 22px; border-radius: 999px; border: 1px solid var(--ln); background: var(--hdr-bg); backdrop-filter: blur(22px) saturate(1.4); -webkit-backdrop-filter: blur(22px) saturate(1.4); font-size: 14px; }
+/* Editorial footer: rounded inset card */
+/* Bold turns it into a full-bleed teal band through the --footer-* tokens */
+.footer-card { margin: clamp(96px, 10vw, 152px) var(--footer-inset) 24px; border-radius: var(--footer-radius); border: 1px solid var(--ln); background: var(--bg-2); color: var(--footer-ink); padding: clamp(44px, 5vw, 64px) var(--gutter); }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ac) 45%, transparent); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@keyframes glow-drift { to { transform: translate(60px, 40px) scale(1.12); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

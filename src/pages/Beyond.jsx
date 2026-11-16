@@ -7,8 +7,6 @@ import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import ChipGroup from "../components/site/ChipGroup.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
-import useVariant from "../hooks/useVariant";
-import { glass } from "../data/glassCopy";
 
 const ALL = "all";
 const featured = articles[0];
@@ -22,7 +20,7 @@ function Meta() {
       <title>Blog | M Rupesh Kumar Yadav</title>
       <meta
         name="description"
-        content="Writing by M Rupesh Kumar Yadav — notes on transformers and machine learning, book notes — plus GeoFM Lab, Quantum AI Hub, ProdHub and other places on the web."
+        content="Writing by M Rupesh Kumar Yadav: notes, research reviews and tutorials on geospatial foundation models, remote sensing and vision-language models."
       />
       <link rel="canonical" href="https://rupeshmediboyina.dev/beyond" />
       <meta property="og:title" content="Blog | M Rupesh Kumar Yadav" />
@@ -54,8 +52,6 @@ function RssIcon() {
 }
 
 export default function Beyond() {
-  const { variant } = useVariant();
-  const isGlass = variant === "C";
   const [topic, setTopic] = useState(ALL);
   const chips = useMemo(
     () => [
@@ -71,7 +67,7 @@ export default function Beyond() {
       <Meta />
       <PageHeader
         title="Blog"
-        lead={isGlass ? glass.blog.lead : "Notes on machine learning papers and ideas, book notes, and other things I keep on the web."}
+        lead="In-depth notes, research reviews and tutorials on geospatial AI, remote sensing and vision-language models."
         aside={
           <SiteLink to={feedUrl} className="inline-flex min-h-11 items-center gap-2 text-[15px] text-ac hover:text-ac-hover">
             <RssIcon />
@@ -86,7 +82,7 @@ export default function Beyond() {
           className="cd group mt-[clamp(48px,6vw,88px)] grid items-center gap-[clamp(24px,4vw,56px)] p-3.5 text-ink transition-colors hover:border-ac md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]"
         >
           <div className="p-[clamp(12px,2vw,28px)]">
-            <div className="text-sm text-mu">{isGlass ? glass.blog.featuredLabel : "Latest"}</div>
+            <div className="text-sm text-mu">Latest</div>
             <h2 className="display m-0 mt-3.5 text-[clamp(30px,3.4vw,44px)] leading-[1.15] transition-colors group-hover:text-ac">
               {featured.title}
             </h2>
@@ -94,7 +90,7 @@ export default function Beyond() {
             <div className="mt-[22px] flex flex-wrap items-center gap-2">
               <span className="tag">{tagLabel(featured.tags[0])}</span>
               <span className="text-sm text-mu">
-                {fmtDate(featured.date)} · {featured.readMin} min read
+                {fmtDate(featured.date)}
               </span>
             </div>
           </div>
@@ -119,7 +115,7 @@ export default function Beyond() {
             <li key={p.url} className="border-t border-ln">
               <SiteLink
                 to={p.url}
-                className="row-indent grid grid-cols-[minmax(0,1fr)_24px] items-baseline gap-6 py-7 text-ink md:grid-cols-[120px_minmax(0,1fr)_100px_28px]"
+                className="row-indent grid grid-cols-[minmax(0,1fr)_24px] items-baseline gap-6 py-7 text-ink md:grid-cols-[120px_minmax(0,1fr)_28px]"
               >
                 <span className="hidden text-sm text-mu md:block">{fmtDate(p.date)}</span>
                 <span className="min-w-0">
@@ -129,11 +125,10 @@ export default function Beyond() {
                       <span key={t} className={i === 0 ? "tag" : "tag-line"}>{tagLabel(t)}</span>
                     ))}
                     <span className="text-sm text-mu md:hidden">
-                      {fmtDate(p.date)} · {p.readMin} min
+                      {fmtDate(p.date)}
                     </span>
                   </span>
                 </span>
-                <span className="hidden text-right text-sm text-mu md:block">{p.readMin} min read</span>
                 <span className="row-arrow justify-self-end text-mu" aria-hidden="true">↗</span>
               </SiteLink>
             </li>

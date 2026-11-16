@@ -6,7 +6,6 @@ import { publications } from "../../data/publicationsData";
 import { site, nav, links } from "../../data/siteData";
 import { articles, venueShort } from "../../lib/derived";
 import { slugify } from "../../lib/slug";
-import { glass } from "../../data/glassCopy";
 import useFocusTrap from "../../hooks/useFocusTrap";
 import { SearchIcon } from "./Icons.jsx";
 
@@ -19,9 +18,8 @@ const ITEMS = [
     group: "Projects",
     label: p.title,
     to: `/projects#${slugify(p.title)}`,
-    hint: p.year || "Project",
-    // Glass shows template titles/tags, so those must be searchable too.
-    keywords: [glass.projects.rows[p.title]?.title, glass.projects.rows[p.title]?.tag].filter(Boolean).join(" "),
+    hint: p.tag,
+    keywords: [p.stack, ...(p.techStack ?? [])].join(" "),
   })),
   ...publications.map((p) => ({
     group: "Research",

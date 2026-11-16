@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import DOMPurify from "dompurify";
-import { projects } from "../data/projectsData";
+import { projects, projectTags, featuredProjects } from "../data/projectsData";
 import { slugify } from "../lib/slug";
 import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
@@ -11,18 +11,11 @@ import SiteLink from "../components/site/SiteLink.jsx";
 import { SearchIcon } from "../components/site/Icons.jsx";
 import GridPanel from "../components/site/GridPanel.jsx";
 import useVariant from "../hooks/useVariant";
-import { glass } from "../data/glassCopy";
 import { publications } from "../data/publicationsData";
 
 const ALL = "All";
-const featured = projects.slice(0, 3);
-const years = projects.map((p) => Number(p.year)).filter(Boolean);
-const span = years.length ? `${Math.min(...years)} to ${Math.max(...years)}` : "";
-// Newest first; ties keep the curated order from projectsData.
-const sorted = projects
-  .map((p, i) => ({ ...p, slug: slugify(p.title), i }))
-  .sort((a, b) => Number(b.year || 0) - Number(a.year || 0) || a.i - b.i);
-const categories = [...new Set(projects.map((p) => p.category).filter(Boolean))];
+// Curated order from projectsData; the same titles, tags and text in every mode.
+const items = projects.map((p) => ({ ...p, slug: slugify(p.title) }));
 
 function Meta() {
   return (
@@ -67,8 +60,7 @@ function Meta() {
               description: project.description,
               url: project.link || undefined,
               image: project.image || undefined,
-              dateCreated: project.year || undefined,
-              keywords: [project.category, ...(project.techStack ?? [])].filter(Boolean).join(", "),
+              keywords: [project.tag, ...(project.techStack ?? [])].filter(Boolean).join(", "),
               author: { "@type": "Person", name: "M Rupesh Kumar Yadav" },
             },
           })),
@@ -78,30 +70,20 @@ function Meta() {
   );
 }
 
-// Featured cards. Default: data + image. Glass: template wording, grid panel instead of an image.
-const featuredDefault = featured.map((p) => ({
-  key: p.title,
-  to: p.link || `/projects#${slugify(p.title)}`,
-  image: p.image,
-  tag: p.category,
-  title: p.title,
-  desc: p.description,
-  cta: p.link ? "View on GitHub" : "",
-}));
-const featuredGlass = glass.projects.featured.map((f) => {
-  const p = projects.find((x) => x.title === f.key);
-  const paper = f.paper && publications.find((x) => x.title === f.paper);
+// Featured cards: same text in every mode. Glass draws a grid panel where the others show the image.
+const featured = featuredProjects.map((p) => {
+  const paper = p.featured.paper && publications.find((x) => x.title === p.featured.paper);
   const to =
-    f.cta === "Read the paper" ? paper?.link || paper?.doi || "/publications"
-    : f.cta === "View on GitHub" ? p.link
+    p.featured.cta === "Read the paper" ? paper?.link || paper?.doi || "/publications"
+    : p.featured.cta === "View on GitHub" ? p.link
     : `/projects#${slugify(p.title)}`;
-  return { key: f.key, to, glass: true, tag: f.tag, title: f.title, desc: f.desc, cta: f.cta };
+  return { key: p.title, to, image: p.image, tag: p.tag, title: p.title, desc: p.description, cta: p.featured.cta };
 });
 
-function FeaturedCard({ p }) {
+function FeaturedCard({ p, glass }) {
   return (
     <SiteLink to={p.to} className="cd cd-lift group block w-[276px] p-2.5 text-ink md:w-auto">
-      {p.glass ? (
+      {glass ? (
         <GridPanel tone="tint" className="h-[150px] md:h-[220px]" />
       ) : (
         <div className="h-[150px] overflow-hidden rounded-[calc(var(--radius-card)-4px)] bg-tint md:h-[220px]">
@@ -133,25 +115,23 @@ function ProjectRow({ p, open, onToggle }) {
         aria-expanded={open}
         aria-controls={`${p.slug}-details`}
         onClick={onToggle}
-        className="row-indent grid w-full cursor-pointer grid-cols-[minmax(0,1fr)_24px] items-baseline gap-5 border-0 bg-transparent py-6 text-left text-ink md:grid-cols-[minmax(0,1fr)_200px_60px_28px]"
+        className="row-indent grid w-full cursor-pointer grid-cols-[minmax(0,1fr)_24px] items-baseline gap-5 border-0 bg-transparent py-6 text-left text-ink md:grid-cols-[minmax(0,1fr)_160px_28px]"
       >
         <span className="min-w-0">
-          <span className="row-title block text-[clamp(18px,1.6vw,20px)] font-medium tracking-[-0.01em]">{p.shownTitle}</span>
+          <span className="row-title block text-[clamp(18px,1.6vw,20px)] font-medium tracking-[-0.01em]">{p.title}</span>
           <span className="mt-1 block text-sm text-mu">
-            <span className="md:hidden">{p.shownTag} · {p.year} · </span>
-            {p.stackLine}
+            <span className="text-ac md:hidden">{p.tag} · </span>
+            {p.stack}
           </span>
         </span>
-        <span className="hidden text-sm text-ac md:block">{p.shownTag}</span>
-        <span className="hidden text-right text-sm text-mu md:block">{p.year}</span>
+        <span className="hidden text-sm text-ac md:block">{p.tag}</span>
         <span className="chev justify-self-end text-mu" aria-hidden="true" />
       </button>
       <div id={`${p.slug}-details`} className={`disc ${open ? "is-open" : ""}`} inert={!open ? true : undefined}>
         <div>
           <div className="max-w-[760px] pb-7">
-            {p.period && <div className="text-sm text-mu">{p.period}</div>}
             <div
-              className="rich mt-2 text-base leading-[1.65] text-i2"
+              className="rich text-base leading-[1.65] text-i2"
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(p.longDescription || p.description) }}
             />
             {p.techStack?.length > 0 && (
@@ -192,61 +172,41 @@ export default function Projects() {
     requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }));
   }, [hash]);
 
-  // Glass uses the template's titles, Models/Systems/Tools tags and stack lines; years stay from the data.
-  const items = useMemo(
-    () =>
-      sorted.map((p) => {
-        const g = glass.projects.rows[p.title] || {};
-        return isGlass
-          ? { ...p, shownTitle: g.title || p.title, shownTag: g.tag || p.category, stackLine: g.stack || (p.techStack ?? []).slice(0, 2).join(", ") }
-          : { ...p, shownTitle: p.title, shownTag: p.category, stackLine: (p.techStack ?? []).slice(0, 4).join(" · ") };
-      }),
-    [isGlass]
-  );
-  const groups = isGlass ? glass.projects.tags : categories;
-
-  // Tag sets differ between variants, so a switch resets the filter.
-  useEffect(() => setCat(ALL), [isGlass]);
-
   const chips = useMemo(
     () => [
       { value: ALL, label: "All", count: items.length },
-      ...groups.map((c) => ({ value: c, label: c, count: items.filter((p) => p.shownTag === c).length })),
+      ...projectTags.map((c) => ({ value: c, label: c, count: items.filter((p) => p.tag === c).length })),
     ],
-    [items, groups]
+    []
   );
 
   const rows = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return items.filter(
       (p) =>
-        (cat === ALL || p.shownTag === cat) &&
+        (cat === ALL || p.tag === cat) &&
         (!needle ||
-          [p.shownTitle, p.title, p.description, p.shownTag, p.category, ...(p.techStack ?? [])]
+          [p.title, p.stack, p.description, p.tag, ...(p.techStack ?? [])]
             .join(" ")
             .toLowerCase()
             .includes(needle))
     );
-  }, [items, cat, q]);
+  }, [cat, q]);
 
   return (
     <Page className="page-enter">
       <Meta />
       <PageHeader
         title="Projects"
-        lead={isGlass ? glass.projects.lead : "Things I've built, from research models to the systems and tools around them."}
-        aside={
-          <div className="text-[15px] text-mu">
-            {projects.length} projects · {span}
-          </div>
-        }
+        lead="Things I've built, sorted into models, the systems that run them, and tools for other builders."
+        aside={<div className="text-[15px] text-mu">{projects.length} projects</div>}
       />
 
       <section aria-labelledby="featured" className="mt-[clamp(48px,6vw,88px)]">
         <h2 id="featured" className="m-0 mb-4 text-sm font-normal text-mu">Featured</h2>
         <div className="snap-row md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:p-0">
-          {(isGlass ? featuredGlass : featuredDefault).map((p) => (
-            <FeaturedCard key={p.key} p={p} />
+          {featured.map((p) => (
+            <FeaturedCard key={p.key} p={p} glass={isGlass} />
           ))}
         </div>
       </section>
@@ -254,9 +214,9 @@ export default function Projects() {
       <section aria-labelledby="all" className="mt-[clamp(72px,9vw,128px)]">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
           <h2 id="all" className="display m-0 text-[clamp(30px,3.4vw,40px)] tracking-[-0.02em]">All projects</h2>
-          <div className={isGlass ? "flex w-full flex-wrap items-center gap-2 md:w-auto" : "contents"}>
-          {isGlass && <ChipGroup label="Filter by area" options={chips} value={cat} onChange={setCat} />}
-          <div className={`relative w-full md:w-[260px] ${isGlass ? "md:ml-2" : ""}`}>
+          <div className="flex w-full flex-wrap items-center gap-2 md:w-auto">
+          <ChipGroup label="Filter by area" options={chips} value={cat} onChange={setCat} />
+          <div className="relative w-full md:ml-2 md:w-[260px]">
             <label htmlFor="pq" className="sr-only">Search projects</label>
             <SearchIcon size={17} className="pointer-events-none absolute left-4 top-[13px] text-mu" />
             <input
@@ -270,7 +230,6 @@ export default function Projects() {
           </div>
           </div>
         </div>
-        {!isGlass && <ChipGroup label="Filter by area" options={chips} value={cat} onChange={setCat} className="mb-5" />}
 
         {rows.length > 0 ? (
           <ul className="m-0 list-none border-b border-ln p-0">
@@ -294,10 +253,6 @@ export default function Projects() {
           </div>
         )}
 
-        <p className="mt-10 text-[15px] text-i2">
-          Looking for learning resources? See{" "}
-          <Link to="/open-source-env" className="text-ac underline underline-offset-[3px] hover:text-ac-hover">OpenSourceEnv</Link>.
-        </p>
       </section>
     </Page>
   );

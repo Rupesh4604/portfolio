@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { projects } from "../data/projectsData";
+import { featuredProjects } from "../data/projectsData";
 import { publications } from "../data/publicationsData";
 import { site, links } from "../data/siteData";
 import { home } from "../data/homeData";
@@ -24,7 +24,11 @@ import { ArrowRight } from "../components/site/Icons.jsx";
 import GridPanel from "../components/site/GridPanel.jsx";
 import { glass } from "../data/glassCopy";
 
-const selected = projects.slice(0, 3).map((p) => ({ ...p, href: `/projects#${slugify(p.title)}` }));
+// The three featured projects lead Home in every mode (same titles and text everywhere).
+const selected = featuredProjects.map((p) => {
+  const paper = p.featured.paper && publications.find((x) => x.title === p.featured.paper);
+  return { ...p, href: `/projects#${slugify(p.title)}`, paper: paper ? paper.link || paper.doi : null };
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -79,20 +83,8 @@ function Meta() {
 // Layout from the hybrid mock (rupesh_hybrid_portfolio.html): hero with portrait, three focus
 // areas, project cards, research list, writing notes. Facts (projects, papers, posts) come from src/data.
 
-const A_PROJECTS = [
-  "Hyperspectral Imagery Classification (CNN + ViT)",
-  "Quantum CNN for Slum Classification",
-  "Rib Segmentation & Labelling (FPN / U-Net++)",
-];
-const cardsA = A_PROJECTS.map((t) => projects.find((p) => p.title === t))
-  .filter(Boolean)
-  .map((p) => {
-    const words = p.title.toLowerCase().split(/\W+/).filter((w) => w.length > 3);
-    const paper = publications.find((x) => words.filter((w) => x.title.toLowerCase().includes(w)).length >= 2);
-    return { ...p, href: `/projects#${slugify(p.title)}`, paper: paper ? paper.link || paper.doi : null };
-  });
-
-const papersA = [...publications].sort((a, b) => Number(b.year) - Number(a.year));
+// Three most recent papers, as in the mock; the full list lives on /publications.
+const papersA = [...publications].sort((a, b) => Number(b.year) - Number(a.year)).slice(0, 3);
 
 const FOCUS = [
   {
@@ -209,7 +201,7 @@ function HomeA() {
           <Link to="/projects" className="inline-flex min-h-11 items-center whitespace-nowrap text-sm font-medium text-ac hover:text-ac-hover">View all projects →</Link>
         </div>
         <ul className="m-0 grid list-none gap-5 p-0 md:grid-cols-3">
-          {cardsA.map((p) => (
+          {selected.map((p) => (
             <li
               key={p.title}
               className="group overflow-hidden rounded-[13px] border border-ln bg-sf shadow-[0_5px_18px_rgba(28,41,32,.03)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(28,41,32,.08)]"
@@ -225,7 +217,7 @@ function HomeA() {
                 </h3>
                 <p className="m-0 mt-2 text-sm leading-[1.55] text-mu">{p.description}</p>
                 <div className="mt-2 flex flex-wrap gap-x-5 text-[13px] text-mu">
-                  {p.link && (
+                  {p.link?.includes("github.com") && (
                     <SiteLink to={p.link} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">
                       <GithubMark /> GitHub
                     </SiteLink>
@@ -367,13 +359,13 @@ function HomeC() {
             <Link to="/projects" className="text-sm text-mu hover:text-ink">All projects →</Link>
           </div>
           <div className="grid gap-2 md:grid-cols-3">
-            {glass.home.work.map((w) => (
-              <Link key={w.key} to={`/projects#${slugify(w.key)}`} className="gl-inner gl-lift block px-3.5 pb-[22px] pt-3.5 text-ink">
+            {selected.map((w) => (
+              <Link key={w.title} to={w.href} className="gl-inner gl-lift block px-3.5 pb-[22px] pt-3.5 text-ink">
                 <GridPanel className="mb-[18px] h-[200px]" />
                 <div className="px-1.5">
                   <div className={lb}>{w.tag}</div>
                   <div className="mt-1.5 text-xl font-medium tracking-[-0.01em]">{w.title}</div>
-                  <div className="mt-1.5 text-sm leading-[1.5] text-mu">{w.desc}</div>
+                  <div className="mt-1.5 text-sm leading-[1.5] text-mu">{w.description}</div>
                 </div>
               </Link>
             ))}
@@ -389,7 +381,7 @@ function HomeC() {
                   {articles[0].title}
                 </span>
                 <span className="mt-1 block text-sm text-mu">
-                  {fmtDate(articles[0].date)} · {articles[0].readMin} min read
+                  {fmtDate(articles[0].date)}
                 </span>
               </SiteLink>
               <Link to="/beyond" className="whitespace-nowrap text-sm text-mu hover:text-ink">All posts →</Link>
@@ -437,7 +429,7 @@ function HomeD() {
               >
                 <span className="self-start pt-[5px] text-[13px] text-mu">{String(n + 1).padStart(2, "0")}</span>
                 <span className="min-w-0">
-                  <span className="block text-[13px] text-ac">{p.category}</span>
+                  <span className="block text-[13px] text-ac">{p.tag}</span>
                   <span className="mt-0.5 block text-[21px] font-medium leading-[1.3] tracking-[-0.03em] group-hover:text-ac">
                     {p.title}
                   </span>

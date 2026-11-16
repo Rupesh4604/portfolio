@@ -12,7 +12,6 @@ Modern portfolio website for M Rupesh Kumar Yadav, built with React + Vite and s
   - Internships
   - Publications
   - Achievements
-  - OpenSourceEnv
 - Dark mode support
 - SEO metadata management via `react-helmet-async`
 - Route-aware static prerender output after build

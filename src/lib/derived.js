@@ -55,8 +55,9 @@ export const articles = posts.filter((p) => !p.tags.includes("meta"));
 export const feedUrl = "https://rupesh4604.github.io/feed.xml";
 
 export const fmtDate = (iso) =>
-  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
 
 // "machine-learning" -> "Machine learning"
-export const tagLabel = (t = "") => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, " ");
+export const tagLabel = (t = "") =>
+  (t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, " ")).replace(/\b(ai|ml|nlp)\b/gi, (m) => m.toUpperCase());
 export const paperCollections = beyondLinks.filter((l) => l.category === "Research");

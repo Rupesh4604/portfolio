@@ -57,12 +57,4 @@ export const routes = [
     changefreq: 'yearly',
     priority: 0.5,
   },
-  {
-    path: '/open-source-env',
-    title: 'OpenSourceEnv & ProdHub | M Rupesh Kumar Yadav',
-    description:
-      'OpenSourceEnv — open-source learning initiative covering Deep Learning, ML, AI, Data Science, Web Dev, DBMS, and DSA. Featuring ProdHub, an AI-powered personal productivity hub by M Rupesh Kumar Yadav.',
-    changefreq: 'monthly',
-    priority: 0.8,
-  },
 ];

@@ -15,7 +15,7 @@ export const publications = [
   {
     title: "Enhancing Hyperspectral Imagery Classification using CNN and ViT",
     authors: "R. K. Y. Mediboyina et al.",
-    venue: "Pattern Recognition and Machine Intelligence, Springer",
+    venue: "Pattern Recognition and Machine Intelligence (PReMI), Springer LNCS",
     year: "2026",
     status: "Conference chapter",
     description:

@@ -14,7 +14,7 @@ export const beyondLinks = [
     title: "GeoFM Lab",
     url: "https://rupesh4604.github.io/Awesome-Geospatial-Vision-Language-Foundation-Models/index.html",
     description:
-      "Geospatial Vision & Vision-Language Foundation Models - living landscape, learning roadmap, and next-gen gap map.",
+      "Geospatial vision and vision-language foundation models: a living map of the field, a learning roadmap and the open gaps.",
     category: "Research",
     icon: "🛰️",
   },
@@ -28,7 +28,7 @@ export const beyondLinks = [
   {
     title: "Quantum AI Hub",
     url: "https://rupesh4604.github.io/quantum-ai-hub/",
-    description: "A hub exploring quantum computing and AI - resources and experiments.",
+    description: "Papers, notes and experiments on quantum machine learning, from the basics to hybrid quantum-classical models.",
     category: "Research",
     icon: "⚛️",
   },

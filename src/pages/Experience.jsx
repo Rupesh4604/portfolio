@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { work, internships } from "../data/internshipData";
-import { achievements, positions } from "../data/achievementsData";
+// Highlights are switched off for now; restore this import with the block below to bring them back.
+// import { achievements, positions } from "../data/achievementsData";
 import { education } from "../data/educationData";
 import { tools } from "../data/careerData";
 import { site } from "../data/siteData";
@@ -29,23 +30,24 @@ const jobs = [...work.map((j) => ({ ...j, current: /present/i.test(j.duration) }
 );
 
 const orgsBefore = [...new Set(internships.map((j) => acronym(j.organization)))];
+// Same lead in every mode. IIT Bombay is where I studied (M.Tech), not a job.
 const lead = [
   currentRole && `${currentRole.role} at ${currentRole.org}.`,
-  `Before that, research in computer vision and machine learning at ${[education[0]?.short, ...orgsBefore]
-    .filter(Boolean)
-    .join(", ")
-    .replace(/, ([^,]*)$/, " and $1")}.`,
+  education[0] && `${education[0].degreeShort} from ${education[0].short},`,
+  orgsBefore.length > 0 &&
+    `with research internships in computer vision and machine learning at ${orgsBefore.join(", ").replace(/, ([^,]*)$/, " and $1")}.`,
 ]
   .filter(Boolean)
   .join(" ");
 
-// Highlights: achievements + the teaching role.
-const highlights = [
-  ...achievements.map((a) => ({ title: a.title, sub: a.description })),
-  ...positions
-    .filter((p) => /teaching/i.test(p.title))
-    .map((p) => ({ title: p.title, sub: `${p.organization} · ${p.duration}` })),
-];
+// Highlights (achievements + the teaching role) are hidden for now. To bring them back,
+// uncomment this, the import above and the Highlights block in the aside.
+// const highlights = [
+//   ...achievements.map((a) => ({ title: a.title, sub: a.description })),
+//   ...positions
+//     .filter((p) => /teaching/i.test(p.title))
+//     .map((p) => ({ title: p.title, sub: `${p.organization} · ${p.duration}` })),
+// ];
 
 function Meta() {
   return (
@@ -80,7 +82,6 @@ const sh = "display m-0 mb-2 text-[clamp(28px,3vw,36px)] tracking-[-0.02em]";
 export default function Experience() {
   const { variant } = useVariant();
   const isGlass = variant === "C";
-  const shownHighlights = isGlass ? glass.career.highlights : highlights;
   const gj = (j) => (isGlass && glass.career.jobs[j.organization]) || {};
   const [open, setOpen] = useState(() => Object.fromEntries(jobs.filter((j) => j.current).map((j) => [j.id, true])));
   const toggle = (id) => setOpen((o) => ({ ...o, [id]: !o[id] }));
@@ -90,7 +91,7 @@ export default function Experience() {
       <Meta />
       <PageHeader
         title="Career"
-        lead={isGlass ? glass.career.lead : lead}
+        lead={lead}
         aside={
           <a
             href={site.cv}
@@ -156,17 +157,19 @@ export default function Experience() {
           </section>
         </div>
 
-        <aside aria-label="Highlights and tools" className="min-w-0">
+        <aside aria-label="Tools" className="min-w-0">
+          {/* Highlights, hidden for now (see the note at the top of this file):
           <h2 className="m-0 mb-3.5 mt-3.5 text-sm font-normal text-mu">Highlights</h2>
           <ul className="snap-row m-0 list-none lg:mx-0 lg:flex-col lg:overflow-visible lg:p-0">
-            {shownHighlights.map((h) => (
+            {highlights.map((h) => (
               <li key={h.title} className="cd w-[240px] px-6 py-[22px] lg:w-auto">
                 <div className="display text-[clamp(22px,2vw,26px)] leading-[1.1] tracking-[-0.02em]">{h.title}</div>
                 <div className="mt-1.5 text-[15px] text-i2">{h.sub}</div>
               </li>
             ))}
           </ul>
-          <h2 className="m-0 mb-3.5 mt-10 text-sm font-normal text-mu">Tools I use most</h2>
+          */}
+          <h2 className="m-0 mb-3.5 mt-3.5 text-sm font-normal text-mu">Tools I use most</h2>
           <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
             {tools.map((t) => (
               <li key={t} className="inline-flex h-[34px] items-center rounded-full border border-ln px-3.5 text-sm text-i2">

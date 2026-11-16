@@ -8,8 +8,6 @@ import { displayAuthors, toBibtex, bibKey, hasCitableAuthors } from "../lib/bibt
 import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
-import useVariant from "../hooks/useVariant";
-import { glass } from "../data/glassCopy";
 
 const SELF = /(Rupesh Kumar Yadav Mediboyina|R\. K\. Y\. Mediboyina)/;
 
@@ -20,14 +18,35 @@ const plural = (n, s) => (n === 1 ? s : s.replace(/(\w+)$/, "$1s"));
 
 // Stat tiles: total + one per status, computed from data.
 const statuses = [...new Set(publications.map((p) => p.status).filter(Boolean))];
-const makeStats = (isGlass) => [
+const stats = [
   { n: publications.length, label: plural(publications.length, "Peer-reviewed paper") },
   ...statuses.map((s) => {
     const n = publications.filter((p) => p.status === s).length;
-    const g = isGlass && glass.research.statusLabels[s];
-    return { n, label: g ? g[n === 1 ? 0 : 1] : plural(n, s) };
+    return { n, label: plural(n, s) };
   }),
 ];
+
+// Icons for the paper-collection cards, keyed by title (falls back to a book).
+const COLLECTION_ICONS = {
+  "GeoFM Lab": (
+    <>
+      <path d="M13 7 9 3 5 7l4 4" />
+      <path d="m17 11 4 4-4 4-4-4" />
+      <path d="m8 12 4 4 6-6-4-4Z" />
+      <path d="m16 8 3-3" />
+      <path d="M9 21a6 6 0 0 0-6-6" />
+    </>
+  ),
+  "Quantum AI Hub": (
+    <>
+      <circle cx="12" cy="12" r="1.5" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+    </>
+  ),
+};
+const BOOK = <path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2V5ZM8 7h8M8 11h6" />;
 
 const byYear = [...new Set(publications.map((p) => p.year))]
   .sort((a, b) => Number(b) - Number(a))
@@ -106,9 +125,8 @@ function Authors({ text }) {
   );
 }
 
-function Publication({ p, isGlass }) {
-  const g = (isGlass && glass.research.pubs[p.title]) || {};
-  const shown = { title: g.title || p.title, venue: g.venue || p.venue, abstract: g.abstract || p.abstract };
+function Publication({ p }) {
+  const shown = { title: p.title, venue: p.venue, abstract: p.abstract };
   const id = bibKey(p);
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -177,9 +195,6 @@ function Publication({ p, isGlass }) {
 }
 
 export default function Publications() {
-  const { variant } = useVariant();
-  const isGlass = variant === "C";
-  const stats = makeStats(isGlass);
   return (
     <Page className="page-enter">
       <Meta />
@@ -229,7 +244,7 @@ export default function Publications() {
             <div>
               <h3 className="sr-only">{g.year}</h3>
               {g.pubs.map((p) => (
-                <Publication key={p.title} p={p} isGlass={isGlass} />
+                <Publication key={p.title} p={p} />
               ))}
             </div>
           </div>
@@ -238,13 +253,35 @@ export default function Publications() {
 
       {paperCollections.length > 0 && (
         <section aria-labelledby="also" className="mt-[clamp(72px,9vw,128px)]">
-          <h2 id="also" className="display m-0 mb-5 text-[clamp(30px,3.4vw,40px)] tracking-[-0.02em]">Also</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-x-10 gap-y-2">
+            <h2 id="also" className="display m-0 text-[clamp(30px,3.4vw,40px)] tracking-[-0.02em]">Paper collections</h2>
+            <p className="m-0 max-w-[460px] text-[15px] leading-[1.6] text-i2">
+              Reading lists I keep up to date alongside my own work, for anyone starting out in these areas.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
             {paperCollections.map((c) => (
-              <SiteLink key={c.title} to={c.url} className="cd cd-lift block p-6 text-ink">
-                <div className="text-[13px] text-mu">Curated paper collection</div>
-                <div className="mt-2.5 text-[19px] font-medium leading-[1.3]">{c.title}</div>
-                <div className="mt-1.5 text-sm text-i2">{(isGlass && glass.research.collections[c.title]) || c.description}</div>
+              <SiteLink
+                key={c.title}
+                to={c.url}
+                className="cd cd-lift group grid grid-cols-[56px_minmax(0,1fr)] gap-x-5 p-[clamp(22px,2.6vw,32px)] text-ink"
+              >
+                <span className="grid h-14 w-14 place-items-center rounded-full bg-tint text-ac" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    {COLLECTION_ICONS[c.title] || BOOK}
+                  </svg>
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[13px] text-mu">Curated paper collection</span>
+                  <span className="display mt-1.5 block text-[clamp(24px,2.4vw,30px)] leading-[1.15] transition-colors group-hover:text-ac">
+                    {c.title}
+                  </span>
+                  <span className="mt-2.5 block text-[15px] leading-[1.6] text-i2">{c.description}</span>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-ac">
+                    Open the collection
+                    <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                  </span>
+                </span>
               </SiteLink>
             ))}
           </div>

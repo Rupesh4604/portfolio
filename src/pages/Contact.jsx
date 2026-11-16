@@ -148,10 +148,16 @@ export default function Contact() {
             {contact.status}
           </div>
 
-          <h2 className="m-0 mb-3 mt-12 text-sm font-normal text-mu">Good reasons to write</h2>
-          <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+          <h2 className="m-0 mb-4 mt-12 text-sm font-normal text-mu">Good reasons to write</h2>
+          <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2">
             {contact.reasons.map((r) => (
-              <li key={r} className="cd px-4 py-2.5 text-[15px]">{r}</li>
+              <li key={r.title} className="cd flex gap-3.5 px-5 py-[18px]">
+                <span className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-ac shadow-[0_0_0_4px_var(--tint)]" aria-hidden="true" />
+                <span>
+                  <span className="block text-base font-medium text-ink">{r.title}</span>
+                  <span className="mt-1 block text-sm leading-[1.55] text-i2">{r.text}</span>
+                </span>
+              </li>
             ))}
           </ul>
 

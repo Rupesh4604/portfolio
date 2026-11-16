@@ -1,0 +1,519 @@
+<title>Rupesh Site Theme</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/*
+  Rupesh Kumar · shared site theme (portable)
+  Source of truth: src/styles/tokens.css + src/input.css in the portfolio repo.
+  Plain CSS, no build step. Drop into any site (blog, GeoFM, Quantum papers…).
+
+  Fonts (add to <head>):
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap">
+
+  Three modes:
+    A  Editorial  light                          html (no .dark)
+    C  Glass      dark on laptops, tablets       html.dark, any screen that is not a phone
+    D  Bold       dark on phones                 html.dark, touch screen narrower than 600px
+  Force one mode anywhere (a whole site or one block): data-variant="editorial" | "glass" | "bold".
+  Components read only the variables below; never hard-code a mode colour in a component.
+*/
+
+/* ───────── A · Editorial (light, default) ───────── */
+:root,
+[data-variant="editorial"] {
+  --bg: #F7F7F4;            /* page */
+  --bg-2: #EFEFEA;          /* footer card, quiet bands */
+  --sf: #FFFFFF;            /* card surface */
+  --ink: #111418;           /* headings, primary text */
+  --i2: #4A5260;            /* body text */
+  --mu: #646B75;            /* meta, captions (4.5:1 on --bg) */
+  --ln: #E4E4DF;            /* hairlines, borders */
+  --ac: #0E6B66;            /* accent: links, italics, active */
+  --ac-hover: #0A4F4B;
+  --tint: #E3F1EF;          /* tag / icon-circle fill */
+  --acink: #0A4F4B;         /* text on --tint */
+  --err: #B42318;
+  --hdr-bg: rgba(247, 247, 244, .86);
+  --shadow-card: 0 5px 18px rgba(28, 41, 32, .03);
+  --shadow-lift: 0 12px 28px rgba(28, 41, 32, .08);
+
+  --font-sans: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --display-weight: 400;
+  --display-tracking: -0.015em;
+  --h1-page: clamp(56px, 7vw, 104px);
+  --h1-home: clamp(38px, 5.4vw, 74px);
+  --h2: clamp(30px, 3.4vw, 42px);
+
+  --radius-card: 14px;
+  --radius-btn: 8px;
+
+  --wrap: 1200px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --section: clamp(96px, 11vw, 160px);
+
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-swap: cubic-bezier(.7, 0, .2, 1);
+
+  /* used only by Glass, defined here so every var() resolves */
+  --glass-blur: none;
+  --glow-teal: transparent;
+  --glow-blue: transparent;
+  --spot: transparent;
+  --on-band: #06201E;
+  --btn-hover-bg: var(--ac);  /* Editorial: ink button turns teal */
+  --row-nudge: 10px;
+  --footer-radius: 22px;      /* rounded inset card */
+  --footer-inset: clamp(12px, 2vw, 28px);
+  --footer-ink: var(--ink);
+}
+
+/* ───────── C · Glass (dark, not a phone) ───────── */
+[data-variant="glass"] {
+  --bg: #0A0D10;
+  --bg-2: rgba(255, 255, 255, .05);
+  --sf: rgba(255, 255, 255, .05);
+  --ink: #ECEDEA;
+  --i2: #C2C7CC;
+  --mu: #A9B0B8;
+  --ln: rgba(255, 255, 255, .10);
+  --ac: #7FD1C6;
+  --ac-hover: #9FD8D1;
+  --tint: rgba(79, 179, 169, .15);
+  --acink: #9FD8D1;
+  --err: #FF9B8F;
+  --hdr-bg: rgba(18, 22, 26, .55);
+  --shadow-card: none;
+  --shadow-lift: 0 8px 30px -8px rgba(79, 179, 169, .55);
+
+  --font-display: var(--font-sans);
+  --display-weight: 500;
+  --display-tracking: -0.035em;
+  --h1-page: clamp(48px, 5.6vw, 84px);
+  --h1-home: clamp(36px, 4.2vw, 62px);
+  --h2: clamp(28px, 3vw, 40px);
+
+  --radius-card: 20px;
+  --radius-btn: 999px;
+
+  --glass-blur: blur(22px) saturate(140%);
+  --glow-teal: #0E6B66;
+  --glow-blue: #2B5C8A;
+  --spot: rgba(79, 179, 169, .17);
+  --btn-hover-bg: #ECEDEA;    /* Glass: stays light, gains a teal glow */
+  color-scheme: dark;
+}
+
+/* ───────── D · Bold (dark, phone) ───────── */
+[data-variant="bold"] {
+  --bg: #0B0C0D;
+  --bg-2: #4FB3A9;          /* teal footer band */
+  --sf: #121416;
+  --ink: #F2F2EF;
+  --i2: #B0B6BB;
+  --mu: #8A9096;
+  --ln: #26292D;
+  --ac: #4FB3A9;
+  --ac-hover: #7FD1C6;
+  --tint: rgba(79, 179, 169, .12);
+  --acink: #7FD1C6;
+  --err: #FF9B8F;
+  --hdr-bg: rgba(11, 12, 13, .9);
+  --shadow-card: none;
+  --shadow-lift: none;
+  --on-band: #06201E;       /* text on the teal band */
+
+  --font-display: var(--font-sans);
+  --display-weight: 600;
+  --display-tracking: -0.045em;
+  --h1-page: 56px;
+  --h1-home: 50px;
+  --h2: 34px;
+
+  --radius-card: 8px;
+  --radius-btn: 999px;
+
+  --glass-blur: none;
+  --btn-hover-bg: #F2F2EF;
+  --row-nudge: 24px;
+  --footer-radius: 0px;       /* full-bleed teal band */
+  --footer-inset: 0px;
+  --footer-ink: var(--on-band);
+  color-scheme: dark;
+}
+
+/* Automatic choice when the site uses a .dark class on <html> (no data-variant set). */
+@media (min-width: 600px), not all and (pointer: coarse) {
+  html.dark:not([data-variant]) {
+    --bg: #0A0D10; --bg-2: rgba(255,255,255,.05); --sf: rgba(255,255,255,.05);
+    --ink: #ECEDEA; --i2: #C2C7CC; --mu: #A9B0B8; --ln: rgba(255,255,255,.10);
+    --ac: #7FD1C6; --ac-hover: #9FD8D1; --tint: rgba(79,179,169,.15); --acink: #9FD8D1;
+    --err: #FF9B8F; --hdr-bg: rgba(18,22,26,.55); --shadow-card: none; --shadow-lift: 0 8px 30px -8px rgba(79,179,169,.55);
+    --font-display: var(--font-sans); --display-weight: 500; --display-tracking: -0.035em;
+    --h1-page: clamp(48px, 5.6vw, 84px); --h1-home: clamp(36px, 4.2vw, 62px); --h2: clamp(28px, 3vw, 40px);
+    --radius-card: 20px; --radius-btn: 999px;
+    --glass-blur: blur(22px) saturate(140%); --glow-teal: #0E6B66; --glow-blue: #2B5C8A; --spot: rgba(79,179,169,.17);
+    --btn-hover-bg: #ECEDEA; --row-nudge: 10px;
+    color-scheme: dark;
+  }
+}
+@media (max-width: 599.98px) and (pointer: coarse) {
+  html.dark:not([data-variant]) {
+    --bg: #0B0C0D; --bg-2: #4FB3A9; --sf: #121416;
+    --ink: #F2F2EF; --i2: #B0B6BB; --mu: #8A9096; --ln: #26292D;
+    --ac: #4FB3A9; --ac-hover: #7FD1C6; --tint: rgba(79,179,169,.12); --acink: #7FD1C6;
+    --err: #FF9B8F; --hdr-bg: rgba(11,12,13,.9); --shadow-card: none; --shadow-lift: none; --on-band: #06201E;
+    --font-display: var(--font-sans); --display-weight: 600; --display-tracking: -0.045em;
+    --h1-page: 56px; --h1-home: 50px; --h2: 34px;
+    --radius-card: 8px; --radius-btn: 999px; --glass-blur: none;
+    --btn-hover-bg: #F2F2EF; --row-nudge: 24px; --footer-radius: 0px; --footer-inset: 0px; --footer-ink: #06201E;
+    color-scheme: dark;
+  }
+}
+
+/* ───────── Base ───────── */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 3px;
+}
+a { color: var(--ac); }
+a:hover { color: var(--ac-hover); }
+
+/* ───────── Type ───────── */
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); box-sizing: border-box; }
+.display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); }
+.h1-home { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: var(--h1-home); line-height: 1.02; margin: 0; text-wrap: balance; }
+.h1-page { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: var(--h1-page); line-height: .98; margin: 0; }
+.h2 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: var(--h2); line-height: 1.05; margin: 0; }
+.h1-home em, .h2 em { font-style: italic; color: var(--ac); }          /* Editorial: serif italic accent */
+.lead { font-size: 17px; line-height: 1.6; color: var(--i2); max-width: 62ch; }
+.meta { font-size: 13px; color: var(--mu); }
+
+/* ───────── Buttons and links ───────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px;
+  border-radius: var(--radius-btn); border: 1px solid transparent;
+  background: var(--ink); color: var(--bg); font: inherit; font-size: 15px; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-1px); background: var(--btn-hover-bg); color: var(--bg); box-shadow: var(--shadow-lift); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px;
+  border-radius: 999px; border: 1px solid color-mix(in srgb, var(--ac) 45%, var(--ln));
+  background: transparent; color: var(--ac); font: inherit; font-size: 14px; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: background .2s, border-color .2s;
+}
+.btn-ghost:hover { background: var(--tint); border-color: var(--ac); }
+.lk { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; color: var(--ac); text-decoration: none; }
+.lk:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ───────── Surfaces ───────── */
+.cd {
+  position: relative; background: var(--sf); border: 1px solid var(--ln);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+}
+.cd-lift { transition: transform .35s var(--ease-out), border-color .3s, box-shadow .3s; }
+.cd-lift:hover { transform: translateY(-4px); border-color: var(--ac); box-shadow: var(--shadow-lift); }
+/* Glass spotlight card: set --x/--y from pointermove for the moving light */
+.spot { overflow: hidden; }
+.spot::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), var(--spot), transparent 60%);
+}
+.spot:hover::before { opacity: 1; }
+/* Glass ambient glow: put .glow as the first child of a position:relative page wrapper */
+.glow { position: absolute; inset: 0; z-index: 0; overflow: clip; pointer-events: none; }
+.glow i { position: absolute; border-radius: 50%; filter: blur(140px); animation: glow-drift 22s ease-in-out infinite alternate; }
+.glow i:nth-child(1) { width: 720px; height: 720px; left: -260px; top: -300px; background: var(--glow-teal); opacity: .5; }
+.glow i:nth-child(2) { width: 560px; height: 560px; right: -200px; top: 600px; background: var(--glow-blue); opacity: .35; animation-delay: -9s; }
+
+/* ───────── Small parts ───────── */
+.chip {
+  height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--ln);
+  background: transparent; color: var(--i2); font: inherit; font-size: 14px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; transition: background .2s, color .2s, border-color .2s;
+}
+.chip:hover { border-color: var(--mu); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tag { display: inline-block; font-size: 12px; line-height: 1.5; padding: 2px 9px; border-radius: 5px; background: var(--tint); color: var(--acink); }
+.tag-line { display: inline-block; font-size: 12px; line-height: 1.5; padding: 2px 9px; border-radius: 5px; border: 1px solid var(--ln); color: var(--i2); }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 999px; background: var(--tint); color: var(--acink); font-size: 12px; font-weight: 500; }
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ac); animation: pulse-ring 2.4s infinite; }
+.chev {
+  display: inline-block; flex: none; width: 7px; height: 7px; margin: 0 2px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg); transition: transform .3s;
+}
+[aria-expanded="true"] > .chev { transform: translateY(1px) rotate(225deg); }
+/* List rows that nudge right on hover (Editorial/Glass 10px, Bold 24px) */
+.row { display: flex; justify-content: space-between; gap: 16px; padding-block: 18px; border-top: 1px solid var(--ln); color: var(--ink); text-decoration: none; transition: padding .3s var(--ease-out); }
+.row:hover { padding-left: var(--row-nudge); color: var(--ac); }
+
+/* ───────── Header and footer ───────── */
+.site-header { position: sticky; top: 0; z-index: 40; background: var(--hdr-bg); border-bottom: 1px solid var(--ln); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+/* Glass: floating pill nav instead of a bar */
+.nav-pill { display: inline-flex; align-items: center; gap: 24px; height: 52px; padding: 0 10px 0 22px; border-radius: 999px; border: 1px solid var(--ln); background: var(--hdr-bg); backdrop-filter: blur(22px) saturate(1.4); -webkit-backdrop-filter: blur(22px) saturate(1.4); font-size: 14px; }
+/* Editorial footer: rounded inset card */
+/* Bold turns it into a full-bleed teal band through the --footer-* tokens */
+.footer-card { margin: clamp(96px, 10vw, 152px) var(--footer-inset) 24px; border-radius: var(--footer-radius); border: 1px solid var(--ln); background: var(--bg-2); color: var(--footer-ink); padding: clamp(44px, 5vw, 64px) var(--gutter); }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ac) 45%, transparent); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@keyframes glow-drift { to { transform: translate(60px, 40px) scale(1.12); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+
+/* ── Reference page chrome: Editorial in light, Glass in dark ── */
+:root { --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A0D10; --bg-2: rgba(255,255,255,.05); --sf: rgba(255,255,255,.05); --ink: #ECEDEA; --i2: #C2C7CC; --mu: #A9B0B8;
+    --ln: rgba(255,255,255,.10); --ac: #7FD1C6; --ac-hover: #9FD8D1; --tint: rgba(79,179,169,.15); --acink: #9FD8D1;
+    --font-display: var(--font-sans); --display-weight: 500; --display-tracking: -0.035em; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A0D10; --bg-2: rgba(255,255,255,.05); --sf: rgba(255,255,255,.05); --ink: #ECEDEA; --i2: #C2C7CC; --mu: #A9B0B8;
+  --ln: rgba(255,255,255,.10); --ac: #7FD1C6; --ac-hover: #9FD8D1; --tint: rgba(79,179,169,.15); --acink: #9FD8D1;
+  --font-display: var(--font-sans); --display-weight: 500; --display-tracking: -0.035em; color-scheme: dark;
+}
+.page { max-width: 1320px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 48px 72px; }
+.intro { display: grid; gap: 12px; max-width: 760px; }
+.intro h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--mu); }
+.steps { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 4px; font-size: 14px; color: var(--i2); }
+.steps code, .note code { font-family: var(--mono); font-size: 12.5px; background: var(--tint); color: var(--acink); padding: 1px 6px; border-radius: 4px; }
+
+.modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 40px; align-items: start; }
+@media (max-width: 1080px) { .modes { grid-template-columns: minmax(0, 1fr); max-width: 560px; } }
+
+.spec { position: relative; overflow: hidden; border-radius: 18px; border: 1px solid var(--ln); background: var(--bg); color: var(--ink); font-family: var(--font-sans); isolation: isolate; }
+.spec > * { position: relative; z-index: 1; }
+.spec > .glow { position: absolute; z-index: 0; }
+.spec .glow i:nth-child(1) { width: 420px; height: 420px; left: -160px; top: -180px; filter: blur(90px); }
+.spec .glow i:nth-child(2) { width: 320px; height: 320px; right: -140px; top: 420px; filter: blur(90px); }
+.spec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--ln); }
+.spec-head b { font-size: 15px; font-weight: 600; }
+.spec-head span { font-family: var(--mono); font-size: 11.5px; color: var(--mu); text-align: right; }
+.spec-body { display: grid; gap: 22px; padding: 22px 20px 0; }
+
+.mini-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--i2); }
+.mini-nav .nm { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: 18px; color: var(--ink); }
+.mini-nav .links { display: flex; gap: 14px; }
+.mini-nav .links a { color: var(--i2); text-decoration: none; }
+.mini-nav .links a:first-child { color: var(--ink); }
+[data-variant="glass"] .mini-nav { height: 42px; padding: 0 8px 0 16px; border-radius: 999px; border: 1px solid var(--ln); background: var(--hdr-bg); }
+[data-variant="glass"] .mini-nav .nm { font-size: 14px; font-weight: 600; letter-spacing: .02em; }
+[data-variant="bold"] .mini-nav .nm { font-size: 15px; font-weight: 600; letter-spacing: 0; padding: 4px 10px; border: 1px solid var(--ln); border-radius: 6px; }
+[data-variant="bold"] .mini-nav .links { display: none; }
+.burger { display: none; width: 34px; height: 34px; border-radius: 10px; border: 1px solid var(--ln); place-items: center; color: var(--ink); }
+[data-variant="bold"] .burger { display: grid; }
+
+.spec .h1-home { font-size: clamp(34px, 3.2vw, 44px); }
+[data-variant="bold"] .h1-home { font-size: 40px; line-height: 1; }
+[data-variant="bold"] .h1-home em, [data-variant="glass"] .h1-home em { font-style: normal; }
+[data-variant="glass"] .h1-home em { background: linear-gradient(90deg, #4FB3A9, #9FD8D1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.spec .lead { font-size: 15px; margin: 10px 0 0; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.spec .btn { height: 44px; padding: 0 20px; font-size: 14px; }
+
+.lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--mu); margin-bottom: 8px; }
+.sw { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.sw div { display: grid; gap: 4px; min-width: 0; }
+.sw i { display: block; height: 38px; border-radius: 8px; border: 1px solid var(--ln); }
+.sw small { font-family: var(--mono); font-size: 10.5px; color: var(--mu); overflow-wrap: anywhere; line-height: 1.3; }
+.sw small b { display: block; color: var(--i2); font-weight: 500; }
+
+.type-row { display: grid; gap: 6px; }
+.type-row .t1 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: 30px; line-height: 1.05; }
+.type-row .t2 { font-size: 15px; color: var(--i2); }
+.type-row .t3 { font-size: 12.5px; color: var(--mu); font-family: var(--mono); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.spec .chip { height: 34px; padding: 0 13px; font-size: 13px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.card { padding: 18px; }
+.card > * { position: relative; z-index: 1; }
+.card h4 { margin: 0; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: 20px; line-height: 1.2; }
+[data-variant="glass"] .card h4, [data-variant="bold"] .card h4 { font-size: 17px; letter-spacing: -0.02em; }
+.card p { margin: 6px 0 10px; font-size: 13.5px; line-height: 1.55; color: var(--i2); }
+.card .tags { margin-bottom: 4px; }
+.card .lk { min-height: 32px; font-size: 13.5px; }
+
+.rows .row { font-size: 15px; padding-block: 13px; }
+.rows .row:last-child { border-bottom: 1px solid var(--ln); }
+.rows .row span:last-child { color: var(--mu); font-size: 13px; }
+
+.spec .footer-card { margin: 26px 0 0; padding: 22px 20px; border-left: 0; border-right: 0; border-bottom: 0; border-radius: 0; }
+[data-variant="editorial"] .footer-card { margin: 26px 12px 12px; border: 1px solid var(--ln); border-radius: 16px; }
+.footer-card p { margin: 0; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: 24px; line-height: 1.1; }
+.footer-card a { display: inline-block; margin-top: 8px; font-size: 14px; color: var(--ac); text-decoration: none; }
+[data-variant="bold"] .footer-card a { color: var(--on-band); text-decoration: underline; }
+
+.rules { margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px 40px; border-top: 1px solid var(--ln); padding-top: 32px; }
+.rules h3 { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+.rules ul { margin: 0; padding-left: 1.1em; color: var(--i2); font-size: 14.5px; line-height: 1.6; }
+.rules li + li { margin-top: 4px; }
+.note { margin-top: 32px; font-size: 14px; color: var(--mu); }
+</style>
+
+<div class="page">
+  <header class="intro">
+    <div class="eyebrow">Shared theme · rupesh portfolio</div>
+    <h1 class="display">One theme, three modes</h1>
+    <p class="lead" style="margin:0">The look of the portfolio, ready to reuse on the blog, the GeoFM site and the Quantum papers site. Light is Editorial. Dark is Glass on laptops and tablets, and Bold on phones.</p>
+    <div class="steps">
+      <span>1. Load the fonts</span>
+      <span>2. Add <code>theme.css</code></span>
+      <span>3. Toggle <code>html.dark</code>, or pin a mode with <code>data-variant</code></span>
+    </div>
+  </header>
+
+  <section class="modes" aria-label="The three modes">
+    <!--SPEC editorial|A · Editorial|light, every screen-->
+    <!--SPEC glass|C · Glass|dark, laptops and tablets-->
+    <!--SPEC bold|D · Bold|dark, phones under 600px-->
+  </section>
+
+  <section class="rules" aria-label="How to use it">
+    <div>
+      <h3>Type</h3>
+      <ul>
+        <li>Body text is always Geist, 16px, line-height 1.6.</li>
+        <li>Editorial headings use Instrument Serif 400, with the key phrase in teal italic.</li>
+        <li>Glass headings use Geist 500 with tight tracking (−0.035em). The accent phrase gets a teal gradient.</li>
+        <li>Bold headings use Geist 600, tracking −0.045em, big and short.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Colour</h3>
+      <ul>
+        <li>One accent family: deep teal #0E6B66 on light, mint #7FD1C6 on Glass, #4FB3A9 on Bold.</li>
+        <li>Text steps: ink for headings, i2 for body, mu for dates and captions.</li>
+        <li>Use tokens only (<code>var(--ac)</code>, <code>var(--ln)</code>…), so one class works in all three modes.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Surfaces</h3>
+      <ul>
+        <li>Editorial: white cards, hairline border, very soft shadow, 14px radius.</li>
+        <li>Glass: 5% white, 22px backdrop blur, 20px radius, teal and blue glow behind the page.</li>
+        <li>Bold: flat #121416 cards, 8px radius, teal footer band.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Motion</h3>
+      <ul>
+        <li>Ease out <code>cubic-bezier(.2,.7,.2,1)</code>; cards lift 4px, rows nudge right.</li>
+        <li>The headline phrase rotates every few seconds; it fades in Editorial and slides in Bold.</li>
+        <li>Everything respects reduced motion.</li>
+      </ul>
+    </div>
+  </section>
+  <p class="note">This page uses the same theme.css. Files: <code>design-template/theme.css</code> and <code>design-template/README.md</code> in the portfolio repo.</p>
+</div>
+
+<template id="spec-tpl">
+  <article class="spec">
+    <div class="glow" aria-hidden="true"><i></i><i></i></div>
+    <div class="spec-head"><b></b><span></span></div>
+    <div class="spec-body">
+      <div class="mini-nav">
+        <span class="nm">Rupesh Kumar</span>
+        <span class="links"><a href="#">Work</a><a href="#">Research</a><a href="#">Writing</a></span>
+        <span class="burger" aria-hidden="true">≡</span>
+      </div>
+      <div>
+        <span class="pill"><span class="pulse-dot"></span>Data Scientist @ Esri R&amp;D</span>
+        <h2 class="h1-home" style="margin-top:14px">I build <em>multimodal models</em>, and the systems that run them.</h2>
+        <p class="lead">Data scientist and AI engineer. Currently at Esri R&amp;D. M.Tech, IIT Bombay.</p>
+      </div>
+      <div class="btns">
+        <a class="btn" href="#">See my work →</a>
+        <a class="btn-ghost" href="#">Read the papers</a>
+      </div>
+      <div>
+        <div class="lbl">Colour tokens</div>
+        <div class="sw"></div>
+      </div>
+      <div class="type-row">
+        <div class="lbl">Type</div>
+        <span class="t1">Research &amp; Publications</span>
+        <span class="t2">Body text sits in i2 at 16px for long reading.</span>
+        <span class="t3">ISPRS · Springer LNCS · 4 papers</span>
+      </div>
+      <div>
+        <div class="lbl">Filters and tags</div>
+        <div class="chips"><button class="chip" aria-pressed="true">All</button><button class="chip" aria-pressed="false">Remote sensing</button><button class="chip" aria-pressed="false">Quantum ML</button></div>
+      </div>
+      <div class="cd cd-lift spot card">
+        <h4>Hyperspectral image classification</h4>
+        <p>A CNN and vision-transformer hybrid that labels land cover pixel by pixel from hundreds of spectral bands.</p>
+        <div class="tags"><span class="tag">Vision Transformer</span><span class="tag">Remote sensing</span><span class="tag-line">PyTorch</span></div>
+        <a class="lk" href="#">Read the paper ↗</a>
+      </div>
+      <div class="rows">
+        <a class="row" href="#"><span>GeoFM: foundation models for Earth data</span><span>Notes</span></a>
+        <a class="row" href="#"><span>Quantum CNNs for slum mapping</span><span>Paper</span></a>
+      </div>
+    </div>
+    <div class="footer-card"><p>Have a problem worth working on together?</p><a href="#">Email me →</a></div>
+  </article>
+</template>
+
+<script>
+(function () {
+  var TOK = ["--bg", "--sf", "--ink", "--i2", "--mu", "--ac", "--tint", "--bg-2"];
+  var tpl = document.getElementById("spec-tpl");
+  var host = document.querySelector(".modes");
+  var specs = [].slice.call(host.childNodes).filter(function (n) { return n.nodeType === 8; });
+  specs.forEach(function (c) {
+    var p = c.data.trim().replace(/^SPEC\s+/, "").split("|");
+    var node = tpl.content.firstElementChild.cloneNode(true);
+    node.setAttribute("data-variant", p[0]);
+    node.setAttribute("aria-label", p[1]);
+    node.querySelector(".spec-head b").textContent = p[1];
+    node.querySelector(".spec-head span").textContent = p[2];
+    host.replaceChild(node, c);
+    var cs = getComputedStyle(node), sw = node.querySelector(".sw");
+    TOK.forEach(function (t) {
+      var v = cs.getPropertyValue(t).trim();
+      var d = document.createElement("div");
+      d.innerHTML = '<i style="background:' + v + '"></i><small><b>' + t.slice(2) + "</b>" + v + "</small>";
+      sw.appendChild(d);
+    });
+    node.addEventListener("pointermove", function (e) {
+      var card = e.target.closest(".spot"); if (!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty("--x", e.clientX - r.left + "px");
+      card.style.setProperty("--y", e.clientY - r.top + "px");
+    });
+    node.addEventListener("click", function (e) {
+      var chip = e.target.closest(".chip");
+      if (chip) { node.querySelectorAll(".chip").forEach(function (x) { x.setAttribute("aria-pressed", x === chip ? "true" : "false"); }); }
+      if (e.target.closest("a")) e.preventDefault();
+    });
+  });
+})();
+</script>

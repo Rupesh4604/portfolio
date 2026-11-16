@@ -15,7 +15,6 @@ import Projects from "./pages/Projects.jsx";
 import Experience from "./pages/Experience.jsx";
 import Publications from "./pages/Publications.jsx";
 import Beyond from "./pages/Beyond.jsx";
-import OpenSourceEnv from "./pages/OpenSourceEnv.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Contact from "./pages/Contact.jsx";
 
@@ -76,7 +75,7 @@ function Shell() {
           <Route path="/publications" element={<Publications />} />
           <Route path="/beyond" element={<Beyond />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/open-source-env" element={<OpenSourceEnv />} />
+          <Route path="/open-source-env" element={<Navigate to="/projects" replace />} />
           {/* Legacy URLs → consolidated Experience page */}
           <Route path="/internships" element={<Navigate to="/experience" replace />} />
           <Route path="/achievements" element={<Navigate to="/experience" replace />} />
