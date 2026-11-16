@@ -266,18 +266,25 @@ function HomeA() {
       </section>
 
       <section aria-labelledby="writing-a" className="wrap max-w-[1240px] pt-[clamp(48px,6vw,72px)]">
-        <div className="grid gap-7 border-t border-ln pt-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-10">
+        {/* Three columns only on wide screens; narrower, the posts are full-width rows ending in an arrow. */}
+        <div className="grid gap-7 border-t border-ln pt-10 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] xl:gap-10">
           <div>
             <h2 id="writing-a" className={h2A}>Writing &amp; Technical Notes</h2>
             <p className="m-0 mt-3 text-[15px] leading-[1.6] text-i2">In-depth notes, research reviews and tutorials.</p>
             <Link to="/beyond" className={`${outlineBtn} mt-5`}>Explore blog →</Link>
           </div>
-          <ul className="m-0 grid list-none p-0 md:grid-cols-3">
-            {articles.slice(0, 3).map((a, i) => (
-              <li key={a.url} className={`py-4 md:border-l md:border-ln md:px-5 md:py-1 ${i > 0 ? "border-t border-ln md:border-t-0" : ""}`}>
-                <SiteLink to={a.url} className="group block text-ink">
-                  <span className="display block text-[18px] leading-[1.35] transition-colors group-hover:text-ac">{a.title}</span>
-                  <span className="mt-2 block text-[13px] text-mu">{fmtDate(a.date)}</span>
+          <ul className="m-0 grid list-none border-b border-ln p-0 xl:grid-cols-3 xl:border-b-0">
+            {articles.slice(0, 3).map((a) => (
+              <li key={a.url} className="border-t border-ln xl:border-l xl:border-t-0 xl:px-5">
+                <SiteLink
+                  to={a.url}
+                  className="row-indent group flex items-center justify-between gap-6 py-4 text-ink xl:block xl:py-1 xl:hover:pl-0"
+                >
+                  <span className="min-w-0">
+                    <span className="row-title display block text-[18px] leading-[1.35] transition-colors group-hover:text-ac">{a.title}</span>
+                    <span className="mt-2 block text-[13px] text-mu">{fmtDate(a.date)}</span>
+                  </span>
+                  <span className="row-arrow flex-none text-lg text-mu xl:hidden" aria-hidden="true">↗</span>
                 </SiteLink>
               </li>
             ))}

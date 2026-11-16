@@ -15,8 +15,7 @@ export const projects = [
     stack: "RAG, LangChain",
     description: "Agents that route each question, retrieve from two knowledge sources and check the answer before replying.",
     longDescription:
-      "<p>A question-answering assistant built with LangChain and Google Gemini. A triage agent reads each query and decides whether it needs internal documents, outside data or a tool, then hands it to the right specialist.</p>"
-      + "<p>Retrieval combines parent-child chunking, query expansion and Flashrank re-ranking, so answers draw on the most relevant passages. Every response passes a guardrail check before it reaches the user.</p>",
+      "Engineered a LangChain and Google Gemini powered multi-agent system with intelligent query triage, dual-source RAG (Parent-Child retrieval, query expansion, Flashrank re-ranking), dynamic tool-use for internal/external data access, and guardrail validation for reliable, domain-specific query handling.",
     techStack: ["LangChain", "Gemini", "FAISS", "RAG"],
     link: "https://github.com/Rupesh4604/Intelligent-Multi-Agent-Knowledge-Assistant",
     image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/agent.png",
@@ -41,8 +40,14 @@ export const projects = [
     stack: "Agents, open source",
     description: "An open-source skill that gives coding agents expertise in designing vision models for satellite imagery.",
     longDescription:
-      "<p>An agent skill for designing deep-learning models for remote sensing. Given a task such as segmentation, object detection or change detection, it proposes an architecture, configures it and benchmarks the result.</p>"
-      + "<p>It supports optical and SAR fusion and multi-temporal imagery, and reports interpretability checks alongside accuracy, so the chosen model can be trusted as well as measured.</p>",
+      "<strong>rs-dl-architect</strong> is a lightweight, end-to-end framework built to design and evaluate deep learning architectures for remote sensing and Earth observation data."
+      + "<br/><br/>"
+      + "<ul class=\"list-disc pl-5 space-y-1\">"
+      + "<li><strong>Agentic automation:</strong> Packaged as a reusable agent skill that proposes, configures, and benchmarks model architectures.</li>"
+      + "<li><strong>Targeted tasks:</strong> Streamlines semantic segmentation, object detection, and change detection on satellite imagery.</li>"
+      + "<li><strong>Advanced capabilities:</strong> Core support for multi-source data fusion (optical/SAR) and multi-temporal analysis.</li>"
+      + "<li><strong>Production-ready:</strong> Built-in tooling for benchmarking model performance and ensuring interpretability.</li>"
+      + "</ul>",
     techStack: ["Python", "PyTorch", "Agent skill", "Remote sensing"],
     link: "https://github.com/Rupesh4604/rs-dl-architect",
     image: "https://raw.githubusercontent.com/Rupesh4604/rs-dl-architect/main/images/rl-ds.png",

@@ -1,7 +1,7 @@
 // Inner-page title block: big display H1, optional lead, optional right-hand aside.
 export default function PageHeader({ title, lead, aside, children }) {
   return (
-    <header className="pt-[clamp(48px,8vw,120px)]">
+    <header className="pt-[clamp(28px,4vw,64px)]">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="min-w-0">
           <h1 className="h1-page">{title}</h1>

@@ -138,7 +138,7 @@ export default function Contact() {
   return (
     <Page className="page-enter">
       <Meta />
-      <div className="grid items-start gap-[clamp(40px,7vw,112px)] pt-[clamp(48px,8vw,120px)] min-[900px]:grid-cols-[minmax(0,1fr)_minmax(0,480px)]">
+      <div className="grid items-start gap-[clamp(40px,7vw,112px)] pt-[clamp(28px,4vw,64px)] min-[900px]:grid-cols-[minmax(0,1fr)_minmax(0,480px)]">
         <div>
           <h1 className="h1-page">Say hello</h1>
           <p className="m-0 mt-[22px] max-w-[520px] text-[clamp(16px,1.5vw,19px)] leading-[1.6] text-i2">{contact.lead}</p>
