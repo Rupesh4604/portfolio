@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -75,13 +75,6 @@ function Shell() {
           <Route path="/publications" element={<Publications />} />
           <Route path="/beyond" element={<Beyond />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/open-source-env" element={<Navigate to="/projects" replace />} />
-          <Route path="/career" element={<Navigate to="/experience" replace />} />
-          <Route path="/research" element={<Navigate to="/publications" replace />} />
-          <Route path="/blog" element={<Navigate to="/beyond" replace />} />
-          {/* Legacy URLs → consolidated Experience page */}
-          <Route path="/internships" element={<Navigate to="/experience" replace />} />
-          <Route path="/achievements" element={<Navigate to="/experience" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <SiteFooter />

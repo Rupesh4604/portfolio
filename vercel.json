@@ -1,38 +1,6 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/internships",
-      "destination": "/experience",
-      "permanent": true
-    },
-    {
-      "source": "/achievements",
-      "destination": "/experience",
-      "permanent": true
-    },
-    {
-      "source": "/open-source-env",
-      "destination": "/projects",
-      "permanent": true
-    },
-    {
-      "source": "/career",
-      "destination": "/experience",
-      "permanent": true
-    },
-    {
-      "source": "/research",
-      "destination": "/publications",
-      "permanent": true
-    },
-    {
-      "source": "/blog",
-      "destination": "/beyond",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
