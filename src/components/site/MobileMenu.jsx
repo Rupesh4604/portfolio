@@ -41,6 +41,17 @@ export default function MobileMenu({ open, variant, onClose }) {
     >
       <div className="flex h-[60px] shrink-0 items-center justify-between pl-5 pr-4">
         <span className="font-medium">{site.name}</span>
+        <span className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+          className={`inline-flex h-12 w-12 items-center justify-center rounded-xl border ${
+            bold ? "border-[rgba(6,32,30,.3)]" : glass ? "border-white/10 bg-white/5" : "border-[#E4E4DF]"
+          }`}
+        >
+          {dark ? <SunIcon size={20} /> : <MoonIcon size={20} />}
+        </button>
         <button
           ref={closeBtn}
           type="button"
@@ -52,6 +63,7 @@ export default function MobileMenu({ open, variant, onClose }) {
         >
           <CloseIcon size={22} />
         </button>
+        </span>
       </div>
 
       <nav aria-label="Main">
@@ -89,15 +101,6 @@ export default function MobileMenu({ open, variant, onClose }) {
         <SiteLink to={links.github} className="block">GitHub</SiteLink>
         <SiteLink to={links.scholar} className="block">Google Scholar</SiteLink>
         <SiteLink to={site.cv} className="block">Download CV</SiteLink>
-        <button
-          type="button"
-          onClick={toggle}
-          className="mt-2 inline-flex min-h-11 items-center gap-2.5"
-          aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          {dark ? <SunIcon size={18} /> : <MoonIcon size={18} />}
-          {dark ? "Light mode" : "Dark mode"}
-        </button>
       </div>
     </div>,
     document.body

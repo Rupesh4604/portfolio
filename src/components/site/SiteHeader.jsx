@@ -52,7 +52,7 @@ function HeaderA({ onSearch }) {
   return (
     <header className="sticky top-0 z-40 border-b border-ln bg-hdr backdrop-blur-[14px]">
       <div className="wrap flex h-[72px] items-center justify-between gap-6">
-        <Link to="/" className="whitespace-nowrap text-base font-medium text-ink">
+        <Link to="/" className="display whitespace-nowrap text-[21px] tracking-[-0.01em] text-ink">
           {site.name}
         </Link>
         <nav aria-label="Main" className="flex items-center gap-[clamp(18px,2.6vw,32px)] text-[15px]">
@@ -112,8 +112,12 @@ const HeaderPhone = forwardRef(function HeaderPhone({ variant, menuOpen, onMenu,
       <div className="flex h-[60px] items-center justify-between pl-5 pr-4">
         <Link
           to="/"
-          className={`inline-flex min-h-11 items-center text-base font-medium text-ink ${
-            bold ? "rounded-xl border border-ln px-4" : ""
+          className={`inline-flex min-h-11 items-center text-ink ${
+            bold
+              ? "rounded-xl border border-ln px-4 text-base font-medium"
+              : variant === "A"
+                ? "display text-[20px] tracking-[-0.01em]"
+                : "text-base font-medium"
           }`}
         >
           {site.name}
