@@ -52,9 +52,9 @@ function Shell() {
         <SiteHeader ref={menuButton} menuOpen={menuOpen} onMenu={() => setMenuOpen(true)} onSearch={openSearch} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/projects" element={legacy(<Projects />)} />
-          <Route path="/experience" element={legacy(<Experience />)} />
-          <Route path="/publications" element={legacy(<Publications />)} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/publications" element={<Publications />} />
           <Route path="/beyond" element={legacy(<Beyond />)} />
           <Route path="/open-source-env" element={legacy(<OpenSourceEnv />)} />
           {/* Legacy URLs → consolidated Experience page */}

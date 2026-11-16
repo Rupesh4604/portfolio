@@ -5,7 +5,9 @@ export const education = [
     short: "IIT Bombay",
     degree: "Master of Technology, GNR, CSRE",
     degreeShort: "M.Tech",
+    from: "2024",
     year: "2026",
+    dept: "Centre of Studies in Resources Engineering",
     grade: "CGPA: 9.45",
   },
   {
@@ -13,7 +15,9 @@ export const education = [
     short: "NIT Andhra Pradesh",
     degree: "B.Tech, Computer Science and Engineering",
     degreeShort: "B.Tech",
+    from: "2020",
     year: "2024",
+    dept: "Computer Science and Engineering",
     grade: "CGPA: 8.56",
   },
 ];

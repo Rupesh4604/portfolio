@@ -135,7 +135,7 @@ function HomeA() {
             <li key={p.title} className="border-t border-ln">
               <Link
                 to={p.href}
-                className="wk-row group grid grid-cols-[minmax(0,1fr)_24px] items-baseline gap-6 py-[30px] text-ink md:grid-cols-[200px_minmax(0,1fr)_32px]"
+                className="wk-row group grid grid-cols-[minmax(0,1fr)_24px] items-baseline gap-6 py-[30px] text-ink md:grid-cols-[200px_minmax(0,1fr)_80px_32px]"
               >
                 <span className="hidden text-sm text-ac md:block">{p.category}</span>
                 <span>
@@ -145,6 +145,7 @@ function HomeA() {
                   </span>
                   <span className="wk-desc block text-[15px] text-mu">{p.description}</span>
                 </span>
+                <span className="hidden text-sm text-mu md:block">{p.year}</span>
                 <span
                   aria-hidden="true"
                   className="justify-self-end text-mu transition-[transform,color] duration-300 ease-[var(--ease-out)] group-hover:translate-x-1.5 group-hover:text-ac"

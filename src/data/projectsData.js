@@ -1,9 +1,12 @@
 // Projects are ordered intentionally: LLM / agentic / applied-ML work leads,
 // because the homepage marquee features projects.slice(0, 6).
 // Geospatial & remote-sensing work follows as supporting depth.
+// year/period: from the CV (rs-dl-architect: GitHub repo dates).
 export const projects = [
   {
     title: "Intelligent Multi-Agent RAG System",
+    year: "2025",
+    period: "Jun 2025 – Aug 2025",
     category: "Multimodal and Agentic AI",
     description:
       "Multi-agent RAG with query triage, parent-child retrieval, Flashrank re-ranking, tool-use, and guardrails.",
@@ -16,6 +19,8 @@ export const projects = [
   },
   {
     title: "rs-dl-architect",
+    year: "2026",
+    period: "May 2026 – Jun 2026",
     category: "Geospatial AI and Remote Sensing",
     description:
       "Reusable agent skill for designing and evaluating deep-learning architectures for geospatial and remote-sensing tasks.",
@@ -35,6 +40,8 @@ export const projects = [
   },
   {
     title: "ProdHub: AI-Powered Productivity Hub",
+    year: "2025",
+    period: "Jul 2025 – Aug 2025",
     category: "AI Systems and Full-stack ML",
     description:
       "Full-stack serverless app with Gemini-powered goal decomposition and Google Calendar integration.",
@@ -50,6 +57,8 @@ export const projects = [
   },
   {
     title: "Financial News Sentiment Analysis (FinBERT)",
+    year: "2023",
+    period: "Aug 2023 – Sep 2023",
     category: "AI Systems and Full-stack ML",
     description:
       "Fine-tuned FinBERT for financial sentiment classification - 90.9% accuracy, 0.91 F1 vs BERT/DistilBERT baselines.",
@@ -65,6 +74,8 @@ export const projects = [
   },
   {
     title: "Image Super-Resolution (4x SISR)",
+    year: "2025",
+    period: "Feb 2025 – Mar 2025",
     category: "Computer Vision",
     description:
       "Lightweight residual CNN in PyTorch for 4x super-resolution on 4,500 gaming LR-HR pairs; mixed-precision, PixelShuffle.",
@@ -80,6 +91,8 @@ export const projects = [
   },
   {
     title: "Pedestrian Tracking - YOLOv5 + Deep SORT",
+    year: "2024",
+    period: "Mar 2024 – Apr 2024",
     category: "Computer Vision",
     description:
       "Multi-camera pedestrian tracking served via FastAPI; 87% re-ID accuracy with a ResNet-50 feature extractor.",
@@ -94,6 +107,8 @@ export const projects = [
   },
   {
     title: "Semantic Paraphrase Identification",
+    year: "2024",
+    period: "Sep 2024 – Nov 2024",
     category: "AI Systems and Full-stack ML",
     description:
       "Siamese-LSTM with GloVe embeddings for semantic paraphrase detection on MRPC - 91.4% test accuracy.",
@@ -109,6 +124,8 @@ export const projects = [
   },
   {
     title: "Time-Series Forecasting - Financial Markets",
+    year: "2023",
+    period: "Nov 2023 – Dec 2023",
     category: "AI Systems and Full-stack ML",
     description:
       "ARIMA / SARIMA / stateful-LSTM forecasting of equity prices; best LSTM hit RMSE 10.3, R2 0.83.",
@@ -123,6 +140,8 @@ export const projects = [
   },
   {
     title: "Hyperspectral Imagery Classification (CNN + ViT)",
+    year: "2024",
+    period: "Feb 2024 – Apr 2024",
     category: "Geospatial AI and Remote Sensing",
     description:
       "Compared 3D-CNN, GCN, CNN, and ViT for HSI; SOTA accuracy in a low-data regime. PReMI 2025 paper.",
@@ -137,6 +156,8 @@ export const projects = [
   },
   {
     title: "Quantum CNN for Slum Classification",
+    year: "2025",
+    period: "Jan 2025 – present",
     category: "Research Implementations",
     description:
       "Multi-Channel QCNN (TFQ/Cirq) for slum detection on Sentinel-2 - 94.8% acc, 0.933 F1. QIP journal paper.",
@@ -152,6 +173,8 @@ export const projects = [
   },
   {
     title: "3D CNN for Slum Classification",
+    year: "2025",
+    period: "Jun 2025 – present",
     category: "Geospatial AI and Remote Sensing",
     description:
       "3D CNN in PyTorch for multi-band Sentinel-2 slum detection with patch-based inference.",
@@ -164,6 +187,8 @@ export const projects = [
   },
   {
     title: "GeoWebClient",
+    year: "2025",
+    period: "Jan 2025 – Feb 2025",
     category: "Geospatial AI and Remote Sensing",
     description:
       "Interoperable GIS dashboard using OGC WMS/WFS via OpenLayers + GeoServer.",
@@ -176,6 +201,8 @@ export const projects = [
   },
   {
     title: "SOS WebClient Interface",
+    year: "2025",
+    period: "Mar 2025 – Apr 2025",
     category: "Geospatial AI and Remote Sensing",
     description:
       "Browser client for OGC SOS (istSOS) with real-time sensor discovery and Google Charts.",
@@ -191,6 +218,8 @@ export const projects = [
   },
   {
     title: "Emergency Services & Flood Zones Locator",
+    year: "2024",
+    period: "Oct 2024 – Nov 2024",
     category: "Geospatial AI and Remote Sensing",
     description:
       "Disaster-response web app; FastAPI + Redis + GiST indexing cut location query times by 99%.",
@@ -205,6 +234,8 @@ export const projects = [
   },
   {
     title: "Triple GAN",
+    year: "2023",
+    period: "Feb 2023 – Apr 2023",
     category: "Computer Vision",
     description:
       "Reproduced Triple GAN for semi-supervised synthetic-data generation; 99.10% peak accuracy.",
@@ -217,6 +248,8 @@ export const projects = [
   },
   {
     title: "Rib Segmentation & Labelling (FPN / U-Net++)",
+    year: "2022",
+    period: "Feb 2022 – Apr 2022",
     category: "Computer Vision",
     description:
       "Automatic rib segmentation & labeling in chest X-rays (Dice 0.834) on VinDr-RibCXR.",
