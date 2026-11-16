@@ -10,6 +10,8 @@ import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import Disclosure from "../components/site/Disclosure.jsx";
 import { Timeline, TimelineItem } from "../components/site/Timeline.jsx";
+import useVariant from "../hooks/useVariant";
+import { glass } from "../data/glassCopy";
 
 // "May 2023 - July 2023" -> "May 2023 – Jul 2023"; "Present" -> "now"
 const when = (d = "") =>
@@ -76,6 +78,10 @@ function Meta() {
 const sh = "display m-0 mb-2 text-[clamp(28px,3vw,36px)] tracking-[-0.02em]";
 
 export default function Experience() {
+  const { variant } = useVariant();
+  const isGlass = variant === "C";
+  const shownHighlights = isGlass ? glass.career.highlights : highlights;
+  const gj = (j) => (isGlass && glass.career.jobs[j.organization]) || {};
   const [open, setOpen] = useState(() => Object.fromEntries(jobs.filter((j) => j.current).map((j) => [j.id, true])));
   const toggle = (id) => setOpen((o) => ({ ...o, [id]: !o[id] }));
 
@@ -84,7 +90,7 @@ export default function Experience() {
       <Meta />
       <PageHeader
         title="Career"
-        lead={lead}
+        lead={isGlass ? glass.career.lead : lead}
         aside={
           <a
             href={site.cv}
@@ -106,12 +112,12 @@ export default function Experience() {
             <Timeline>
               {jobs.map((j, i) => (
                 <TimelineItem key={j.id} when={when(j.duration)} current={j.current} last={i === jobs.length - 1}>
-                  <h3 className="m-0 text-[clamp(19px,1.8vw,22px)] font-medium tracking-[-0.015em]">{j.role}</h3>
-                  <div className="mt-1 text-base text-i2">{j.organization}</div>
+                  <h3 className="m-0 text-[clamp(19px,1.8vw,22px)] font-medium tracking-[-0.015em]">{gj(j).role || j.role}</h3>
+                  <div className="mt-1 text-base text-i2">{gj(j).org || j.organization}</div>
                   <div className="mt-1">
                     <Disclosure open={!!open[j.id]} onToggle={() => toggle(j.id)} label="Details" openLabel="Hide details">
                       <div className="max-w-[680px] pb-1 text-base leading-[1.65] text-i2">
-                        {j.description
+                        {(gj(j).detail || j.description)
                           .split(/\n+/)
                           .map((s) => s.trim())
                           .filter(Boolean)
@@ -153,7 +159,7 @@ export default function Experience() {
         <aside aria-label="Highlights and tools" className="min-w-0">
           <h2 className="m-0 mb-3.5 mt-3.5 text-sm font-normal text-mu">Highlights</h2>
           <ul className="snap-row m-0 list-none lg:mx-0 lg:flex-col lg:overflow-visible lg:p-0">
-            {highlights.map((h) => (
+            {shownHighlights.map((h) => (
               <li key={h.title} className="cd w-[240px] px-6 py-[22px] lg:w-auto">
                 <div className="display text-[clamp(22px,2vw,26px)] leading-[1.1] tracking-[-0.02em]">{h.title}</div>
                 <div className="mt-1.5 text-[15px] text-i2">{h.sub}</div>

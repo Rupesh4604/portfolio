@@ -8,6 +8,8 @@ import { displayAuthors, toBibtex, bibKey, hasCitableAuthors } from "../lib/bibt
 import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
+import useVariant from "../hooks/useVariant";
+import { glass } from "../data/glassCopy";
 
 const SELF = /(Rupesh Kumar Yadav Mediboyina|R\. K\. Y\. Mediboyina)/;
 
@@ -18,11 +20,12 @@ const plural = (n, s) => (n === 1 ? s : s.replace(/(\w+)$/, "$1s"));
 
 // Stat tiles: total + one per status, computed from data.
 const statuses = [...new Set(publications.map((p) => p.status).filter(Boolean))];
-const stats = [
+const makeStats = (isGlass) => [
   { n: publications.length, label: plural(publications.length, "Peer-reviewed paper") },
   ...statuses.map((s) => {
     const n = publications.filter((p) => p.status === s).length;
-    return { n, label: plural(n, s) };
+    const g = isGlass && glass.research.statusLabels[s];
+    return { n, label: g ? g[n === 1 ? 0 : 1] : plural(n, s) };
   }),
 ];
 
@@ -103,7 +106,9 @@ function Authors({ text }) {
   );
 }
 
-function Publication({ p }) {
+function Publication({ p, isGlass }) {
+  const g = (isGlass && glass.research.pubs[p.title]) || {};
+  const shown = { title: g.title || p.title, venue: g.venue || p.venue, abstract: g.abstract || p.abstract };
   const id = bibKey(p);
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -120,16 +125,16 @@ function Publication({ p }) {
       /* clipboard blocked: leave the label unchanged */
     }
   };
-  const hasMore = p.abstract || p.notes;
+  const hasMore = shown.abstract || p.notes;
 
   return (
     <article className="border-t border-ln py-7" aria-labelledby={`${id}-t`}>
       <span className="tag-line">{typeLabel(p.status)}</span>
       <h3 id={`${id}-t`} className="m-0 mt-3 text-[clamp(19px,1.8vw,22px)] font-medium leading-[1.3] tracking-[-0.015em]">
-        {p.title}
+        {shown.title}
       </h3>
       {p.authors && <Authors text={p.authors} />}
-      <div className="mt-1 text-[15px] italic text-mu">{p.venue}</div>
+      <div className="mt-1 text-[15px] italic text-mu">{shown.venue}</div>
       <div className="mt-2 flex flex-wrap gap-x-[22px]">
         {hasMore && (
           <button
@@ -159,7 +164,7 @@ function Publication({ p }) {
         <div id={`${id}-abs`} className={`disc ${open ? "is-open" : ""}`} inert={!open ? true : undefined}>
           <div>
             <div className="max-w-[760px] pt-1.5 text-base leading-[1.65] text-i2">
-              {p.abstract && <p className="m-0">{p.abstract}</p>}
+              {shown.abstract && <p className="m-0">{shown.abstract}</p>}
               {p.notes && (
                 <p className="m-0 mt-3" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(p.notes) }} />
               )}
@@ -172,6 +177,9 @@ function Publication({ p }) {
 }
 
 export default function Publications() {
+  const { variant } = useVariant();
+  const isGlass = variant === "C";
+  const stats = makeStats(isGlass);
   return (
     <Page className="page-enter">
       <Meta />
@@ -221,7 +229,7 @@ export default function Publications() {
             <div>
               <h3 className="sr-only">{g.year}</h3>
               {g.pubs.map((p) => (
-                <Publication key={p.title} p={p} />
+                <Publication key={p.title} p={p} isGlass={isGlass} />
               ))}
             </div>
           </div>
@@ -236,7 +244,7 @@ export default function Publications() {
               <SiteLink key={c.title} to={c.url} className="cd cd-lift block p-6 text-ink">
                 <div className="text-[13px] text-mu">Curated paper collection</div>
                 <div className="mt-2.5 text-[19px] font-medium leading-[1.3]">{c.title}</div>
-                <div className="mt-1.5 text-sm text-i2">{c.description}</div>
+                <div className="mt-1.5 text-sm text-i2">{(isGlass && glass.research.collections[c.title]) || c.description}</div>
               </SiteLink>
             ))}
           </div>

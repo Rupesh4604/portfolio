@@ -21,6 +21,8 @@ import RotatingWord from "../components/site/RotatingWord.jsx";
 import Marquee from "../components/site/Marquee.jsx";
 import SpotlightCard from "../components/site/SpotlightCard.jsx";
 import { ArrowRight } from "../components/site/Icons.jsx";
+import GridPanel from "../components/site/GridPanel.jsx";
+import { glass } from "../data/glassCopy";
 
 const selected = projects.slice(0, 3).map((p) => ({ ...p, href: `/projects#${slugify(p.title)}` }));
 
@@ -213,10 +215,7 @@ function HomeC() {
       <div className="grid gap-4 min-[900px]:grid-cols-3">
         <SpotlightCard className="p-2 min-[900px]:col-span-2 min-[900px]:row-span-2">
           <div className="gl-inner flex h-full min-h-[460px] flex-col justify-between gap-10 p-[clamp(28px,4vw,52px)]">
-            <div className="flex items-center gap-3">
-              <img src="/profile.jpg" alt="" width="44" height="44" className="h-11 w-11 rounded-full object-cover" />
-              <span className="text-[15px] text-mu">{site.name}</span>
-            </div>
+            <div className="text-[15px] text-mu">{site.name}</div>
             <div>
               <h1 className="m-0 max-w-[15ch] text-[clamp(36px,4.2vw,62px)] font-medium leading-[1.06] tracking-[-0.03em]">
                 {home.role} building <RotatingWord words={home.rotatingA} gradient every={2800} />
@@ -243,11 +242,11 @@ function HomeC() {
           <div className="gl-inner flex h-full flex-col p-7">
             <div className={lb}>Now</div>
             <p className="m-0 mt-3 text-lg leading-[1.5] text-i2">
-              {currentRole ? `${currentRole.role} at ${currentRole.orgFull}.` : ""}
+              {glass.home.now}
             </p>
             <div className="mt-auto flex items-center gap-2.5 pt-6 text-sm text-ac">
               <span className="pulse-dot" aria-hidden="true" />
-              Open to conversations
+              {glass.home.status}
             </div>
           </div>
         </SpotlightCard>
@@ -257,11 +256,9 @@ function HomeC() {
             <div className={lb}>Research</div>
             <div className="mt-2 flex items-baseline gap-3">
               <span className="text-[76px] font-medium leading-none tracking-[-0.04em]">{paperCount}</span>
-              <span className="text-base text-mu">peer-reviewed papers</span>
+              <span className="text-base text-mu">{glass.home.research}</span>
             </div>
             <div className="mt-auto flex flex-wrap items-center gap-x-2 pt-5 text-sm text-mu">
-              <SiteLink to="/publications" className="inline-flex min-h-6 items-center hover:text-ink">Publications</SiteLink>
-              <span aria-hidden="true">·</span>
               <SiteLink to={links.scholar} className="inline-flex min-h-6 items-center hover:text-ink">Scholar</SiteLink>
               {paperCollections.map((c) => (
                 <span key={c.title} className="contents">
@@ -279,17 +276,13 @@ function HomeC() {
             <Link to="/projects" className="text-sm text-mu hover:text-ink">All projects →</Link>
           </div>
           <div className="grid gap-2 md:grid-cols-3">
-            {selected.map((p) => (
-              <Link key={p.title} to={p.href} className="gl-inner gl-lift block px-3.5 pb-[22px] pt-3.5 text-ink">
-                <div className="mb-[18px] h-[200px] overflow-hidden rounded-xl bg-white/[.03]">
-                  {p.image && (
-                    <img src={p.image} alt="" loading="lazy" className="h-full w-full object-cover opacity-90" />
-                  )}
-                </div>
+            {glass.home.work.map((w) => (
+              <Link key={w.key} to={`/projects#${slugify(w.key)}`} className="gl-inner gl-lift block px-3.5 pb-[22px] pt-3.5 text-ink">
+                <GridPanel className="mb-[18px] h-[200px]" />
                 <div className="px-1.5">
-                  <div className={lb}>{p.category}</div>
-                  <div className="mt-1.5 text-xl font-medium tracking-[-0.01em]">{p.title}</div>
-                  <div className="mt-1.5 text-sm leading-[1.5] text-mu">{p.description}</div>
+                  <div className={lb}>{w.tag}</div>
+                  <div className="mt-1.5 text-xl font-medium tracking-[-0.01em]">{w.title}</div>
+                  <div className="mt-1.5 text-sm leading-[1.5] text-mu">{w.desc}</div>
                 </div>
               </Link>
             ))}

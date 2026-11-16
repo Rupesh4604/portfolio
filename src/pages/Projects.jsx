@@ -9,6 +9,10 @@ import PageHeader from "../components/site/PageHeader.jsx";
 import ChipGroup from "../components/site/ChipGroup.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
 import { SearchIcon } from "../components/site/Icons.jsx";
+import GridPanel from "../components/site/GridPanel.jsx";
+import useVariant from "../hooks/useVariant";
+import { glass } from "../data/glassCopy";
+import { publications } from "../data/publicationsData";
 
 const ALL = "All";
 const featured = projects.slice(0, 3);
@@ -74,22 +78,43 @@ function Meta() {
   );
 }
 
+// Featured cards. Default: data + image. Glass: template wording, grid panel instead of an image.
+const featuredDefault = featured.map((p) => ({
+  key: p.title,
+  to: p.link || `/projects#${slugify(p.title)}`,
+  image: p.image,
+  tag: p.category,
+  title: p.title,
+  desc: p.description,
+  cta: p.link ? "View on GitHub" : "",
+}));
+const featuredGlass = glass.projects.featured.map((f) => {
+  const p = projects.find((x) => x.title === f.key);
+  const paper = f.paper && publications.find((x) => x.title === f.paper);
+  const to =
+    f.cta === "Read the paper" ? paper?.link || paper?.doi || "/publications"
+    : f.cta === "View on GitHub" ? p.link
+    : `/projects#${slugify(p.title)}`;
+  return { key: f.key, to, glass: true, tag: f.tag, title: f.title, desc: f.desc, cta: f.cta };
+});
+
 function FeaturedCard({ p }) {
   return (
-    <SiteLink
-      to={p.link || `/projects#${slugify(p.title)}`}
-      className="cd cd-lift group block w-[276px] p-2.5 text-ink md:w-auto"
-    >
-      <div className="h-[150px] overflow-hidden rounded-[calc(var(--radius-card)-4px)] bg-tint md:h-[220px]">
-        {p.image && <img src={p.image} alt="" loading="lazy" className="h-full w-full object-cover" />}
-      </div>
+    <SiteLink to={p.to} className="cd cd-lift group block w-[276px] p-2.5 text-ink md:w-auto">
+      {p.glass ? (
+        <GridPanel className="h-[150px] md:h-[220px]" />
+      ) : (
+        <div className="h-[150px] overflow-hidden rounded-[calc(var(--radius-card)-4px)] bg-tint md:h-[220px]">
+          {p.image && <img src={p.image} alt="" loading="lazy" className="h-full w-full object-cover" />}
+        </div>
+      )}
       <div className="px-2.5 pb-3 pt-[18px]">
-        <span className="tag">{p.category}</span>
+        <span className="tag">{p.tag}</span>
         <div className="mt-3 text-[22px] font-medium leading-[1.2] tracking-[-0.02em]">{p.title}</div>
-        <div className="mt-2 text-[15px] leading-[1.5] text-i2">{p.description}</div>
-        {p.link && (
+        <div className="mt-2 text-[15px] leading-[1.5] text-i2">{p.desc}</div>
+        {p.cta && (
           <div className="mt-4 text-sm text-ac">
-            View on GitHub{" "}
+            {p.cta}{" "}
             <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-[5px]">
               →
             </span>
@@ -111,13 +136,13 @@ function ProjectRow({ p, open, onToggle }) {
         className="row-indent grid w-full cursor-pointer grid-cols-[minmax(0,1fr)_24px] items-baseline gap-5 border-0 bg-transparent py-6 text-left text-ink md:grid-cols-[minmax(0,1fr)_200px_60px_28px]"
       >
         <span className="min-w-0">
-          <span className="row-title block text-[clamp(18px,1.6vw,20px)] font-medium tracking-[-0.01em]">{p.title}</span>
+          <span className="row-title block text-[clamp(18px,1.6vw,20px)] font-medium tracking-[-0.01em]">{p.shownTitle}</span>
           <span className="mt-1 block text-sm text-mu">
-            <span className="md:hidden">{p.category} · {p.year} · </span>
-            {(p.techStack ?? []).slice(0, 4).join(" · ")}
+            <span className="md:hidden">{p.shownTag} · {p.year} · </span>
+            {p.stackLine}
           </span>
         </span>
-        <span className="hidden text-sm text-ac md:block">{p.category}</span>
+        <span className="hidden text-sm text-ac md:block">{p.shownTag}</span>
         <span className="hidden text-right text-sm text-mu md:block">{p.year}</span>
         <span className="chev justify-self-end text-mu" aria-hidden="true">⌄</span>
       </button>
@@ -150,6 +175,8 @@ function ProjectRow({ p, open, onToggle }) {
 
 export default function Projects() {
   const { hash } = useLocation();
+  const { variant } = useVariant();
+  const isGlass = variant === "C";
   const [cat, setCat] = useState(ALL);
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(() => (hash ? { [hash.slice(1)]: true } : {}));
@@ -165,30 +192,49 @@ export default function Projects() {
     requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }));
   }, [hash]);
 
+  // Glass uses the template's titles, Models/Systems/Tools tags and stack lines; years stay from the data.
+  const items = useMemo(
+    () =>
+      sorted.map((p) => {
+        const g = glass.projects.rows[p.title] || {};
+        return isGlass
+          ? { ...p, shownTitle: g.title || p.title, shownTag: g.tag || p.category, stackLine: g.stack || (p.techStack ?? []).slice(0, 2).join(", ") }
+          : { ...p, shownTitle: p.title, shownTag: p.category, stackLine: (p.techStack ?? []).slice(0, 4).join(" · ") };
+      }),
+    [isGlass]
+  );
+  const groups = isGlass ? glass.projects.tags : categories;
+
+  // Tag sets differ between variants, so a switch resets the filter.
+  useEffect(() => setCat(ALL), [isGlass]);
+
   const chips = useMemo(
     () => [
-      { value: ALL, label: "All", count: projects.length },
-      ...categories.map((c) => ({ value: c, label: c, count: projects.filter((p) => p.category === c).length })),
+      { value: ALL, label: "All", count: items.length },
+      ...groups.map((c) => ({ value: c, label: c, count: items.filter((p) => p.shownTag === c).length })),
     ],
-    []
+    [items, groups]
   );
 
   const rows = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    return sorted.filter(
+    return items.filter(
       (p) =>
-        (cat === ALL || p.category === cat) &&
+        (cat === ALL || p.shownTag === cat) &&
         (!needle ||
-          [p.title, p.description, p.category, ...(p.techStack ?? [])].join(" ").toLowerCase().includes(needle))
+          [p.shownTitle, p.title, p.description, p.shownTag, p.category, ...(p.techStack ?? [])]
+            .join(" ")
+            .toLowerCase()
+            .includes(needle))
     );
-  }, [cat, q]);
+  }, [items, cat, q]);
 
   return (
     <Page className="page-enter">
       <Meta />
       <PageHeader
         title="Projects"
-        lead="Things I've built, from research models to the systems and tools around them."
+        lead={isGlass ? glass.projects.lead : "Things I've built, from research models to the systems and tools around them."}
         aside={
           <div className="text-[15px] text-mu">
             {projects.length} projects · {span}
@@ -199,8 +245,8 @@ export default function Projects() {
       <section aria-labelledby="featured" className="mt-[clamp(48px,6vw,88px)]">
         <h2 id="featured" className="m-0 mb-4 text-sm font-normal text-mu">Featured</h2>
         <div className="snap-row md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:p-0">
-          {featured.map((p) => (
-            <FeaturedCard key={p.title} p={p} />
+          {(isGlass ? featuredGlass : featuredDefault).map((p) => (
+            <FeaturedCard key={p.key} p={p} />
           ))}
         </div>
       </section>

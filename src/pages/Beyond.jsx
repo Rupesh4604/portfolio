@@ -7,6 +7,8 @@ import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import ChipGroup from "../components/site/ChipGroup.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
+import useVariant from "../hooks/useVariant";
+import { glass } from "../data/glassCopy";
 
 const ALL = "all";
 const featured = articles[0];
@@ -52,6 +54,8 @@ function RssIcon() {
 }
 
 export default function Beyond() {
+  const { variant } = useVariant();
+  const isGlass = variant === "C";
   const [topic, setTopic] = useState(ALL);
   const chips = useMemo(
     () => [
@@ -67,7 +71,7 @@ export default function Beyond() {
       <Meta />
       <PageHeader
         title="Blog"
-        lead="Notes on machine learning papers and ideas, book notes, and other things I keep on the web."
+        lead={isGlass ? glass.blog.lead : "Notes on machine learning papers and ideas, book notes, and other things I keep on the web."}
         aside={
           <SiteLink to={feedUrl} className="inline-flex min-h-11 items-center gap-2 text-[15px] text-ac hover:text-ac-hover">
             <RssIcon />
@@ -82,7 +86,7 @@ export default function Beyond() {
           className="cd group mt-[clamp(48px,6vw,88px)] grid items-center gap-[clamp(24px,4vw,56px)] p-3.5 text-ink transition-colors hover:border-ac md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]"
         >
           <div className="p-[clamp(12px,2vw,28px)]">
-            <div className="text-sm text-mu">Latest</div>
+            <div className="text-sm text-mu">{isGlass ? glass.blog.featuredLabel : "Latest"}</div>
             <h2 className="display m-0 mt-3.5 text-[clamp(30px,3.4vw,44px)] leading-[1.15] transition-colors group-hover:text-ac">
               {featured.title}
             </h2>
