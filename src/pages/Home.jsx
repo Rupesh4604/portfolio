@@ -138,7 +138,7 @@ const h2A = "display m-0 text-[clamp(30px,3.4vw,42px)] leading-[1.05] tracking-[
 function HomeA() {
   return (
     <>
-      <section className="wrap max-w-[1240px] pt-[clamp(32px,6vw,72px)]">
+      <section className="wrap max-w-[1240px] pt-[clamp(24px,min(6vw,5vh),72px)]">
         <div className="grid items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(200px,270px)] md:gap-16">
           <div className="min-w-0">
             {currentRole && (
@@ -147,17 +147,18 @@ function HomeA() {
                 {currentRole.role} @ {currentRole.org} · GeoAI
               </span>
             )}
-            <h1 className="display m-0 mt-5 max-w-[19ch] text-[clamp(40px,5.4vw,74px)] leading-[1.02] tracking-[-0.02em]">
-              I build intelligent systems across <em className="italic text-ac">language, vision,</em> and the physical world.
+            <h1 className="display m-0 mt-[clamp(14px,2.2vh,20px)] max-w-[19ch] text-[clamp(38px,min(5.4vw,7.4vh),74px)] leading-[1.02] tracking-[-0.02em]">
+              I build intelligent systems across{" "}
+              <RotatingWord words={home.rotatingHero} className="italic text-ac" suffix="," /> and the physical world.
             </h1>
-            <p className="m-0 mt-6 text-[17px] font-medium text-ink">
+            <p className="m-0 mt-[clamp(14px,2.6vh,24px)] text-[17px] font-medium text-ink">
               AI/ML Engineer &amp; Researcher{" "}
               <span className="font-normal text-mu">| Data Scientist at Esri R&amp;D, GeoAI Division</span>
             </p>
             <p className="m-0 mt-1 max-w-[620px] text-base leading-[1.6] text-i2">
               Exploring multimodal AI, geospatial intelligence and foundation models.
             </p>
-            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div className="mt-[clamp(16px,3vh,28px)] flex flex-wrap items-center gap-x-6 gap-y-2">
               <Link
                 to="/projects"
                 className="inline-flex h-[50px] items-center gap-2.5 rounded-btn bg-ink px-6 text-[15px] font-medium text-bg transition hover:-translate-y-px hover:bg-ac"
@@ -169,18 +170,20 @@ function HomeA() {
               <SiteLink to={links.scholar} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac hover:text-ac-hover">Scholar</SiteLink>
             </div>
           </div>
-          <div className="row-start-1 w-[150px] md:row-start-auto md:w-full">
-            <img
-              src="/profile.jpg"
-              alt={`Portrait of ${site.name}`}
-              width="540"
-              height="580"
-              className="block aspect-[1/1.08] w-full rounded-[15px] border border-ln bg-sf object-cover shadow-[0_12px_32px_rgba(28,41,32,.08)]"
-            />
+          <div className="row-start-1 w-[150px] md:row-start-auto md:w-full md:max-w-[min(270px,44vh)] md:justify-self-end">
+            <div className="overflow-hidden rounded-[15px] bg-white pt-[11%] shadow-[0_14px_36px_rgba(28,41,32,.10)]">
+              <img
+                src="/profile.jpg"
+                alt={`Portrait of ${site.name}`}
+                width="346"
+                height="486"
+                className="block aspect-[346/474] w-full object-cover object-bottom mix-blend-multiply [filter:brightness(1.03)_contrast(1.02)]"
+              />
+            </div>
           </div>
         </div>
 
-        <ul className="m-0 mt-[clamp(40px,5vw,64px)] grid list-none p-0 md:grid-cols-3">
+        <ul className="m-0 mt-[clamp(28px,min(5vw,5vh),64px)] grid list-none p-0 md:grid-cols-3">
           {FOCUS.map((f, i) => (
             <li
               key={f.title}

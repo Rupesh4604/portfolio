@@ -86,8 +86,8 @@ function PhoneBase({ tinted }) {
 function FooterA({ isPhone }) {
   if (isPhone) {
     return (
-      <footer className="mt-[clamp(96px,11vw,160px)] border-t border-ln bg-bg-2">
-        <div className="px-5 pb-2 pt-8">
+      <footer className="mt-[clamp(96px,11vw,160px)] px-3">
+        <div className="rounded-[20px] border border-ln bg-bg-2 px-5 pb-6 pt-8">
           <p className="display m-0 text-[32px] leading-[1.08]">Have a problem worth working on together?</p>
           <SiteLink to={links.email} className="mt-3 inline-flex min-h-11 items-center text-base text-ac hover:text-ac-hover">
             Email me →
@@ -97,26 +97,30 @@ function FooterA({ isPhone }) {
       </footer>
     );
   }
+  // Rounded inset card (hybrid mock): CTA | divider | link columns; © and clock sit below the card.
   return (
-    <footer className="mt-[clamp(112px,12vw,176px)] border-t border-ln bg-bg-2">
-      <div className="wrap pb-8 pt-[clamp(64px,8vw,112px)]">
-        <div className="grid grid-cols-2 gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="col-span-2 lg:col-span-1">
-            <p className="display m-0 text-[clamp(40px,4.6vw,68px)] leading-[1.04]">
+    <footer className="mt-[clamp(96px,10vw,152px)] px-[clamp(12px,2vw,28px)] pb-6">
+      <div className="mx-auto max-w-[1400px] rounded-[22px] border border-ln bg-bg-2">
+        <div className="wrap grid max-w-[1240px] grid-cols-2 gap-10 py-[clamp(44px,5vw,64px)] lg:grid-cols-[minmax(0,1.5fr)_minmax(0,.55fr)_minmax(0,.55fr)] lg:gap-0">
+          <div className="col-span-2 lg:col-span-1 lg:border-r lg:border-[#DEDED7] lg:pr-12">
+            <p className="display m-0 text-[clamp(40px,4.6vw,64px)] leading-[1.04]">
               Have a problem worth
               <br />
               working on together?
             </p>
-            <SiteLink to={links.email} className="mt-7 inline-flex min-h-11 items-center gap-2.5 text-[17px] text-ac hover:text-ac-hover">
+            <SiteLink to={links.email} className="mt-6 inline-flex min-h-11 items-center gap-2.5 text-[17px] text-ac hover:text-ac-hover">
               Email me →
             </SiteLink>
           </div>
-          <Columns labelClass="mb-2.5 text-[13px] text-mu" linkClass="block text-[15px] leading-[2.2] text-i2 hover:text-ink" />
+          <Columns
+            labelClass="mb-2.5 text-[13px] text-mu lg:pl-12"
+            linkClass="block text-[15px] leading-[2.2] text-i2 hover:text-ink lg:pl-12"
+          />
         </div>
-        <div className="mt-[clamp(56px,7vw,96px)] flex flex-wrap justify-between gap-3 border-t border-[#DEDED7] pt-6 text-[13px] text-mu">
-          <span>© {year} {site.name}</span>
-          <Clock />
-        </div>
+      </div>
+      <div className="wrap mt-5 flex max-w-[1240px] flex-wrap justify-between gap-3 text-[13px] text-mu">
+        <span>© {year} {site.name}</span>
+        <Clock />
       </div>
     </footer>
   );
