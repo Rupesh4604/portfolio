@@ -24,7 +24,7 @@ const ITEMS = [
   ...publications.map((p) => ({
     group: "Research",
     label: p.title,
-    to: p.link || p.doi || "/publications",
+    to: p.link || p.doi || "/research",
     hint: `${venueShort(p.venue)}, ${p.year}`,
     keywords: p.venue,
   })),

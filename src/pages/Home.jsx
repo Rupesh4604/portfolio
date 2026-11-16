@@ -86,7 +86,7 @@ function Meta() {
 // Layout from the hybrid mock (rupesh_hybrid_portfolio.html): hero with portrait, three focus
 // areas, project cards, research list, writing notes. Facts (projects, papers, posts) come from src/data.
 
-// Three most recent papers, as in the mock; the full list lives on /publications.
+// Three most recent papers, as in the mock; the full list lives on /research.
 const papersA = [...publications].sort((a, b) => Number(b.year) - Number(a.year)).slice(0, 3);
 
 const FOCUS = [
@@ -246,7 +246,7 @@ function HomeA() {
             <p className="m-0 mt-4 max-w-[300px] text-[15px] leading-[1.6] text-i2">
               Advancing foundation models, geospatial AI and efficient ML systems.
             </p>
-            <Link to="/publications" className={`${outlineBtn} mt-5`}>View publications →</Link>
+            <Link to="/research" className={`${outlineBtn} mt-5`}>View publications →</Link>
           </div>
           <ul className="m-0 list-none p-0 md:pl-10">
             {papersA.map((x, i) => (
@@ -254,7 +254,7 @@ function HomeA() {
                 <span className="mt-2 h-1.5 w-1.5 rounded-full bg-ac shadow-[0_0_0_5px_var(--tint)]" aria-hidden="true" />
                 <div>
                   <h3 className="display m-0 text-[18px] font-normal leading-[1.35]">
-                    <SiteLink to={x.link || x.doi || "/publications"} className="text-ink hover:text-ac">{x.title}</SiteLink>
+                    <SiteLink to={x.link || x.doi || "/research"} className="text-ink hover:text-ac">{x.title}</SiteLink>
                   </h3>
                   <p className="m-0 mt-0.5 text-[13px] text-mu">
                     {venueShort(x.venue)} · {x.year}

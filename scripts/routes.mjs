@@ -26,7 +26,7 @@ export const routes = [
     priority: 0.9,
   },
   {
-    path: '/experience',
+    path: '/career',
     title: 'Career | M Rupesh Kumar Yadav',
     description:
       'Career of M Rupesh Kumar Yadav: Data Scientist at Esri R&D, M.Tech from IIT Bombay, B.Tech from NIT Andhra Pradesh, and research internships in computer vision and machine learning at DRDO and HAL.',
@@ -34,7 +34,7 @@ export const routes = [
     priority: 0.7,
   },
   {
-    path: '/publications',
+    path: '/research',
     title: 'Research Publications | M Rupesh Kumar Yadav',
     description:
       'Peer-reviewed research by M Rupesh Kumar Yadav on quantum machine learning, hyperspectral imagery, slum detection from satellite imagery and graph-based NLP.',

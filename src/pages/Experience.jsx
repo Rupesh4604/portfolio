@@ -50,7 +50,7 @@ const lead = [
 //     .map((p) => ({ title: p.title, sub: `${p.organization} · ${p.duration}` })),
 // ];
 
-const META = routeMeta("/experience");
+const META = routeMeta("/career");
 
 function Meta() {
   return (
@@ -60,10 +60,10 @@ function Meta() {
         name="description"
         content={META.description}
       />
-      <link rel="canonical" href="https://rupeshmediboyina.dev/experience" />
+      <link rel="canonical" href="https://rupeshmediboyina.dev/career" />
       <meta property="og:title" content={META.title} />
       <meta property="og:description" content={META.description} />
-      <meta property="og:url" content="https://rupeshmediboyina.dev/experience" />
+      <meta property="og:url" content="https://rupeshmediboyina.dev/career" />
       <meta name="twitter:title" content={META.title} />
       <meta name="twitter:description" content={META.description} />
       <script type="application/ld+json">
@@ -72,7 +72,7 @@ function Meta() {
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://rupeshmediboyina.dev/" },
-            { "@type": "ListItem", position: 2, name: "Experience", item: "https://rupeshmediboyina.dev/experience" },
+            { "@type": "ListItem", position: 2, name: "Career", item: "https://rupeshmediboyina.dev/career" },
           ],
         })}
       </script>

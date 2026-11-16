@@ -56,7 +56,7 @@ const byYear = [...new Set(publications.map((p) => p.year))]
 const allBib = publications.filter(hasCitableAuthors).map(toBibtex).join("\n\n");
 const allBibHref = `data:application/x-bibtex;charset=utf-8,${encodeURIComponent(allBib)}`;
 
-const META = routeMeta("/publications");
+const META = routeMeta("/research");
 
 function Meta() {
   return (
@@ -66,13 +66,13 @@ function Meta() {
         name="description"
         content={META.description}
       />
-      <link rel="canonical" href="https://rupeshmediboyina.dev/publications" />
+      <link rel="canonical" href="https://rupeshmediboyina.dev/research" />
       <meta property="og:title" content={META.title} />
       <meta
         property="og:description"
         content={META.description}
       />
-      <meta property="og:url" content="https://rupeshmediboyina.dev/publications" />
+      <meta property="og:url" content="https://rupeshmediboyina.dev/research" />
       <meta name="twitter:title" content={META.title} />
       <meta
         name="twitter:description"
@@ -84,7 +84,7 @@ function Meta() {
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://rupeshmediboyina.dev/" },
-            { "@type": "ListItem", position: 2, name: "Research Publications", item: "https://rupeshmediboyina.dev/publications" },
+            { "@type": "ListItem", position: 2, name: "Research", item: "https://rupeshmediboyina.dev/research" },
           ],
         })}
       </script>

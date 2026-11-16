@@ -13,9 +13,9 @@ export const site = {
 // Primary navigation.
 export const nav = [
   { to: "/projects", label: "Projects" },
-  { to: "/publications", label: "Research" },
+  { to: "/research", label: "Research" },
   { to: "/beyond", label: "Blog" },
-  { to: "/experience", label: "Career" },
+  { to: "/career", label: "Career" },
   { to: "/contact", label: "Contact" },
 ];
 

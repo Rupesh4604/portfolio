@@ -76,7 +76,7 @@ function Meta() {
 const featured = featuredProjects.map((p) => {
   const paper = p.featured.paper && publications.find((x) => x.title === p.featured.paper);
   const to =
-    p.featured.cta === "Read the paper" ? paper?.link || paper?.doi || "/publications"
+    p.featured.cta === "Read the paper" ? paper?.link || paper?.doi || "/research"
     : p.featured.cta === "View on GitHub" ? p.link
     : `/projects#${slugify(p.title)}`;
   return { key: p.title, to, image: p.image, tag: p.tag, title: p.title, desc: p.description, cta: p.featured.cta };
