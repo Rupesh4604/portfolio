@@ -21,7 +21,7 @@ export default function MobileMenu({ open, variant, onClose }) {
   const bold = variant === "D";
 
   return createPortal(
-    <nav
+    <div
       ref={panel}
       id="site-menu"
       aria-label="Main menu"
@@ -47,6 +47,7 @@ export default function MobileMenu({ open, variant, onClose }) {
         </button>
       </div>
 
+      <nav aria-label="Main">
       <ul className={`mt-4 border-t ${bold ? "border-[rgba(6,32,30,.18)]" : "border-[#E4E4DF]"}`}>
         {items.map((it, n) => {
           const cur = isCurrent(it.to);
@@ -73,6 +74,7 @@ export default function MobileMenu({ open, variant, onClose }) {
           );
         })}
       </ul>
+      </nav>
 
       <div className="mt-auto px-[22px] pb-10 pt-8 text-base leading-[2.5]">
         <SiteLink to={links.github} className="block">GitHub</SiteLink>
@@ -88,7 +90,7 @@ export default function MobileMenu({ open, variant, onClose }) {
           {dark ? "Light mode" : "Dark mode"}
         </button>
       </div>
-    </nav>,
+    </div>,
     document.body
   );
 }

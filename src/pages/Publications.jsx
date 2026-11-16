@@ -4,7 +4,7 @@ import DOMPurify from "dompurify";
 import { publications } from "../data/publicationsData";
 import { links } from "../data/siteData";
 import { paperCollections } from "../lib/derived";
-import { displayAuthors, toBibtex, bibKey } from "../lib/bibtex";
+import { displayAuthors, toBibtex, bibKey, hasCitableAuthors } from "../lib/bibtex";
 import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
@@ -30,7 +30,7 @@ const byYear = [...new Set(publications.map((p) => p.year))]
   .sort((a, b) => Number(b) - Number(a))
   .map((year) => ({ year, pubs: publications.filter((p) => p.year === year) }));
 
-const allBib = publications.map(toBibtex).join("\n\n");
+const allBib = publications.filter(hasCitableAuthors).map(toBibtex).join("\n\n");
 const allBibHref = `data:application/x-bibtex;charset=utf-8,${encodeURIComponent(allBib)}`;
 
 function Meta() {
@@ -146,10 +146,14 @@ function Publication({ p }) {
         {p.doi && <SiteLink to={p.doi} className="lk">DOI ↗</SiteLink>}
         {p.link && p.link !== p.doi && <SiteLink to={p.link} className="lk">Paper ↗</SiteLink>}
         {p.pdf && <SiteLink to={p.pdf} className="lk">PDF</SiteLink>}
-        <button type="button" className="lk" onClick={copy}>
-          {copied ? "Copied" : "Copy BibTeX"}
-        </button>
-        <span className="sr-only" role="status" aria-live="polite">{copied ? "BibTeX copied" : ""}</span>
+        {hasCitableAuthors(p) && (
+          <>
+            <button type="button" className="lk" onClick={copy}>
+              {copied ? "Copied" : "Copy BibTeX"}
+            </button>
+            <span className="sr-only" role="status" aria-live="polite">{copied ? "BibTeX copied" : ""}</span>
+          </>
+        )}
       </div>
       {hasMore && (
         <div id={`${id}-abs`} className={`disc ${open ? "is-open" : ""}`} inert={!open ? true : undefined}>

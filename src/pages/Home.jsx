@@ -192,7 +192,7 @@ function HomeA() {
               {paperCollections.map((c, n) => (
                 <span key={c.title}>
                   {n > 0 && ", "}
-                  <SiteLink to={c.url} className="text-ac hover:text-ac-hover">{c.title}</SiteLink>
+                  <SiteLink to={c.url} className="text-ac underline underline-offset-[3px] hover:text-ac-hover">{c.title}</SiteLink>
                 </span>
               ))}
             </p>

@@ -2,8 +2,15 @@
 
 const clean = (s = "") => s.replace(/\s*\(co-author\)\s*/gi, "").trim();
 
+// Shown as written in the data, including the "(co-author)" marker.
 export function displayAuthors(authors = "") {
-  return clean(authors);
+  return authors.trim();
+}
+
+// A co-authored entry whose list ends in "et al." has an unknown author order,
+// so no BibTeX is generated for it until the full list is in the data.
+export function hasCitableAuthors(p) {
+  return !(/\(co-author\)/i.test(p.authors || "") && /et al\.?/i.test(p.authors || ""));
 }
 
 function bibAuthors(authors = "") {
@@ -21,7 +28,13 @@ function kind(status = "") {
 }
 
 export function bibKey(p) {
-  const first = clean(p.authors).split(",")[0].trim().split(/\s+/).pop() || "paper";
+  const first =
+    clean(p.authors)
+      .replace(/\s+et al\.?$/i, "")
+      .split(",")[0]
+      .trim()
+      .split(/\s+/)
+      .pop() || "paper";
   const word = (p.title.match(/[A-Za-z]{4,}/) || ["paper"])[0];
   return `${first}${p.year}${word}`.toLowerCase().replace(/[^a-z0-9]/g, "");
 }

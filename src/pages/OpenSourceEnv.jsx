@@ -21,27 +21,29 @@ const prodhub = {
   tech: ["React.js", "Firebase", "Google APIs", "Gemini"],
   longDescription: `
     <p><strong>ProdHub</strong> is a modern, all-in-one web application built to help you organize, achieve, and grow. Seamlessly manage projects, tasks, habits, and your calendar from a single, intuitive platform—all with smart AI-powered features and robust security.</p>
+    <p><strong>Try ProdHub Now:</strong> <a href="https://my-productivity-hub-5a3ba.web.app/" target="_blank" rel="noopener noreferrer">my-productivity-hub-5a3ba.web.app</a></p>
+    <p><strong>Key Features</strong></p>
     <ul>
-      <li>Dashboard overview: snapshot of overdue tasks, upcoming deadlines, and progress; one-click <em>AI Daily Planner</em>.</li>
-      <li>AI goal decomposition: turn big ambitions into structured projects with tasks.</li>
-      <li>Hierarchical project management: per-project pages with dynamic progress bars.</li>
-      <li>Task management: priorities, due dates, quick completion.</li>
-      <li>Advanced AI planning (Gemini): daily planning and <strong>smart scheduling</strong> that respects Google Calendar, producing a time-blocked plan.</li>
-      <li>Task generation: context-aware task lists using project titles and calendar.</li>
-      <li><strong>Habit tracker</strong> and <strong>unified schedule</strong> with secure Calendar integration.</li>
+      <li>Dashboard Overview: snapshot of overdue tasks, upcoming deadlines, and progress; one-click <em>AI Daily Planner</em>.</li>
+      <li>AI Goal Decomposition: turn big ambitions into structured projects with tasks.</li>
+      <li>Hierarchical Project Management: per-project pages with dynamic progress bars.</li>
+      <li>Task Management: priorities, due dates, quick completion.</li>
+      <li>Advanced AI Planning (Gemini): goal decomposition, daily planning, <strong>smart scheduling</strong> that respects Google Calendar; produces an actionable time-blocked plan.</li>
+      <li>Task Generation: context-aware task lists using project titles &amp; calendar.</li>
+      <li><strong>Habit Tracker</strong> and <strong>Unified Schedule</strong> with secure Calendar integration.</li>
     </ul>
   `,
 };
 
 const steps = [
-  ["Explore ideas", "Help improve existing projects or propose new ones."],
-  ["Form teams", "Connect with like-minded folks and collaborate."],
-  ["Organize projects", "Lead initiatives with support from mentors."],
+  ["Explore Ideas", "Help improve existing projects or propose new ones."],
+  ["Form Teams", "Connect with like-minded folks and collaborate."],
+  ["Organize Projects", "Lead initiatives with support from mentors."],
 ];
 
 const channels = [
   { name: "Slack", to: SLACK, cta: "Join", text: "Channels for help, updates, and collaboration." },
-  { name: "Telegram", to: "https://t.me/openSourceEnv", cta: "Open", text: "Quick announcements and informal chats." },
+  { name: "Telegram", to: "https://t.me/openSourceEnv", cta: "Open", text: "Quick announcements & informal chats." },
   { name: "Discord", to: "https://discord.gg/ZydDAs87", cta: "Open", text: "Study rooms, voice calls, and meetups." },
 ];
 
@@ -133,28 +135,33 @@ export default function OpenSourceEnv() {
       <Meta />
       <PageHeader
         title="OpenSourceEnv"
-        lead="An initiative to make high-quality technology education open to everyone, with resources for learners at every level."
+        lead="OpenSourceEnv is a dedicated initiative focused on democratizing access to high-quality education in technology. Our mission is to provide comprehensive resources that empower learners at all levels to master new skills."
       >
-        <div className="mt-8 flex flex-wrap gap-2.5">
+        <p className="m-0 mt-6 text-[15px] text-i2">
+          Explore our projects: browse repositories and Notion teamspaces to discover projects &amp; resources.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2.5">
           <SiteLink to={GITHUB} className={btnPrimary}>GitHub ↗</SiteLink>
-          <SiteLink to={TEAMSPACE} className={btnGhost}>Notion teamspace ↗</SiteLink>
+          <SiteLink to={TEAMSPACE} className={btnGhost}>Teamspace ↗</SiteLink>
         </div>
       </PageHeader>
 
       <section className="mt-[clamp(56px,7vw,104px)] grid gap-4 md:grid-cols-2" aria-label="About">
         <article className="cd p-7">
-          <h2 className="m-0 text-xl font-medium tracking-[-0.01em]">Our initiative</h2>
+          <h2 className="m-0 text-xl font-medium tracking-[-0.01em]">Our Initiative</h2>
           <p className="m-0 mt-3 text-base leading-[1.65] text-i2">
-            We foster an inclusive learning environment where everyone can thrive. Current offerings span Deep Learning,
-            Machine Learning, AI, Data Science, Rapid Web Development, DBMS &amp; SQL, and DSA. Resources are continuously
-            updated for relevance and depth.
+            We foster an inclusive learning environment where everyone can thrive. Current offerings span{" "}
+            <strong className="font-medium text-ink">Deep Learning</strong>, <strong className="font-medium text-ink">Machine Learning</strong>,{" "}
+            <strong className="font-medium text-ink">AI</strong>, <strong className="font-medium text-ink">Data Science</strong>,{" "}
+            <strong className="font-medium text-ink">Rapid Web Development</strong>, <strong className="font-medium text-ink">DBMS &amp; SQL</strong>, and{" "}
+            <strong className="font-medium text-ink">DSA</strong>. Resources are continuously updated for relevance and depth.
           </p>
         </article>
         <article className="cd p-7">
-          <h2 className="m-0 text-xl font-medium tracking-[-0.01em]">What we offer</h2>
+          <h2 className="m-0 text-xl font-medium tracking-[-0.01em]">What We Offer</h2>
           <ul className="m-0 mt-3 list-none space-y-3 p-0 text-base leading-[1.6] text-i2">
-            <li><strong className="font-medium text-ink">Learning paths:</strong> curated roadmaps from fundamentals to advanced techniques.</li>
-            <li><strong className="font-medium text-ink">Community-driven learning:</strong> contribute, learn, and grow together with peers.</li>
+            <li><strong className="font-medium text-ink">Comprehensive Learning Paths:</strong> curated roadmaps from fundamentals to advanced techniques.</li>
+            <li><strong className="font-medium text-ink">Community-Driven Learning:</strong> contribute, learn, and grow together with like-minded peers.</li>
           </ul>
         </article>
       </section>
@@ -188,6 +195,9 @@ export default function OpenSourceEnv() {
       <section className="mt-[clamp(64px,8vw,112px)] grid gap-[clamp(40px,6vw,96px)] lg:grid-cols-2" aria-label="Get involved">
         <div>
           <h2 className={h2}>Contribute</h2>
+          <p className="m-0 mb-4 text-base text-i2">
+            Join the community, learn, build, and contribute to open-source initiatives.
+          </p>
           <ol className="m-0 list-none border-b border-ln p-0">
             {steps.map(([t, d], i) => (
               <li key={t} className="grid grid-cols-[32px_minmax(0,1fr)] gap-3 border-t border-ln py-5">
@@ -205,7 +215,7 @@ export default function OpenSourceEnv() {
           </div>
         </div>
         <div>
-          <h2 className={h2}>Community</h2>
+          <h2 className={h2}>Engage with the Community</h2>
           <ul className="m-0 list-none border-b border-ln p-0">
             {channels.map((c) => (
               <li key={c.name} className="border-t border-ln">
@@ -219,7 +229,24 @@ export default function OpenSourceEnv() {
               </li>
             ))}
           </ul>
-          <h3 className="m-0 mb-1 mt-10 text-sm font-normal text-mu">Email</h3>
+          <p className="m-0 mt-3 text-sm text-mu">
+            Alternate Slack invite:{" "}
+            <SiteLink to={SLACK} className="text-ac underline underline-offset-[3px]">link</SiteLink>
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-[clamp(64px,8vw,112px)] grid gap-[clamp(40px,6vw,96px)] lg:grid-cols-2" aria-labelledby="resources">
+        <div>
+          <h2 id="resources" className={h2}>Resources &amp; Contact</h2>
+          <h3 className="m-0 mb-3 text-sm font-normal text-mu">Quick Links</h3>
+          <div className="flex flex-wrap gap-2.5">
+            <SiteLink to={GITHUB} className={btnPrimary}>GitHub ↗</SiteLink>
+            <SiteLink to={TEAMSPACE} className={btnGhost}>Teamspace ↗</SiteLink>
+          </div>
+        </div>
+        <div>
+          <h3 className="m-0 mb-1 text-sm font-normal text-mu lg:mt-[60px]">Email Us</h3>
           <ul className="m-0 list-none border-b border-ln p-0">
             {emails.map((e) => (
               <CopyRow key={e} email={e} />

@@ -158,6 +158,9 @@ export default function Projects() {
   useEffect(() => {
     if (!hash) return;
     const id = hash.slice(1);
+    // A deep link must be visible: drop any filter or search that would hide it.
+    setCat(ALL);
+    setQ("");
     setOpen((o) => ({ ...o, [id]: true }));
     requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }));
   }, [hash]);
@@ -234,7 +237,7 @@ export default function Projects() {
 
         <p className="mt-10 text-[15px] text-i2">
           Looking for learning resources? See{" "}
-          <Link to="/open-source-env" className="text-ac hover:text-ac-hover">OpenSourceEnv</Link>.
+          <Link to="/open-source-env" className="text-ac underline underline-offset-[3px] hover:text-ac-hover">OpenSourceEnv</Link>.
         </p>
       </section>
     </Page>
