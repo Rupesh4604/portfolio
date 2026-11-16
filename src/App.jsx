@@ -19,8 +19,11 @@ import NotFound from "./pages/NotFound.jsx";
 import Contact from "./pages/Contact.jsx";
 
 
-function Shell() {
+export function Shell() {
   const { variant, isPhone } = useVariant();
+  useEffect(() => {
+    document.getElementById("root")?.removeAttribute("data-ssr");
+  }, []);
   const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef(null);

@@ -3,11 +3,16 @@ import '@fontsource/instrument-serif/latin-400.css'
 import '@fontsource/instrument-serif/latin-400-italic.css'
 import './input.css'
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+// Built pages arrive with the page already rendered (scripts/prerender.mjs marks #root with
+// data-ssr): hydrate it. The dev server serves an empty #root: mount fresh.
+const el = document.getElementById('root')
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+if (el.hasAttribute('data-ssr')) hydrateRoot(el, app)
+else createRoot(el).render(app)

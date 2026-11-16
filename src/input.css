@@ -34,6 +34,13 @@
 
 @layer base {
   html { -webkit-text-size-adjust: 100%; }
+  /* The prerendered HTML is the light desktop layout. When JS runs (html.js) and the visitor
+     will get a different layout (dark mode or a phone), keep it hidden until the app takes over.
+     Bots and no-JS visitors never get html.js, so they always see it. */
+  html.js.dark #root[data-ssr] { visibility: hidden; }
+  @media (max-width: 767.98px) {
+    html.js #root[data-ssr] { visibility: hidden; }
+  }
   body {
     margin: 0;
     background: var(--bg);
@@ -79,6 +86,7 @@
   .rw-stack { display: inline-grid; justify-items: start; white-space: nowrap; }
   .rw-stack > * { grid-area: 1 / 1; }
   .rw-sizer { visibility: hidden; }
+  .rw-sizer::before { content: attr(data-text); }
   .rw-fade {
     transition: opacity .38s var(--ease-out), transform .38s var(--ease-out), filter .38s;
   }

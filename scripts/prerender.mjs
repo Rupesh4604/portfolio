@@ -1,9 +1,35 @@
-// Emits per-route index.html copies with route-specific <head> meta.
-// This gives crawlers and social-scrapers correct titles, descriptions,
-// canonical URLs, and OG/Twitter cards without requiring full SSR.
+// Emits one static HTML file per route with:
+//   - route-specific <head> meta (title, description, canonical, OG/Twitter cards),
+//   - the page itself rendered to HTML (dist-ssr/entry-server.js, built by `npm run build`),
+//   - the page's own structured data (JSON-LD from its <Helmet>).
+// So crawlers and link scrapers that don't run JavaScript still get the full page.
+// The browser app hydrates this HTML (src/main.jsx).
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { SITE, routes } from './routes.mjs';
+
+const { render } = await import(pathToFileURL(path.resolve('dist-ssr/entry-server.js')).href);
+
+// Put the rendered page into #root and drop the generic <noscript> summary (the real page is there now).
+// React 19 renders each page's <Helmet> tags inline. Title, meta and canonical are hoisted by React
+// (it does not expect them in place when hydrating) and applyMeta already sets them in <head>, so they
+// are removed from the body; image preloads move to <head>. JSON-LD <script>s stay where React put
+// them: hydration expects them there, and crawlers read JSON-LD anywhere in the page.
+function withPage(html, url) {
+  let { html: body } = render(url);
+  const head = [];
+  body = body.replace(/<link rel="preload"[^>]*\/?>/g, (m) => {
+    head.push(m);
+    return '';
+  });
+  body = body.replace(/<title>[\s\S]*?<\/title>|<meta [^>]*\/?>|<link rel="canonical"[^>]*\/?>/g, '');
+  html = html.replace(/<noscript>[\s\S]*?<\/noscript>\s*/, '');
+  html = html.replace('<div id="root"></div>', () => `<div id="root" data-ssr>${body}</div>`);
+  if (head.length) html = html.replace('</head>', () => `    ${head.join('\n    ')}\n  </head>`);
+  if (!html.includes('data-ssr')) throw new Error(`Could not insert the rendered page for ${url}`);
+  return html;
+}
 
 const DIST = process.env.VITE_DIST_DIR || path.resolve('dist');
 
@@ -74,9 +100,11 @@ function applyMeta(html, route) {
 async function main() {
   const src = path.join(DIST, 'index.html');
   const template = await fs.readFile(src, 'utf8');
+  // npm runs this automatically after `build`; a second run would read an already-filled page.
+  if (template.includes('data-ssr')) throw new Error('dist/index.html is already prerendered; run `npm run build` again');
 
   for (const route of routes) {
-    const html = applyMeta(template, route);
+    const html = withPage(applyMeta(template, route), route.path);
     const outDir = route.path === '/' ? DIST : path.join(DIST, route.path);
     await fs.mkdir(outDir, { recursive: true });
     const outFile = path.join(outDir, 'index.html');
@@ -90,6 +118,7 @@ async function main() {
     .replace(/<link\s+rel="canonical"[^>]*>\s*/i, '')
     .replace(/<meta\s+name="robots"[^>]*>/i, '<meta name="robots" content="noindex, follow" />')
     .replace(/<meta\s+name="googlebot"[^>]*>\s*/i, '');
+  notFound = withPage(notFound, '/404');
   await fs.writeFile(path.join(DIST, '404.html'), notFound, 'utf8');
   console.log('prerendered 404 → 404.html');
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import DOMPurify from "dompurify";
+import { clean } from "../lib/sanitize";
 import { publications } from "../data/publicationsData";
 import { links } from "../data/siteData";
 import { paperCollections } from "../lib/derived";
@@ -187,7 +187,7 @@ function Publication({ p }) {
             <div className="max-w-[760px] pt-1.5 text-base leading-[1.65] text-i2">
               {shown.abstract && <p className="m-0">{shown.abstract}</p>}
               {p.notes && (
-                <p className="m-0 mt-3" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(p.notes) }} />
+                <p className="m-0 mt-3" dangerouslySetInnerHTML={{ __html: clean(p.notes) }} />
               )}
             </div>
           </div>

@@ -177,7 +177,7 @@ export default function Contact() {
             ))}
             <div className="flex min-h-[60px] items-center justify-between border-t border-ln text-base">
               <span>Local time</span>
-              <span className="text-mu">{site.city} · {time} IST</span>
+              <span className="text-mu" suppressHydrationWarning>{site.city} · {time} IST</span>
             </div>
           </div>
         </div>

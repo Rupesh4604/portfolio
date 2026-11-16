@@ -47,13 +47,11 @@ export default function RotatingWord({ words, mode = "fade", gradient = false, e
     );
   }
   // Reserve the longest word's width so line breaks (and the heading height) never jump.
+  // The sizer's text comes from CSS (data-text), so the HTML and search snippets read the headline once.
   const longest = words.reduce((a, b) => (b.length > a.length ? b : a), "");
   return (
     <span className={`rw-stack ${className}`} aria-live="off">
-      <span className={`rw-sizer ${gradient ? "rw-grad" : ""}`} aria-hidden="true">
-        {longest}
-        {suffix}
-      </span>
+      <span className={`rw-sizer ${gradient ? "rw-grad" : ""}`} aria-hidden="true" data-text={`${longest}${suffix}`} />
       <span>
         <span className={cls.replace(className, "")}>{word}</span>
         {suffix && <span className="not-italic text-ink">{suffix}</span>}

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import DOMPurify from "dompurify";
+import { clean } from "../lib/sanitize";
 import { projects, projectTags, featuredProjects } from "../data/projectsData";
 import { slugify } from "../lib/slug";
 import Page from "../components/site/Page.jsx";
@@ -134,7 +134,7 @@ function ProjectRow({ p, open, onToggle }) {
           <div className="max-w-[760px] pb-7">
             <div
               className="rich text-base leading-[1.65] text-i2"
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(p.longDescription || p.description) }}
+              dangerouslySetInnerHTML={{ __html: clean(p.longDescription || p.description) }}
             />
             {p.techStack?.length > 0 && (
               <ul className="m-0 mt-4 flex list-none flex-wrap gap-2 p-0">

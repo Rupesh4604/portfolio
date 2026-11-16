@@ -19,7 +19,7 @@ function Clock() {
   const time = useClock(site.timeZone);
   return (
     <span>
-      {site.city} · <time>{time}</time> IST
+      {site.city} · <time suppressHydrationWarning>{time}</time> IST
     </span>
   );
 }
