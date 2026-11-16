@@ -72,7 +72,10 @@ function PhoneBase({ tinted }) {
   return (
     <div className={`px-5 pb-9 pt-[22px] ${tinted ? "bg-bg-2" : ""}`}>
       <IconLinks />
-      <div className="mt-4 text-[13px] text-mu">© {year} {site.name}</div>
+      <div className="mt-4 flex flex-wrap justify-between gap-x-4 gap-y-1 text-[13px] text-mu">
+        <span>© {year} {site.name}</span>
+        <Clock />
+      </div>
     </div>
   );
 }
