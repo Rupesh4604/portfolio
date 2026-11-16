@@ -8,7 +8,6 @@ import SiteFooter from "./components/site/SiteFooter.jsx";
 import MobileMenu from "./components/site/MobileMenu.jsx";
 import GlowBackground from "./components/site/GlowBackground.jsx";
 import CommandPalette from "./components/site/CommandPalette.jsx";
-import Page from "./components/site/Page.jsx";
 import useVariant from "./hooks/useVariant.js";
 
 import Home from "./pages/Home.jsx";
@@ -20,8 +19,6 @@ import OpenSourceEnv from "./pages/OpenSourceEnv.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Contact from "./pages/Contact.jsx";
 
-// Pages below are rebuilt in steps 2–4; until then they keep the old container.
-const legacy = (el) => <Page legacy>{el}</Page>;
 
 function Shell() {
   const { variant, isPhone } = useVariant();
@@ -79,11 +76,11 @@ function Shell() {
           <Route path="/publications" element={<Publications />} />
           <Route path="/beyond" element={<Beyond />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/open-source-env" element={legacy(<OpenSourceEnv />)} />
+          <Route path="/open-source-env" element={<OpenSourceEnv />} />
           {/* Legacy URLs → consolidated Experience page */}
           <Route path="/internships" element={<Navigate to="/experience" replace />} />
           <Route path="/achievements" element={<Navigate to="/experience" replace />} />
-          <Route path="*" element={legacy(<NotFound />)} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <SiteFooter />
       </div>

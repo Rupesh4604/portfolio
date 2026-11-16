@@ -29,7 +29,7 @@ export const routes = [
     path: '/experience',
     title: 'Experience | M Rupesh Kumar Yadav',
     description:
-      'Experience of M Rupesh Kumar Yadav — education at IIT Bombay & NIT Andhra Pradesh, professional roles, research internships in AI and remote sensing, achievements, and positions of responsibility.',
+      'Experience of M Rupesh Kumar Yadav — education at IIT Bombay & NIT Andhra Pradesh, professional roles, research internships in AI & remote sensing, and achievements.',
     changefreq: 'monthly',
     priority: 0.7,
   },

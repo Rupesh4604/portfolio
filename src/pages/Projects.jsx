@@ -126,7 +126,7 @@ function ProjectRow({ p, open, onToggle }) {
           <div className="max-w-[760px] pb-7">
             {p.period && <div className="text-sm text-mu">{p.period}</div>}
             <div
-              className="prose-lite mt-2 text-base leading-[1.65] text-i2"
+              className="rich mt-2 text-base leading-[1.65] text-i2"
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(p.longDescription || p.description) }}
             />
             {p.techStack?.length > 0 && (
