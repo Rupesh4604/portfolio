@@ -259,14 +259,14 @@ function HomeC() {
               <span className="text-[76px] font-medium leading-none tracking-[-0.04em]">{paperCount}</span>
               <span className="text-base text-mu">peer-reviewed papers</span>
             </div>
-            <div className="mt-auto flex flex-wrap gap-x-2 pt-5 text-sm text-mu">
-              <SiteLink to="/publications" className="hover:text-ink">Publications</SiteLink>
+            <div className="mt-auto flex flex-wrap items-center gap-x-2 pt-5 text-sm text-mu">
+              <SiteLink to="/publications" className="inline-flex min-h-6 items-center hover:text-ink">Publications</SiteLink>
               <span aria-hidden="true">·</span>
-              <SiteLink to={links.scholar} className="hover:text-ink">Scholar</SiteLink>
+              <SiteLink to={links.scholar} className="inline-flex min-h-6 items-center hover:text-ink">Scholar</SiteLink>
               {paperCollections.map((c) => (
                 <span key={c.title} className="contents">
                   <span aria-hidden="true">·</span>
-                  <SiteLink to={c.url} className="hover:text-ink">{c.title}</SiteLink>
+                  <SiteLink to={c.url} className="inline-flex min-h-6 items-center hover:text-ink">{c.title}</SiteLink>
                 </span>
               ))}
             </div>

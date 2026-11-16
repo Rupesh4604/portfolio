@@ -50,7 +50,7 @@
     --sf: rgba(255, 255, 255, .05);
     --ink: #ECEDEA;
     --i2: #C2C7CC;
-    --mu: #9AA1A8;
+    --mu: #A9B0B8;          /* lighter than the handoff value: #9AA1A8 dips to 4.35:1 over the teal glow */
     --ln: rgba(255, 255, 255, .10);
     --ac: #7FD1C6;
     --ac-hover: #9FD8D1;
