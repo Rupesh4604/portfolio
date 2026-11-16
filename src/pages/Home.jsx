@@ -214,7 +214,7 @@ function HomeC() {
     <div className="wrap pt-[clamp(48px,7vw,96px)]">
       <div className="grid gap-4 min-[900px]:grid-cols-3">
         <SpotlightCard className="p-2 min-[900px]:col-span-2 min-[900px]:row-span-2">
-          <div className="gl-inner flex h-full min-h-[460px] flex-col justify-between gap-10 p-[clamp(28px,4vw,52px)]">
+          <div className="gl-inner flex h-full min-h-[300px] flex-col min-[900px]:min-h-[460px] justify-between gap-10 p-[clamp(28px,4vw,52px)]">
             <div className="text-[15px] text-mu">{site.name}</div>
             <div>
               <h1 className="m-0 max-w-[15ch] text-[clamp(36px,4.2vw,62px)] font-medium leading-[1.06] tracking-[-0.03em]">

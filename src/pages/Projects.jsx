@@ -276,9 +276,19 @@ export default function Projects() {
             ))}
           </ul>
         ) : (
-          <p className="py-8 text-base text-mu" role="status">
-            No projects match that search. Try another word or clear the filter.
-          </p>
+          <div className="py-8" role="status">
+            <p className="m-0 text-base text-mu">No projects match that search. Try another word or clear the filter.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setQ("");
+                setCat(ALL);
+              }}
+              className="lk mt-3"
+            >
+              Clear search and filter
+            </button>
+          </div>
         )}
 
         <p className="mt-10 text-[15px] text-i2">
