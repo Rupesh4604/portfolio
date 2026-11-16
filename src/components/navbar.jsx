@@ -11,11 +11,11 @@ const linkActive =
 
 const nav = [
   { to: "/", label: "Home" },
+  { to: "/publications", label: "Research" },
   { to: "/projects", label: "Projects" },
   { to: "/experience", label: "Experience" },
-  { to: "/publications", label: "Publications" },
   { to: "/beyond", label: "Beyond" },
-  { to: "/open-source-env", label: "OpenSourceEnv" },
+  { to: "/open-source-env", label: "Open Source" },
 ];
 
 export default function Navbar() {

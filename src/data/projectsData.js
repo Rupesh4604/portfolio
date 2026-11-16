@@ -4,6 +4,7 @@
 export const projects = [
   {
     title: "Intelligent Multi-Agent RAG System",
+    category: "Multimodal and Agentic AI",
     description:
       "Multi-agent RAG with query triage, parent-child retrieval, Flashrank re-ranking, tool-use, and guardrails.",
     longDescription:
@@ -15,13 +16,14 @@ export const projects = [
   },
   {
     title: "rs-dl-architect",
+    category: "Geospatial AI and Remote Sensing",
     description:
-      "An agentic Skill that automates deep-learning architecture design & evaluation for geospatial / RS tasks.",
+      "Reusable agent skill for designing and evaluating deep-learning architectures for geospatial and remote-sensing tasks.",
     longDescription:
       "<strong>rs-dl-architect</strong> is a lightweight, end-to-end framework built to design and evaluate deep learning architectures for remote sensing and Earth observation data."
       + "<br/><br/>"
       + "<ul class=\"list-disc pl-5 space-y-1\">"
-      + "<li><strong>Agentic automation:</strong> Packaged as a reusable agent Skill that proposes, configures, and benchmarks model architectures.</li>"
+      + "<li><strong>Agentic automation:</strong> Packaged as a reusable agent skill that proposes, configures, and benchmarks model architectures.</li>"
       + "<li><strong>Targeted tasks:</strong> Streamlines semantic segmentation, object detection, and change detection on satellite imagery.</li>"
       + "<li><strong>Advanced capabilities:</strong> Core support for multi-source data fusion (optical/SAR) and multi-temporal analysis.</li>"
       + "<li><strong>Production-ready:</strong> Built-in tooling for benchmarking model performance and ensuring interpretability.</li>"
@@ -33,6 +35,7 @@ export const projects = [
   },
   {
     title: "ProdHub: AI-Powered Productivity Hub",
+    category: "AI Systems and Full-stack ML",
     description:
       "Full-stack serverless app with Gemini-powered goal decomposition and Google Calendar integration.",
     longDescription:
@@ -47,6 +50,7 @@ export const projects = [
   },
   {
     title: "Financial News Sentiment Analysis (FinBERT)",
+    category: "AI Systems and Full-stack ML",
     description:
       "Fine-tuned FinBERT for financial sentiment classification - 90.9% accuracy, 0.91 F1 vs BERT/DistilBERT baselines.",
     longDescription:
@@ -61,6 +65,7 @@ export const projects = [
   },
   {
     title: "Image Super-Resolution (4x SISR)",
+    category: "Computer Vision",
     description:
       "Lightweight residual CNN in PyTorch for 4x super-resolution on 4,500 gaming LR-HR pairs; mixed-precision, PixelShuffle.",
     longDescription:
@@ -75,6 +80,7 @@ export const projects = [
   },
   {
     title: "Pedestrian Tracking - YOLOv5 + Deep SORT",
+    category: "Computer Vision",
     description:
       "Multi-camera pedestrian tracking served via FastAPI; 87% re-ID accuracy with a ResNet-50 feature extractor.",
     longDescription:
@@ -88,6 +94,7 @@ export const projects = [
   },
   {
     title: "Semantic Paraphrase Identification",
+    category: "AI Systems and Full-stack ML",
     description:
       "Siamese-LSTM with GloVe embeddings for semantic paraphrase detection on MRPC - 91.4% test accuracy.",
     longDescription:
@@ -102,6 +109,7 @@ export const projects = [
   },
   {
     title: "Time-Series Forecasting - Financial Markets",
+    category: "AI Systems and Full-stack ML",
     description:
       "ARIMA / SARIMA / stateful-LSTM forecasting of equity prices; best LSTM hit RMSE 10.3, R2 0.83.",
     longDescription:
@@ -115,6 +123,7 @@ export const projects = [
   },
   {
     title: "Hyperspectral Imagery Classification (CNN + ViT)",
+    category: "Geospatial AI and Remote Sensing",
     description:
       "Compared 3D-CNN, GCN, CNN, and ViT for HSI; SOTA accuracy in a low-data regime. PReMI 2025 paper.",
     longDescription:
@@ -128,13 +137,14 @@ export const projects = [
   },
   {
     title: "Quantum CNN for Slum Classification",
+    category: "Research Implementations",
     description:
       "Multi-Channel QCNN (TFQ/Cirq) for slum detection on Sentinel-2 - 94.8% acc, 0.933 F1. QIP journal paper.",
     longDescription:
       "A research-driven hybrid quantum-classical model for pixel/patch-level slum classification from Sentinel-2 imagery."
       + "<br/> - Built a Multi-Channel Quantum CNN with custom quantum convolutional layers and MCQI encoding using TensorFlow Quantum and Cirq."
       + "<br/> - Addressed class imbalance via spectral-intensity stratified sampling; achieved 94.8% test accuracy and 0.933 F1, outperforming a comparable classical CNN."
-      + "<br/> - Published in the Quantum Information Processing (QIP) journal, 2025.",
+      + "<br/> - Published in Quantum Information Processing, 25(4), article 119, 2026.",
     techStack: ["TensorFlow Quantum", "Cirq", "Keras", "Satellite Imagery"],
     link: "https://link.springer.com/article/10.1007/s11128-026-05134-z",
     image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/mqcnn.png",
@@ -142,6 +152,7 @@ export const projects = [
   },
   {
     title: "3D CNN for Slum Classification",
+    category: "Geospatial AI and Remote Sensing",
     description:
       "3D CNN in PyTorch for multi-band Sentinel-2 slum detection with patch-based inference.",
     longDescription:
@@ -153,6 +164,7 @@ export const projects = [
   },
   {
     title: "GeoWebClient",
+    category: "Geospatial AI and Remote Sensing",
     description:
       "Interoperable GIS dashboard using OGC WMS/WFS via OpenLayers + GeoServer.",
     longDescription:
@@ -164,6 +176,7 @@ export const projects = [
   },
   {
     title: "SOS WebClient Interface",
+    category: "Geospatial AI and Remote Sensing",
     description:
       "Browser client for OGC SOS (istSOS) with real-time sensor discovery and Google Charts.",
     longDescription:
@@ -178,6 +191,7 @@ export const projects = [
   },
   {
     title: "Emergency Services & Flood Zones Locator",
+    category: "Geospatial AI and Remote Sensing",
     description:
       "Disaster-response web app; FastAPI + Redis + GiST indexing cut location query times by 99%.",
     longDescription:
@@ -191,6 +205,7 @@ export const projects = [
   },
   {
     title: "Triple GAN",
+    category: "Computer Vision",
     description:
       "Reproduced Triple GAN for semi-supervised synthetic-data generation; 99.10% peak accuracy.",
     longDescription:
@@ -202,6 +217,7 @@ export const projects = [
   },
   {
     title: "Rib Segmentation & Labelling (FPN / U-Net++)",
+    category: "Computer Vision",
     description:
       "Automatic rib segmentation & labeling in chest X-rays (Dice 0.834) on VinDr-RibCXR.",
     longDescription:

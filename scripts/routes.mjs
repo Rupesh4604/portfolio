@@ -11,9 +11,9 @@ export const SITE = {
 export const routes = [
   {
     path: '/',
-    title: 'M Rupesh Kumar Yadav | Data Scientist & AI Developer',
+    title: 'M Rupesh Kumar Yadav - AI/ML Engineer & Researcher | Esri R&D',
     description:
-      'Portfolio of M Rupesh Kumar Yadav — Data Scientist and AI Developer, M.Tech at IIT Bombay. Projects in Machine Learning, Deep Learning, Computer Vision, LLMs, RAG systems, and geospatial AI (ProdHub, OpenSourceEnv).',
+      'AI/ML engineer and researcher at Esri R&D working on multimodal AI, geospatial intelligence, vision-language models, agentic systems, computer vision, and remote sensing.',
     changefreq: 'weekly',
     priority: 1.0,
   },
@@ -21,7 +21,7 @@ export const routes = [
     path: '/projects',
     title: 'Projects | M Rupesh Kumar Yadav',
     description:
-      'Explore projects by M Rupesh Kumar Yadav — multi-agent RAG systems, quantum CNN for remote sensing, AI productivity apps (ProdHub), and full-stack applications.',
+      'Selected AI/ML engineering projects by M Rupesh Kumar Yadav across agentic systems, geospatial AI, remote sensing, computer vision, and full-stack ML applications.',
     changefreq: 'monthly',
     priority: 0.9,
   },
@@ -35,9 +35,9 @@ export const routes = [
   },
   {
     path: '/publications',
-    title: 'Publications | M Rupesh Kumar Yadav',
+    title: 'Research Publications | M Rupesh Kumar Yadav',
     description:
-      'Peer-reviewed research papers by M Rupesh Kumar Yadav on Quantum Neural Networks, Hyperspectral Imagery Classification, and Graph-Based stance grouping — published in QIP, PReMI, IIT Delhi.',
+      'Research publications by M Rupesh Kumar Yadav across quantum machine learning, remote sensing, hyperspectral imagery, computer vision, and graph-based NLP.',
     changefreq: 'monthly',
     priority: 0.7,
   },

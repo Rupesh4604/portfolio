@@ -20,7 +20,7 @@ export default function Modal({ open, onClose, title, children, footer }) {
   return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center
-                 bg-black/60 backdrop-blur-sm p-4"
+                 bg-black/60 backdrop-blur-sm p-3 sm:p-4"
       onMouseDown={(e) => { mouseDownOnBackdropRef.current = e.target === e.currentTarget; }}
       onMouseUp={(e) => {
         if (mouseDownOnBackdropRef.current && e.target === e.currentTarget) onClose();
@@ -29,13 +29,13 @@ export default function Modal({ open, onClose, title, children, footer }) {
       aria-modal="true" role="dialog" aria-labelledby="modal-title"
     >
       <div
-        className="w-full max-w-3xl rounded-2xl border shadow-xl
+        className="max-h-[92vh] w-full max-w-3xl overflow-hidden rounded-lg border shadow-xl
                    bg-white dark:bg-slate-900 dark:border-slate-700
                    text-slate-800 dark:text-slate-100"
         onMouseDown={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b dark:border-slate-700">
-          <h3 id="modal-title" className="text-xl font-semibold">{title}</h3>
+        <div className="flex items-start justify-between gap-4 border-b px-4 py-4 dark:border-slate-700 sm:px-6">
+          <h3 id="modal-title" className="text-lg font-semibold leading-7 sm:text-xl">{title}</h3>
           <button
             onClick={onClose}
             className="rounded-md px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -44,12 +44,12 @@ export default function Modal({ open, onClose, title, children, footer }) {
         </div>
 
         {/* SCROLLABLE BODY */}
-        <div className="px-6 py-5 space-y-4 max-h-[75vh] overflow-y-auto">
+        <div className="max-h-[70vh] space-y-4 overflow-y-auto px-4 py-5 sm:px-6">
           {children}
         </div>
 
         {footer && (
-          <div className="px-6 py-4 border-t dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/60 rounded-b-2xl">
+          <div className="border-t bg-slate-50/60 px-4 py-4 dark:border-slate-700 dark:bg-slate-800/60 sm:px-6">
             {footer}
           </div>
         )}

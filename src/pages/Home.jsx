@@ -1,22 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { projects } from "../data/projectsData";
+import { publications } from "../data/publicationsData";
 
-/* Top projects to feature in the rolling marquee */
-const featured = projects.slice(0, 6);
+const focusAreas = [
+  "Multimodal AI",
+  "Vision-language models",
+  "Agentic AI systems",
+  "Computer vision",
+  "Geospatial intelligence",
+  "Remote sensing",
+];
 
-/* Profile photo with graceful initials fallback if /profile.jpg is missing */
+const proofPoints = [
+  {
+    label: "Current work",
+    title: "Data Scientist @ Esri R&D - GeoAI",
+    text: "Working on AI systems for geospatial intelligence, including language, vision, and spatial-data workflows.",
+  },
+  {
+    label: "Research",
+    title: "Peer-reviewed AI and remote-sensing work",
+    text: "Research record across quantum machine learning, hyperspectral imagery, slum detection, and stance grouping.",
+  },
+  {
+    label: "Engineering",
+    title: "Applied ML systems and open source",
+    text: "Projects span multi-agent RAG, geospatial ML tooling, computer vision pipelines, and full-stack AI applications.",
+  },
+];
+
+const technicalAreas = [
+  {
+    title: "AI Systems",
+    items: ["LLM agents", "RAG", "Tool use", "Guardrails", "Model serving", "Evaluation"],
+  },
+  {
+    title: "Vision And Remote Sensing",
+    items: ["Satellite imagery", "Vision transformers", "Segmentation", "Tracking", "Hyperspectral data"],
+  },
+  {
+    title: "Engineering",
+    items: ["Python", "PyTorch", "TensorFlow", "FastAPI", "React", "Cloud platforms"],
+  },
+];
+
+const selectedProjects = projects.slice(0, 4);
+const selectedPublications = publications.slice(0, 2);
+
 function Avatar() {
   const [err, setErr] = useState(false);
+
   return (
     <div className="relative shrink-0">
-      <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 blur-md opacity-60 dark:opacity-50" />
-      <div className="relative h-44 w-44 md:h-60 md:w-60 rounded-full overflow-hidden
-                      ring-2 ring-white/70 dark:ring-white/10
-                      bg-slate-200 dark:bg-surface-2 flex items-center justify-center">
+      <div
+        className="h-40 w-40 overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-sm dark:border-surface-border dark:bg-surface-2 sm:h-52 sm:w-52 lg:h-60 lg:w-60"
+      >
         {err ? (
-          <span className="text-5xl font-extrabold text-slate-500 dark:text-slate-300">RK</span>
+          <span className="flex h-full w-full items-center justify-center text-4xl font-bold text-slate-500 dark:text-slate-300">
+            RK
+          </span>
         ) : (
           <img
             src="/profile.jpg"
@@ -34,228 +78,212 @@ function Avatar() {
   );
 }
 
-/* A single project card used inside the marquee */
-function MarqueeCard({ p }) {
-  const inner = (
-    <>
-      <div className="h-32 w-full overflow-hidden bg-slate-100 dark:bg-surface-3">
-        {p.image && (
-          <img
-            src={p.image}
-            alt={p.title}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover group-hover/card:scale-105 transition-transform duration-300"
-          />
-        )}
-      </div>
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-semibold text-slate-900 dark:text-white line-clamp-1">{p.title}</h3>
-        <p className="text-sm card-muted mt-1 line-clamp-2">{p.description}</p>
-        {Array.isArray(p.techStack) && (
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {p.techStack.slice(0, 3).map((t) => (
-              <span key={t} className="chip">{t}</span>
-            ))}
-          </div>
-        )}
-      </div>
-    </>
-  );
-
-  const cls =
-    "group/card w-72 shrink-0 rounded-2xl overflow-hidden border flex flex-col " +
-    "border-slate-200 dark:border-surface-border bg-white dark:bg-surface-2 " +
-    "shadow-sm hover:shadow-lg transition";
-
-  return p.link ? (
-    <a href={p.link} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
-  ) : (
-    <Link to="/projects" className={cls}>{inner}</Link>
-  );
-}
-
-/* Cyclic animated roles for the hero section */
-function RoleCycler() {
-  const roles = [
-    "LLM & Agentic Systems Engineer",
-    "Applied ML / Deep Learning Engineer",
-    "Data Scientist",
-    "Data Scientist @ Esri R&D"
-  ];
-  const [index, setIndex] = useState(0);
-  const [fade, setFade] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % roles.length);
-        setFade(true);
-      }, 300); // fade duration
-    }, 3000); // swap every 3s
-    return () => clearInterval(interval);
-  }, [roles.length]);
-
+function SectionHeading({ eyebrow, title, action }) {
   return (
-    <span className={`inline-block text-gradient transition-opacity duration-300 min-h-[1.5em] ${fade ? "opacity-100" : "opacity-0"}`}>
-      {roles[index]}
-    </span>
+    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-500">
+          {eyebrow}
+        </p>
+        <h2 className="mt-2 text-2xl font-bold text-slate-950 dark:text-white sm:text-3xl">
+          {title}
+        </h2>
+      </div>
+      {action}
+    </div>
   );
 }
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "M Rupesh Kumar Yadav",
+    url: "https://rupesh-dev.vercel.app/",
+    jobTitle: "AI/ML Engineer & Researcher",
+    affiliation: {
+      "@type": "Organization",
+      name: "Esri R&D Center",
+    },
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "Indian Institute of Technology Bombay" },
+      { "@type": "CollegeOrUniversity", name: "National Institute of Technology Andhra Pradesh" },
+    ],
+    sameAs: [
+      "https://github.com/Rupesh4604",
+      "https://www.linkedin.com/in/mediboyina-rupesh-kumar-yadav-8b7a14205/",
+      "https://orcid.org/0000-0001-7148-0660",
+      "https://medium.com/@rupesh32003",
+    ],
+    knowsAbout: focusAreas,
+  };
+
   return (
     <>
       <Helmet>
-        <title>M Rupesh Kumar Yadav | LLM &amp; AI Engineer · Data Scientist</title>
-        <meta name="description" content="LLM & AI Engineer and Data Scientist. I build and deploy LLM-powered and agentic systems, fine-tune and serve deep-learning models, and apply ML to hard real-world data (NLP, vision, geospatial). M.Tech, IIT Bombay. Data Scientist @ Esri R&D." />
+        <title>M Rupesh Kumar Yadav - AI/ML Engineer &amp; Researcher | Esri R&amp;D</title>
+        <meta
+          name="description"
+          content="AI/ML engineer and researcher at Esri R&D working on multimodal AI, geospatial intelligence, vision-language models, agentic systems, computer vision, and remote sensing."
+        />
         <link rel="canonical" href="https://rupesh-dev.vercel.app/" />
-        <meta property="og:title" content="M Rupesh Kumar Yadav | LLM &amp; AI Engineer · Data Scientist" />
-        <meta property="og:description" content="LLM & AI Engineer and Data Scientist. I build and deploy LLM-powered and agentic systems, fine-tune and serve deep-learning models, and apply ML at scale. M.Tech, IIT Bombay." />
+        <meta property="og:title" content="M Rupesh Kumar Yadav - AI/ML Engineer & Researcher" />
+        <meta
+          property="og:description"
+          content="AI/ML engineer and researcher at Esri R&D working across multimodal AI, geospatial intelligence, agentic systems, computer vision, and remote sensing."
+        />
         <meta property="og:url" content="https://rupesh-dev.vercel.app/" />
-        <meta name="twitter:title" content="M Rupesh Kumar Yadav | LLM &amp; AI Engineer · Data Scientist" />
-        <meta name="twitter:description" content="LLM & AI Engineer and Data Scientist. I build and deploy LLM-powered and agentic systems, fine-tune and serve deep-learning models, and apply ML at scale. M.Tech, IIT Bombay." />
+        <meta name="twitter:title" content="M Rupesh Kumar Yadav - AI/ML Engineer & Researcher" />
+        <meta
+          name="twitter:description"
+          content="AI/ML engineer and researcher at Esri R&D working across multimodal AI, geospatial intelligence, agentic systems, computer vision, and remote sensing."
+        />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center mb-16 pt-6">
-        <div className="absolute top-0 right-0 -z-10 opacity-30 dark:opacity-20 pointer-events-none">
-          <div className="w-96 h-96 bg-blue-500/30 rounded-full blur-3xl absolute top-0 right-[-100px] animate-pulse"></div>
-          <div className="w-80 h-80 bg-purple-500/30 rounded-full blur-3xl absolute top-[100px] right-[50px] animate-pulse animation-delay-200"></div>
-        </div>
-
-        <div className="w-full flex flex-col-reverse lg:flex-row lg:items-center gap-10 lg:gap-16">
-          {/* Left: copy */}
-          <div className="max-w-2xl animate-fade-in">
-            <span className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400 text-sm font-medium mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      <section className="grid items-center gap-10 pb-14 pt-8 sm:pt-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16 lg:pt-16">
+        <div className="max-w-3xl">
+          <p className="mb-4 inline-flex rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-800 dark:border-emerald-900/80 dark:bg-emerald-950/30 dark:text-emerald-300">
+            Data Scientist @ Esri R&D - GeoAI
+          </p>
+          <h1 className="text-4xl font-extrabold leading-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
+            M Rupesh Kumar Yadav
+          </h1>
+          <p className="mt-4 text-2xl font-semibold text-slate-800 dark:text-slate-100 sm:text-3xl">
+            AI/ML Engineer & Researcher
+          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300 sm:text-xl">
+            I build intelligent systems that reason across language, vision, and geospatial data, spanning LLM agents, computer vision, remote sensing, and applied AI research.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {focusAreas.map((area) => (
+              <span key={area} className="chip">
+                {area}
               </span>
-              Data Scientist · Esri R&D (GeoAI)
-            </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 leading-tight">
-              Hi, I'm <br />
-              <span className="text-slate-900 dark:text-white">Rupesh Kumar</span>
-            </h1>
-            <div className="text-2xl md:text-3xl font-bold mb-6 min-h-[40px]">
-              <RoleCycler />
-            </div>
-            <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-4 max-w-2xl leading-relaxed">
-              I build and deploy LLM-powered and agentic systems, and apply deep learning to hard, real-world data from natural language to satellite imagery. M.Tech, IIT Bombay.
-            </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">
-              💼 Data Scientist at Esri R&D (GeoAI) · ex-DRDO &amp; HAL.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 animate-slide-up animation-delay-200">
-              <Link to="/projects" className="px-7 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-semibold hover:opacity-90 transition-opacity shadow-md">
-                View Projects
-              </Link>
-              <Link to="/publications" className="px-7 py-3.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                Read Publications
-              </Link>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3.5 inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white font-medium transition-colors"
-                aria-label="Download Resume"
-              >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                </svg>
-                Resume
-              </a>
-            </div>
-          </div>
-
-          {/* Right: avatar */}
-          <div className="flex justify-center lg:justify-end animate-fade-in">
-            <Avatar />
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects — infinite marquee */}
-      <section className="mb-20 animate-slide-up">
-        <div className="flex items-end justify-between mb-8">
-          <h2 className="text-3xl font-bold flex items-center gap-3">
-            <span className="w-2 h-8 bg-blue-600 rounded-full"></span>
-            Featured Projects
-          </h2>
-          <Link to="/projects" className="text-sm font-medium text-accent-500 hover:underline shrink-0">
-            See all →
-          </Link>
-        </div>
-
-        <div className="group relative marquee-mask overflow-hidden">
-          <div className="flex w-max gap-5 animate-marquee group-hover:[animation-play-state:paused]">
-            {[...featured, ...featured].map((p, i) => (
-              <MarqueeCard key={`${p.title}-${i}`} p={p} />
             ))}
           </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link
+              to="/projects"
+              className="inline-flex items-center justify-center rounded-lg bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
+            >
+              View Projects
+            </Link>
+            <Link
+              to="/publications"
+              className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 dark:border-surface-border dark:bg-surface-2 dark:text-white dark:hover:bg-surface-3"
+            >
+              Research Publications
+            </Link>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-surface-2 dark:hover:text-white"
+            >
+              Resume
+            </a>
+          </div>
         </div>
-        <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">Hover to pause · click a card to open it</p>
+        <div className="hidden justify-center sm:flex lg:justify-end">
+          <Avatar />
+        </div>
       </section>
 
-      {/* Technical Skills */}
-      <div className="max-w-4xl mx-auto mb-20 animate-slide-up animation-delay-400">
-        <section>
-          <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-            <span className="w-2 h-8 bg-purple-600 rounded-full"></span>
-            Technical Skills
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Programming Languages",
-                items: ["Python", "C/C++", "Java", "JavaScript", "TypeScript", "SQL", "MATLAB", "R", "Bash"],
-                icon: "💻"
-              },
-              {
-                title: "AI & ML Frameworks",
-                items: ["PyTorch", "TensorFlow", "Keras", "Scikit-Learn", "JAX", "Torchvision", "Hugging Face", "ONNX"],
-                icon: "🧠"
-              },
-              {
-                title: "LLM & Generative AI",
-                items: ["Transformers", "vLLM", "LangChain", "Agentic AI", "RAG", "Prompt Engineering", "Inference Optimization", "Multimodal Models"],
-                icon: "🤖"
-              },
-              {
-                title: "AI Engineering & MLOps",
-                items: ["MLflow", "Docker", "FastAPI", "Git", "AirFlow", "Spark", "BigQuery", "Cloud Platforms (AWS, GCP)"],
-                icon: "⚙️"
-              },
-              {
-                title: "Geospatial & Remote Sensing",
-                items: ["ArcGIS", "GDAL", "Rasterio", "Geospatial Intelligence", "GeoPandas", "GeoTIFF", "Satellite Imagery Analysis"],
-                icon: "🛰️"
-              },
-              {
-                title: "Dev & Tools",
-                items: ["React.js", "Node.js", "Git", "Docker", "Linux", "VS Code", "AWS", "MongoDB", "PostgreSQL"],
-                icon: "🛠️"
-              }
-            ].map((group) => (
-              <div key={group.title} className="bg-white dark:bg-surface-2 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-surface-border hover:shadow-md transition-shadow">
-                <h3 className="font-semibold text-lg mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                  <span>{group.icon}</span> {group.title}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((skill) => (
-                    <span key={skill} className="chip text-sm px-3 py-1.5 cursor-default hover:scale-105 transition-transform">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+      <section className="mb-16">
+        <SectionHeading eyebrow="Profile" title="Current focus and evidence" />
+        <div className="grid gap-4 md:grid-cols-3">
+          {proofPoints.map((item) => (
+            <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-surface-border dark:bg-surface-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                {item.label}
+              </p>
+              <h3 className="mt-3 text-lg font-semibold text-slate-950 dark:text-white">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                {item.text}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-16">
+        <SectionHeading
+          eyebrow="Selected work"
+          title="Projects across AI systems, vision, and geospatial ML"
+          action={
+            <Link to="/projects" className="text-sm font-semibold text-accent-500 hover:underline">
+              See all projects
+            </Link>
+          }
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {selectedProjects.map((project) => (
+            <Link
+              key={project.title}
+              to="/projects"
+              className="group rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-surface-border dark:bg-surface-2"
+            >
+              <p className="text-xs font-medium uppercase tracking-[0.14em] text-accent-500">
+                {project.category || "Project"}
+              </p>
+              <h3 className="mt-3 line-clamp-2 min-h-[3.5rem] text-base font-semibold text-slate-950 dark:text-white">
+                {project.title}
+              </h3>
+              <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                {project.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-16">
+        <SectionHeading
+          eyebrow="Research"
+          title="Publications and applied research record"
+          action={
+            <Link to="/publications" className="text-sm font-semibold text-accent-500 hover:underline">
+              View research
+            </Link>
+          }
+        />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {selectedPublications.map((pub) => (
+            <article key={pub.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-surface-border dark:bg-surface-2">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                {pub.venue}{pub.year ? `, ${pub.year}` : ""}
+              </p>
+              <h3 className="mt-2 text-lg font-semibold leading-7 text-slate-950 dark:text-white">
+                {pub.title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                {pub.description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-8">
+        <SectionHeading eyebrow="Technical areas" title="Working vocabulary" />
+        <div className="grid gap-4 md:grid-cols-3">
+          {technicalAreas.map((group) => (
+            <article key={group.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-surface-border dark:bg-surface-2">
+              <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{group.title}</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((skill) => (
+                  <span key={skill} className="chip">
+                    {skill}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
