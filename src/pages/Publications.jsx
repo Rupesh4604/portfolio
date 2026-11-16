@@ -8,6 +8,7 @@ import { displayAuthors, toBibtex, bibKey, hasCitableAuthors } from "../lib/bibt
 import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
+import { routeMeta } from "../lib/seo";
 
 const SELF = /(Rupesh Kumar Yadav Mediboyina|R\. K\. Y\. Mediboyina)/;
 
@@ -55,25 +56,27 @@ const byYear = [...new Set(publications.map((p) => p.year))]
 const allBib = publications.filter(hasCitableAuthors).map(toBibtex).join("\n\n");
 const allBibHref = `data:application/x-bibtex;charset=utf-8,${encodeURIComponent(allBib)}`;
 
+const META = routeMeta("/publications");
+
 function Meta() {
   return (
     <Helmet>
-      <title>Research Publications | M Rupesh Kumar Yadav</title>
+      <title>{META.title}</title>
       <meta
         name="description"
-        content="Research publications by M Rupesh Kumar Yadav across quantum machine learning, remote sensing, hyperspectral imagery, computer vision, and graph-based NLP."
+        content={META.description}
       />
       <link rel="canonical" href="https://rupeshmediboyina.dev/publications" />
-      <meta property="og:title" content="Research Publications | M Rupesh Kumar Yadav" />
+      <meta property="og:title" content={META.title} />
       <meta
         property="og:description"
-        content="Research publications across quantum machine learning, remote sensing, hyperspectral imagery, computer vision, and graph-based NLP."
+        content={META.description}
       />
       <meta property="og:url" content="https://rupeshmediboyina.dev/publications" />
-      <meta name="twitter:title" content="Research Publications | M Rupesh Kumar Yadav" />
+      <meta name="twitter:title" content={META.title} />
       <meta
         name="twitter:description"
-        content="Research publications across quantum machine learning, remote sensing, hyperspectral imagery, computer vision, and graph-based NLP."
+        content={META.description}
       />
       <script type="application/ld+json">
         {JSON.stringify({

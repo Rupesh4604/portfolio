@@ -13,6 +13,7 @@ import Disclosure from "../components/site/Disclosure.jsx";
 import { Timeline, TimelineItem } from "../components/site/Timeline.jsx";
 import useVariant from "../hooks/useVariant";
 import { glass } from "../data/glassCopy";
+import { routeMeta } from "../lib/seo";
 
 // "May 2023 - July 2023" -> "May 2023 – Jul 2023"; "Present" -> "now"
 const when = (d = "") =>
@@ -49,20 +50,22 @@ const lead = [
 //     .map((p) => ({ title: p.title, sub: `${p.organization} · ${p.duration}` })),
 // ];
 
+const META = routeMeta("/experience");
+
 function Meta() {
   return (
     <Helmet>
-      <title>Experience | M Rupesh Kumar Yadav</title>
+      <title>{META.title}</title>
       <meta
         name="description"
-        content="Experience of M Rupesh Kumar Yadav — education at IIT Bombay & NIT Andhra Pradesh, professional roles, research internships in AI & remote sensing, and achievements."
+        content={META.description}
       />
       <link rel="canonical" href="https://rupeshmediboyina.dev/experience" />
-      <meta property="og:title" content="Experience | M Rupesh Kumar Yadav" />
-      <meta property="og:description" content="Education, work experience, internships and achievements of M Rupesh Kumar Yadav." />
+      <meta property="og:title" content={META.title} />
+      <meta property="og:description" content={META.description} />
       <meta property="og:url" content="https://rupeshmediboyina.dev/experience" />
-      <meta name="twitter:title" content="Experience | M Rupesh Kumar Yadav" />
-      <meta name="twitter:description" content="Education, work experience, internships and achievements of M Rupesh Kumar Yadav." />
+      <meta name="twitter:title" content={META.title} />
+      <meta name="twitter:description" content={META.description} />
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",

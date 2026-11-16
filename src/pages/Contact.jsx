@@ -5,20 +5,23 @@ import { contact } from "../data/contactData";
 import useClock from "../hooks/useClock";
 import Page from "../components/site/Page.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
+import { routeMeta } from "../lib/seo";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
+
+const META = routeMeta("/contact");
 
 function Meta() {
   return (
     <Helmet>
-      <title>Contact | M Rupesh Kumar Yadav</title>
-      <meta name="description" content="Get in touch with M Rupesh Kumar Yadav (Rupesh Mediboyina) about research collaborations, multimodal models, agents and inference." />
+      <title>{META.title}</title>
+      <meta name="description" content={META.description} />
       <link rel="canonical" href="https://rupeshmediboyina.dev/contact" />
-      <meta property="og:title" content="Contact | M Rupesh Kumar Yadav" />
-      <meta property="og:description" content="Email, GitHub, LinkedIn and Google Scholar for M Rupesh Kumar Yadav." />
+      <meta property="og:title" content={META.title} />
+      <meta property="og:description" content={META.description} />
       <meta property="og:url" content="https://rupeshmediboyina.dev/contact" />
-      <meta name="twitter:title" content="Contact | M Rupesh Kumar Yadav" />
-      <meta name="twitter:description" content="Email, GitHub, LinkedIn and Google Scholar for M Rupesh Kumar Yadav." />
+      <meta name="twitter:title" content={META.title} />
+      <meta name="twitter:description" content={META.description} />
     </Helmet>
   );
 }

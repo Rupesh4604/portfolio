@@ -8,7 +8,6 @@ export default function NotFound() {
       <Helmet>
         <title>404 — Not Found | M Rupesh Kumar Yadav</title>
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://rupeshmediboyina.dev/" />
       </Helmet>
       <section className="flex min-h-[60vh] flex-col justify-center pt-[clamp(48px,8vw,120px)]">
         <p className="m-0 text-sm text-mu">Error 404</p>

@@ -83,6 +83,15 @@ async function main() {
     await fs.writeFile(outFile, html, 'utf8');
     console.log('prerendered', route.path, '→', path.relative(DIST, outFile));
   }
+
+  // 404.html: served by Vercel with a 404 status for unknown paths; the app then shows NotFound.
+  let notFound = template
+    .replace(/<title>[\s\S]*?<\/title>/, '<title>Page not found | M Rupesh Kumar Yadav</title>')
+    .replace(/<link\s+rel="canonical"[^>]*>\s*/i, '')
+    .replace(/<meta\s+name="robots"[^>]*>/i, '<meta name="robots" content="noindex, follow" />')
+    .replace(/<meta\s+name="googlebot"[^>]*>\s*/i, '');
+  await fs.writeFile(path.join(DIST, '404.html'), notFound, 'utf8');
+  console.log('prerendered 404 → 404.html');
 }
 
 main().catch((err) => {

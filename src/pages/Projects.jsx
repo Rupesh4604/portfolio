@@ -11,30 +11,33 @@ import SiteLink from "../components/site/SiteLink.jsx";
 import { SearchIcon } from "../components/site/Icons.jsx";
 import { ArtCarousel } from "../components/site/ProjectArt.jsx";
 import { publications } from "../data/publicationsData";
+import { routeMeta } from "../lib/seo";
 
 const ALL = "All";
 // Curated order from projectsData; the same titles, tags and text in every mode.
 const items = projects.map((p) => ({ ...p, slug: slugify(p.title) }));
 
+const META = routeMeta("/projects");
+
 function Meta() {
   return (
     <Helmet>
-      <title>Projects | M Rupesh Kumar Yadav</title>
+      <title>{META.title}</title>
       <meta
         name="description"
-        content="Selected AI/ML engineering projects by M Rupesh Kumar Yadav across agentic systems, geospatial AI, remote sensing, computer vision, and full-stack ML applications."
+        content={META.description}
       />
       <link rel="canonical" href="https://rupeshmediboyina.dev/projects" />
-      <meta property="og:title" content="Projects | M Rupesh Kumar Yadav" />
+      <meta property="og:title" content={META.title} />
       <meta
         property="og:description"
-        content="Selected AI/ML engineering projects across agentic systems, geospatial AI, remote sensing, computer vision, and full-stack ML applications."
+        content={META.description}
       />
       <meta property="og:url" content="https://rupeshmediboyina.dev/projects" />
-      <meta name="twitter:title" content="Projects | M Rupesh Kumar Yadav" />
+      <meta name="twitter:title" content={META.title} />
       <meta
         name="twitter:description"
-        content="Selected AI/ML engineering projects across agentic systems, geospatial AI, remote sensing, computer vision, and full-stack ML applications."
+        content={META.description}
       />
       <script type="application/ld+json">
         {JSON.stringify({

@@ -76,6 +76,9 @@ function Shell() {
           <Route path="/beyond" element={<Beyond />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/open-source-env" element={<Navigate to="/projects" replace />} />
+          <Route path="/career" element={<Navigate to="/experience" replace />} />
+          <Route path="/research" element={<Navigate to="/publications" replace />} />
+          <Route path="/blog" element={<Navigate to="/beyond" replace />} />
           {/* Legacy URLs → consolidated Experience page */}
           <Route path="/internships" element={<Navigate to="/experience" replace />} />
           <Route path="/achievements" element={<Navigate to="/experience" replace />} />

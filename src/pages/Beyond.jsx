@@ -7,6 +7,7 @@ import Page from "../components/site/Page.jsx";
 import PageHeader from "../components/site/PageHeader.jsx";
 import ChipGroup from "../components/site/ChipGroup.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
+import { routeMeta } from "../lib/seo";
 
 const ALL = "all";
 const featured = articles[0];
@@ -14,20 +15,22 @@ const featured = articles[0];
 const topics = [...new Set(posts.map((p) => p.tags[0]).filter(Boolean))];
 const elsewhere = beyondLinks.filter((l) => l.category !== "Writing");
 
+const META = routeMeta("/beyond");
+
 function Meta() {
   return (
     <Helmet>
-      <title>Blog | M Rupesh Kumar Yadav</title>
+      <title>{META.title}</title>
       <meta
         name="description"
-        content="Writing by M Rupesh Kumar Yadav: notes, research reviews and tutorials on geospatial foundation models, remote sensing and vision-language models."
+        content={META.description}
       />
       <link rel="canonical" href="https://rupeshmediboyina.dev/beyond" />
-      <meta property="og:title" content="Blog | M Rupesh Kumar Yadav" />
-      <meta property="og:description" content="Notes on machine learning, book notes, and other places M Rupesh Kumar Yadav writes and builds on the web." />
+      <meta property="og:title" content={META.title} />
+      <meta property="og:description" content={META.description} />
       <meta property="og:url" content="https://rupeshmediboyina.dev/beyond" />
-      <meta name="twitter:title" content="Blog | M Rupesh Kumar Yadav" />
-      <meta name="twitter:description" content="Notes on machine learning, book notes, and other places M Rupesh Kumar Yadav writes and builds on the web." />
+      <meta name="twitter:title" content={META.title} />
+      <meta name="twitter:description" content={META.description} />
       <link rel="alternate" type="application/atom+xml" title="Rupesh's Blog" href={feedUrl} />
       <script type="application/ld+json">
         {JSON.stringify({

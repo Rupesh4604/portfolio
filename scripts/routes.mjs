@@ -1,5 +1,5 @@
-// Central registry of routes for prerender + sitemap.
-// Keep meta in sync with each page's <Helmet>.
+// Central registry of routes for prerender, sitemap and each page's <Helmet>
+// (pages read their title/description through src/lib/seo.js, so there is one copy).
 
 export const SITE = {
   origin: 'https://rupeshmediboyina.dev',
@@ -21,15 +21,15 @@ export const routes = [
     path: '/projects',
     title: 'Projects | M Rupesh Kumar Yadav',
     description:
-      'Selected AI/ML engineering projects by M Rupesh Kumar Yadav across agentic systems, geospatial AI, remote sensing, computer vision, and full-stack ML applications.',
+      'Projects by M Rupesh Kumar Yadav: a multi-agent RAG assistant, CNN and vision transformers for hyperspectral imagery, quantum CNNs for satellite imagery, agent tools for remote sensing, and more.',
     changefreq: 'monthly',
     priority: 0.9,
   },
   {
     path: '/experience',
-    title: 'Experience | M Rupesh Kumar Yadav',
+    title: 'Career | M Rupesh Kumar Yadav',
     description:
-      'Experience of M Rupesh Kumar Yadav — education at IIT Bombay & NIT Andhra Pradesh, professional roles, research internships in AI & remote sensing, and achievements.',
+      'Career of M Rupesh Kumar Yadav: Data Scientist at Esri R&D, M.Tech from IIT Bombay, B.Tech from NIT Andhra Pradesh, and research internships in computer vision and machine learning at DRDO and HAL.',
     changefreq: 'monthly',
     priority: 0.7,
   },
@@ -37,7 +37,7 @@ export const routes = [
     path: '/publications',
     title: 'Research Publications | M Rupesh Kumar Yadav',
     description:
-      'Research publications by M Rupesh Kumar Yadav across quantum machine learning, remote sensing, hyperspectral imagery, computer vision, and graph-based NLP.',
+      'Peer-reviewed research by M Rupesh Kumar Yadav on quantum machine learning, hyperspectral imagery, slum detection from satellite imagery and graph-based NLP.',
     changefreq: 'monthly',
     priority: 0.7,
   },
@@ -45,7 +45,7 @@ export const routes = [
     path: '/beyond',
     title: 'Blog | M Rupesh Kumar Yadav',
     description:
-      'Writing by M Rupesh Kumar Yadav — notes on transformers and machine learning, book notes — plus GeoFM Lab, Quantum AI Hub, ProdHub and other places on the web.',
+      'Writing by M Rupesh Kumar Yadav: notes, research reviews and tutorials on geospatial foundation models, remote sensing and vision-language models, plus GeoFM Lab and Quantum AI Hub.',
     changefreq: 'monthly',
     priority: 0.6,
   },
@@ -53,7 +53,7 @@ export const routes = [
     path: '/contact',
     title: 'Contact | M Rupesh Kumar Yadav',
     description:
-      'Get in touch with M Rupesh Kumar Yadav (Rupesh Mediboyina) about research collaborations, multimodal models, agents and inference.',
+      'Contact M Rupesh Kumar Yadav (Rupesh Mediboyina) about research collaborations, multimodal and geospatial AI, agents and RAG.',
     changefreq: 'yearly',
     priority: 0.5,
   },

@@ -23,6 +23,7 @@ import SpotlightCard from "../components/site/SpotlightCard.jsx";
 import { ArrowRight } from "../components/site/Icons.jsx";
 import { ArtCarousel } from "../components/site/ProjectArt.jsx";
 import { glass } from "../data/glassCopy";
+import { routeMeta } from "../lib/seo";
 
 // The three featured projects lead Home in every mode (same titles and text everywhere).
 const selected = featuredProjects.map((p) => {
@@ -53,25 +54,27 @@ const jsonLd = {
   ],
 };
 
+const META = routeMeta("/");
+
 function Meta() {
   return (
     <Helmet>
-      <title>M Rupesh Kumar Yadav - AI/ML Engineer &amp; Researcher | Esri R&amp;D</title>
+      <title>{META.title}</title>
       <meta
         name="description"
-        content="AI/ML engineer and researcher at Esri R&D working on multimodal AI, geospatial intelligence, vision-language models, agentic systems, computer vision, and remote sensing."
+        content={META.description}
       />
       <link rel="canonical" href="https://rupeshmediboyina.dev/" />
-      <meta property="og:title" content="M Rupesh Kumar Yadav - AI/ML Engineer & Researcher" />
+      <meta property="og:title" content={META.title} />
       <meta
         property="og:description"
-        content="AI/ML engineer and researcher at Esri R&D working across multimodal AI, geospatial intelligence, agentic systems, computer vision, and remote sensing."
+        content={META.description}
       />
       <meta property="og:url" content="https://rupeshmediboyina.dev/" />
-      <meta name="twitter:title" content="M Rupesh Kumar Yadav - AI/ML Engineer & Researcher" />
+      <meta name="twitter:title" content={META.title} />
       <meta
         name="twitter:description"
-        content="AI/ML engineer and researcher at Esri R&D working across multimodal AI, geospatial intelligence, agentic systems, computer vision, and remote sensing."
+        content={META.description}
       />
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
     </Helmet>
