@@ -1,8 +1,10 @@
+import { useLocation } from "react-router-dom";
 import SiteLink from "./SiteLink.jsx";
 import { GithubIcon, ScholarIcon, LinkedinIcon, MailIcon } from "./Icons.jsx";
 import useVariant from "../../hooks/useVariant.js";
 import useClock from "../../hooks/useClock.js";
 import { site, nav, links } from "../../data/siteData.js";
+import { feedUrl } from "../../lib/derived.js";
 
 const year = new Date().getFullYear();
 const siteLinks = nav.filter((n) => n.label !== "Contact");
@@ -146,6 +148,30 @@ function FooterC() {
   );
 }
 
+/* C · Glass inner pages: a slim hairline footer (*C.dc.html .ft) */
+function FooterCSlim() {
+  const items = [
+    { to: links.github, label: "GitHub" },
+    { to: links.scholar, label: "Scholar" },
+    { to: links.linkedin, label: "LinkedIn" },
+    { to: feedUrl, label: "RSS" },
+  ];
+  return (
+    <footer className="relative mt-[clamp(96px,11vw,160px)] border-t border-ln">
+      <div className="wrap flex flex-wrap justify-between gap-4 pb-9 pt-7 text-sm text-mu">
+        <span>© {year} {site.name}</span>
+        <nav aria-label="Elsewhere" className="flex gap-6">
+          {items.map((l) => (
+            <SiteLink key={l.label} to={l.to} className="inline-flex min-h-6 items-center transition-colors hover:text-ink">
+              {l.label}
+            </SiteLink>
+          ))}
+        </nav>
+      </div>
+    </footer>
+  );
+}
+
 /* D · Bold teal band (phone) */
 function FooterD() {
   return (
@@ -166,7 +192,8 @@ function FooterD() {
 
 export default function SiteFooter() {
   const { variant, isPhone } = useVariant();
-  if (variant === "C") return <FooterC />;
+  const { pathname } = useLocation();
+  if (variant === "C") return pathname === "/" ? <FooterC /> : <FooterCSlim />;
   if (variant === "D") return <FooterD />;
   return <FooterA isPhone={isPhone} />;
 }

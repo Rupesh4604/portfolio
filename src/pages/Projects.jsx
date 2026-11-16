@@ -102,7 +102,7 @@ function FeaturedCard({ p }) {
   return (
     <SiteLink to={p.to} className="cd cd-lift group block w-[276px] p-2.5 text-ink md:w-auto">
       {p.glass ? (
-        <GridPanel className="h-[150px] md:h-[220px]" />
+        <GridPanel tone="tint" className="h-[150px] md:h-[220px]" />
       ) : (
         <div className="h-[150px] overflow-hidden rounded-[calc(var(--radius-card)-4px)] bg-tint md:h-[220px]">
           {p.image && <img src={p.image} alt="" loading="lazy" className="h-full w-full object-cover" />}
@@ -144,7 +144,7 @@ function ProjectRow({ p, open, onToggle }) {
         </span>
         <span className="hidden text-sm text-ac md:block">{p.shownTag}</span>
         <span className="hidden text-right text-sm text-mu md:block">{p.year}</span>
-        <span className="chev justify-self-end text-mu" aria-hidden="true">⌄</span>
+        <span className="chev justify-self-end text-mu" aria-hidden="true" />
       </button>
       <div id={`${p.slug}-details`} className={`disc ${open ? "is-open" : ""}`} inert={!open ? true : undefined}>
         <div>
@@ -254,7 +254,9 @@ export default function Projects() {
       <section aria-labelledby="all" className="mt-[clamp(72px,9vw,128px)]">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
           <h2 id="all" className="display m-0 text-[clamp(30px,3.4vw,40px)] tracking-[-0.02em]">All projects</h2>
-          <div className="relative w-full md:w-[260px]">
+          <div className={isGlass ? "flex w-full flex-wrap items-center gap-2 md:w-auto" : "contents"}>
+          {isGlass && <ChipGroup label="Filter by area" options={chips} value={cat} onChange={setCat} />}
+          <div className={`relative w-full md:w-[260px] ${isGlass ? "md:ml-2" : ""}`}>
             <label htmlFor="pq" className="sr-only">Search projects</label>
             <SearchIcon size={17} className="pointer-events-none absolute left-4 top-[13px] text-mu" />
             <input
@@ -266,8 +268,9 @@ export default function Projects() {
               className="h-11 w-full rounded-full border border-ln bg-transparent pl-[42px] pr-[18px] text-base text-ink placeholder:text-mu md:text-[15px]"
             />
           </div>
+          </div>
         </div>
-        <ChipGroup label="Filter by area" options={chips} value={cat} onChange={setCat} className="mb-5" />
+        {!isGlass && <ChipGroup label="Filter by area" options={chips} value={cat} onChange={setCat} className="mb-5" />}
 
         {rows.length > 0 ? (
           <ul className="m-0 list-none border-b border-ln p-0">

@@ -145,7 +145,7 @@ function Publication({ p, isGlass }) {
             onClick={() => setOpen((o) => !o)}
           >
             {open ? "Hide abstract" : "Abstract"}
-            <span className="chev" aria-hidden="true">⌄</span>
+            <span className="chev" aria-hidden="true" />
           </button>
         )}
         {p.doi && <SiteLink to={p.doi} className="lk">DOI ↗</SiteLink>}

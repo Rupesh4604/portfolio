@@ -7,7 +7,7 @@ export default function Disclosure({ open, onToggle, label, openLabel, buttonCla
     <>
       <button type="button" className={buttonClass} aria-expanded={open} aria-controls={id} onClick={onToggle}>
         {open && openLabel ? openLabel : label}
-        <span className="chev" aria-hidden="true">⌄</span>
+        <span className="chev" aria-hidden="true" />
       </button>
       <div id={id} className={`disc ${open ? "is-open" : ""}`} inert={!open ? true : undefined}>
         <div>{children}</div>
