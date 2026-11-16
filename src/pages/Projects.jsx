@@ -9,8 +9,7 @@ import PageHeader from "../components/site/PageHeader.jsx";
 import ChipGroup from "../components/site/ChipGroup.jsx";
 import SiteLink from "../components/site/SiteLink.jsx";
 import { SearchIcon } from "../components/site/Icons.jsx";
-import GridPanel from "../components/site/GridPanel.jsx";
-import useVariant from "../hooks/useVariant";
+import { ArtCarousel } from "../components/site/ProjectArt.jsx";
 import { publications } from "../data/publicationsData";
 
 const ALL = "All";
@@ -80,19 +79,19 @@ const featured = featuredProjects.map((p) => {
   return { key: p.title, to, image: p.image, tag: p.tag, title: p.title, desc: p.description, cta: p.featured.cta };
 });
 
-function FeaturedCard({ p, glass }) {
+// The whole card is clickable through a stretched title link; the illustration's dot buttons sit above it.
+function FeaturedCard({ p }) {
   return (
-    <SiteLink to={p.to} className="cd cd-lift group block w-[276px] p-2.5 text-ink md:w-auto">
-      {glass ? (
-        <GridPanel tone="tint" className="h-[150px] md:h-[220px]" />
-      ) : (
-        <div className="h-[150px] overflow-hidden rounded-[calc(var(--radius-card)-4px)] bg-tint md:h-[220px]">
-          {p.image && <img src={p.image} alt="" loading="lazy" className="h-full w-full object-cover" />}
-        </div>
-      )}
+    <div className="cd cd-lift group relative w-[276px] p-2.5 text-ink md:w-auto">
+      <ArtCarousel title={p.key} className="relative z-10 h-[170px] md:h-[220px]" />
       <div className="px-2.5 pb-3 pt-[18px]">
         <span className="tag">{p.tag}</span>
-        <div className="mt-3 text-[22px] font-medium leading-[1.2] tracking-[-0.02em]">{p.title}</div>
+        <SiteLink
+          to={p.to}
+          className="mt-3 block text-[22px] font-medium leading-[1.2] tracking-[-0.02em] text-ink after:absolute after:inset-0 after:rounded-[inherit] after:content-['']"
+        >
+          {p.title}
+        </SiteLink>
         <div className="mt-2 text-[15px] leading-[1.5] text-i2">{p.desc}</div>
         {p.cta && (
           <div className="mt-4 text-sm text-ac">
@@ -103,7 +102,7 @@ function FeaturedCard({ p, glass }) {
           </div>
         )}
       </div>
-    </SiteLink>
+    </div>
   );
 }
 
@@ -155,8 +154,6 @@ function ProjectRow({ p, open, onToggle }) {
 
 export default function Projects() {
   const { hash } = useLocation();
-  const { variant } = useVariant();
-  const isGlass = variant === "C";
   const [cat, setCat] = useState(ALL);
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(() => (hash ? { [hash.slice(1)]: true } : {}));
@@ -206,7 +203,7 @@ export default function Projects() {
         <h2 id="featured" className="m-0 mb-4 text-sm font-normal text-mu">Featured</h2>
         <div className="snap-row md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:p-0">
           {featured.map((p) => (
-            <FeaturedCard key={p.key} p={p} glass={isGlass} />
+            <FeaturedCard key={p.key} p={p} />
           ))}
         </div>
       </section>

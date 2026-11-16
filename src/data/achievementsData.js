@@ -50,7 +50,6 @@ export const positions = [
     title: "Campus Ambassador",
     organization: "Analytics India Magazine",
     duration: "2022–23",
-    link: "https://theorg.com/org/analytics-india-magazine/org-chart/mediboyina-rupesh-kumar-yadav",
     description:
       "Promoted data science outreach activities and built engagement with the student community on behalf of AIM."
   },

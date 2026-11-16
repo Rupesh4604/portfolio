@@ -21,7 +21,7 @@ import RotatingWord from "../components/site/RotatingWord.jsx";
 import Marquee from "../components/site/Marquee.jsx";
 import SpotlightCard from "../components/site/SpotlightCard.jsx";
 import { ArrowRight } from "../components/site/Icons.jsx";
-import GridPanel from "../components/site/GridPanel.jsx";
+import { ArtCarousel } from "../components/site/ProjectArt.jsx";
 import { glass } from "../data/glassCopy";
 
 // The three featured projects lead Home in every mode (same titles and text everywhere).
@@ -206,11 +206,7 @@ function HomeA() {
               key={p.title}
               className="group overflow-hidden rounded-[13px] border border-ln bg-sf shadow-[0_5px_18px_rgba(28,41,32,.03)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(28,41,32,.08)]"
             >
-              <div className="h-[150px] overflow-hidden bg-tint md:h-[130px]">
-                {p.image && (
-                  <img src={p.image} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-                )}
-              </div>
+              <ArtCarousel title={p.title} className="m-2 mb-0 h-[170px]" />
               <div className="px-5 pb-3 pt-[18px]">
                 <h3 className="display m-0 text-[21px] leading-[1.2]">
                   <Link to={p.href} className="text-ink transition-colors hover:text-ac">{p.title}</Link>
@@ -367,14 +363,19 @@ function HomeC() {
           </div>
           <div className="grid gap-2 md:grid-cols-3">
             {selected.map((w) => (
-              <Link key={w.title} to={w.href} className="gl-inner gl-lift block px-3.5 pb-[22px] pt-3.5 text-ink">
-                <GridPanel className="mb-[18px] h-[200px]" />
+              <div key={w.title} className="gl-inner gl-lift relative block px-3.5 pb-[22px] pt-3.5 text-ink">
+                <ArtCarousel title={w.title} className="relative z-10 mb-[18px] h-[200px]" />
                 <div className="px-1.5">
                   <div className={lb}>{w.tag}</div>
-                  <div className="mt-1.5 text-xl font-medium tracking-[-0.01em]">{w.title}</div>
+                  <Link
+                    to={w.href}
+                    className="mt-1.5 block text-xl font-medium tracking-[-0.01em] text-ink after:absolute after:inset-0 after:rounded-[inherit] after:content-['']"
+                  >
+                    {w.title}
+                  </Link>
                   <div className="mt-1.5 text-sm leading-[1.5] text-mu">{w.description}</div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </SpotlightCard>
