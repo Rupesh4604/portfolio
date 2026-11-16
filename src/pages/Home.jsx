@@ -139,16 +139,18 @@ function HomeA() {
                 {currentRole.role} @ {currentRole.org} · GeoAI
               </span>
             )}
-            <h1 className="display m-0 mt-[clamp(14px,2.2vh,20px)] max-w-[19ch] text-[clamp(38px,min(5.4vw,7.4vh),74px)] leading-[1.02] tracking-[-0.02em]">
-              I build intelligent systems across{" "}
-              <RotatingWord words={home.rotatingHero} className="italic text-ac" suffix="," /> and the physical world.
+            <h1 className="display m-0 mt-[clamp(14px,2.2vh,20px)] text-[clamp(38px,min(5.4vw,7.4vh),74px)] leading-[1.02] tracking-[-0.02em]">
+              I build{" "}
+              <RotatingWord words={home.rotatingA} className="italic text-ac" suffix="," />
+              <br />
+              and the systems that run them.
             </h1>
             <p className="m-0 mt-[clamp(14px,2.6vh,24px)] text-[17px] font-medium text-ink">
-              AI/ML Engineer &amp; Researcher{" "}
-              <span className="font-normal text-mu">| Data Scientist at Esri R&amp;D, GeoAI Division</span>
+              Data scientist and AI engineer{" "}
+              <span className="font-normal text-mu">| Esri R&amp;D, GeoAI Division</span>
             </p>
             <p className="m-0 mt-1 max-w-[620px] text-base leading-[1.6] text-i2">
-              Exploring multimodal AI, geospatial intelligence and foundation models.
+              M.Tech from IIT Bombay. I work on multimodal AI, geospatial intelligence and foundation models.
             </p>
             <div className="mt-[clamp(16px,3vh,28px)] flex flex-wrap items-center gap-x-6 gap-y-2">
               <Link
