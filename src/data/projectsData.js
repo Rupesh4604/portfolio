@@ -157,7 +157,7 @@ export const projects = [
   {
     title: "Quantum CNN for Slum Classification",
     year: "2025",
-    period: "Jan 2025 – present",
+    period: "Jan 2025 – 2026",
     category: "Research Implementations",
     description:
       "Multi-Channel QCNN (TFQ/Cirq) for slum detection on Sentinel-2 - 94.8% acc, 0.933 F1. QIP journal paper.",
@@ -174,7 +174,7 @@ export const projects = [
   {
     title: "3D CNN for Slum Classification",
     year: "2025",
-    period: "Jun 2025 – present",
+    period: "Jun 2025 – 2026",
     category: "Geospatial AI and Remote Sensing",
     description:
       "3D CNN in PyTorch for multi-band Sentinel-2 slum detection with patch-based inference.",

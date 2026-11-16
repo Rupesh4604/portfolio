@@ -26,7 +26,7 @@ export const positions = [
   {
     title: "Teaching Assistant – Computer Vision",
     organization: "IIT Bombay",
-    duration: "July 2024 – Present",
+    duration: "July 2024 – 2026",
     description:
       "Assisted in course delivery, assignments, and evaluations for M.Tech Computer Vision coursework."
   },
