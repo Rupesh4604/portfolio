@@ -20,10 +20,15 @@ import Contact from "./pages/Contact.jsx";
 
 
 export function Shell() {
-  const { variant, isPhone } = useVariant();
+  const { variant, isPhone, dark } = useVariant();
   useEffect(() => {
     document.getElementById("root")?.removeAttribute("data-ssr");
   }, []);
+  // Tab icon follows the site's theme: teal RM in light, mint RM on near-black in dark.
+  useEffect(() => {
+    const icon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (icon) icon.href = dark ? "/favicon-dark.svg" : "/favicon.svg";
+  }, [dark]);
   const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef(null);
