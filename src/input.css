@@ -34,6 +34,7 @@
 
 @layer base {
   html { -webkit-text-size-adjust: 100%; }
+  html.dark { color-scheme: dark; } /* native controls and scrollbars follow the chosen theme */
   /* The prerendered HTML is the light desktop layout. When JS runs (html.js) and the visitor
      will get a different layout (dark mode or a phone), keep it hidden until the app takes over.
      Bots and no-JS visitors never get html.js, so they always see it. */

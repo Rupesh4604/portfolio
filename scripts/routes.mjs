@@ -3,7 +3,7 @@
 
 export const SITE = {
   origin: 'https://rupeshmediboyina.dev',
-  defaultImage: '/og-image.jpg',
+  defaultImage: '/og-card.jpg',
   defaultImageType: 'image/jpeg',
   twitterHandle: '@RupeshKumar4604',
 };
