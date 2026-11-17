@@ -295,13 +295,19 @@ const PROJECT_ART = {
 };
 
 // Crossfading set of illustrations with dot controls. Advances on its own while visible
-// (paused on hover/focus and for reduced motion). Must not sit inside a link: the dots are buttons.
+// (paused on hover/focus/touch and for reduced motion). On touch screens it can also be swiped:
+// the picture follows the finger, and a swipe past SWIPE px moves to the next or previous one.
+// Vertical page scrolling still works (touch-action: pan-y). Must not sit inside a link: the dots are buttons.
+const SWIPE = 40;
 export function ArtCarousel({ title, className = "", interval = 4200 }) {
   const scenes = PROJECT_ART[title] || [];
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [drag, setDrag] = useState(0); // px the current picture is pulled while swiping
+  const start = useRef(null);
   const ref = useRef(null);
+  const go = (step) => setI((n) => (n + step + scenes.length) % scenes.length);
 
   useEffect(() => {
     const el = ref.current;
@@ -311,29 +317,62 @@ export function ArtCarousel({ title, className = "", interval = 4200 }) {
     return () => io.disconnect();
   }, []);
 
+  // Auto-advance; the timer restarts after every change, so a swipe or dot tap gets a full interval.
   useEffect(() => {
     if (paused || !visible || scenes.length < 2) return;
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setInterval(() => setI((n) => (n + 1) % scenes.length), interval);
-    return () => clearInterval(t);
-  }, [paused, visible, scenes.length, interval]);
+    const t = setTimeout(() => setI((n) => (n + 1) % scenes.length), interval);
+    return () => clearTimeout(t);
+  }, [i, paused, visible, scenes.length, interval]);
+
+  // Swipe (touch and pen only; a mouse uses the dots).
+  const onPointerDown = (e) => {
+    if (e.pointerType === "mouse" || scenes.length < 2) return;
+    start.current = { x: e.clientX, y: e.clientY, id: e.pointerId, horizontal: null };
+    setPaused(true);
+  };
+  const onPointerMove = (e) => {
+    const s0 = start.current;
+    if (!s0 || s0.id !== e.pointerId) return;
+    const dx = e.clientX - s0.x;
+    const dy = e.clientY - s0.y;
+    if (s0.horizontal === null && Math.abs(dx) + Math.abs(dy) > 8) {
+      s0.horizontal = Math.abs(dx) > Math.abs(dy);
+      if (s0.horizontal) e.currentTarget.setPointerCapture?.(e.pointerId);
+    }
+    if (s0.horizontal) setDrag(dx);
+  };
+  const onPointerEnd = (e) => {
+    const s0 = start.current;
+    if (!s0 || s0.id !== e.pointerId) return;
+    const dx = e.clientX - s0.x;
+    if (s0.horizontal && Math.abs(dx) > SWIPE) go(dx < 0 ? 1 : -1);
+    start.current = null;
+    setDrag(0);
+    setPaused(false);
+  };
 
   if (!scenes.length) return null;
   return (
     <div
       ref={ref}
-      className={`relative overflow-hidden rounded-[calc(var(--radius-card)-4px)] ${className}`}
-      style={{ background: "var(--tint)" }}
+      className={`relative select-none overflow-hidden rounded-[calc(var(--radius-card)-4px)] ${className}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerEnd}
+      onPointerCancel={onPointerEnd}
+      style={{ background: "var(--tint)", touchAction: "pan-y" }}
     >
       {scenes.map((Scene, n) => (
         <div
           key={n}
           aria-hidden={n !== i}
-          className={`absolute inset-0 p-2 transition-opacity duration-700 ${n === i ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 p-2 ${drag ? "" : "transition-[opacity,transform] duration-700"} ${n === i ? "opacity-100" : "opacity-0"}`}
+          style={n === i && drag ? { transform: `translateX(${drag}px)`, opacity: Math.max(0.35, 1 - Math.abs(drag) / 260) } : undefined}
         >
           <Scene />
         </div>
