@@ -27,7 +27,7 @@ export const beyondLinks = [
   },
   {
     title: "Quantum AI Hub",
-    url: "https://rupesh4604.github.io/quantum-ai-hub/",
+    url: "https://quantum.rupeshmediboyina.dev/",
     description: "Papers, notes and experiments on quantum machine learning, from the basics to hybrid quantum-classical models.",
     category: "Research",
     icon: "⚛️",
