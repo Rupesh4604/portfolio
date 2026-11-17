@@ -117,12 +117,30 @@ function HsiCube() {
   const layers = Array.from({ length: 9 });
   const spectrum = "M236 170 C252 160 262 120 276 128 S300 70 314 86 S338 150 352 120 S370 92 382 100";
   return (
-    <Frame label="A hyperspectral image cube with hundreds of bands and the spectrum of one pixel">
+    <Frame label="A satellite images the ground in hundreds of spectral bands, stacked as a cube, and the spectrum of one pixel">
       {layers.map((_, i) => (
         <g key={i} transform={`translate(${30 + i * 9} ${150 - i * 9})`}>
           <path d="M0 0 L120 0 L160 -40 L40 -40 Z" className={i === layers.length - 1 ? "fill-ac/30 stroke-ac" : "fill-sf stroke-ac/40"} strokeWidth="1" />
         </g>
       ))}
+      {/* sensor footprint: the satellite's view cone landing on the top band */}
+      <path d="M52 33 L116 74 L190 44 Z" className="fill-ac/12" />
+      <path d="M52 33 L116 74 M52 33 L190 44" fill="none" className="stroke-ac/50" strokeWidth="1" strokeDasharray="3 3" />
+      {/* satellite */}
+      <g transform="translate(46 20) rotate(-18)">
+        <line x1="-11" y1="0" x2="-7" y2="0" className="stroke-ac" strokeWidth="1.4" />
+        <line x1="7" y1="0" x2="11" y2="0" className="stroke-ac" strokeWidth="1.4" />
+        {[-33, 11].map((x) => (
+          <g key={x}>
+            <rect x={x} y="-6" width="22" height="12" rx="1.5" className="fill-ac/35 stroke-ac" strokeWidth="1.2" />
+            <path d={`M${x + 7.3} -6 V6 M${x + 14.6} -6 V6 M${x} 0 H${x + 22}`} className="stroke-ac/70" strokeWidth="0.8" />
+          </g>
+        ))}
+        <rect x="-7" y="-7" width="14" height="14" rx="2.5" className="fill-sf stroke-ac" strokeWidth="1.4" />
+        <path d="M-3.5 7 H3.5 L2.5 11 H-2.5 Z" className="fill-ac" />
+        <line x1="0" y1="-7" x2="0" y2="-12" className="stroke-ac" strokeWidth="1.2" />
+        <circle cx="0" cy="-13" r="1.6" className="fill-ac" />
+      </g>
       <circle cx="176" cy="88" r="4" className="fill-ac" />
       <Wire d="M180 88 H226" dashed />
       <path d="M232 60 V176 H388" fill="none" className="stroke-ln" strokeWidth="1.2" />
