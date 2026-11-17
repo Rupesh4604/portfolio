@@ -458,6 +458,50 @@ function HomeD() {
           </li>
         </ul>
       </section>
+
+      {/* Writing: the latest post as a card (like the Glass home), then the next posts as rows. */}
+      {articles.length > 0 && (
+        <section aria-labelledby="writing-d" className="px-5 pb-4">
+          <h2 id="writing-d" className="m-0 mb-2.5 mt-11 text-sm font-normal text-mu">Latest writing</h2>
+          <SiteLink
+            to={articles[0].url}
+            className="group block rounded-card border border-ln bg-sf p-5 text-ink transition-colors hover:border-ac"
+          >
+            <span className="block text-[13px] text-ac">Latest post</span>
+            <span className="mt-2 block text-[24px] font-semibold leading-[1.15] tracking-[-0.035em] group-hover:text-ac">
+              {articles[0].title}
+            </span>
+            {articles[0].summary && (
+              <span className="mt-2.5 block text-[15px] leading-[1.5] text-i2">{articles[0].summary}</span>
+            )}
+            <span className="mt-4 flex items-center justify-between text-sm text-mu">
+              {fmtDate(articles[0].date)}
+              <span aria-hidden="true" className="text-ac">↗</span>
+            </span>
+          </SiteLink>
+          <ul className="m-0 mt-3 list-none p-0">
+            {articles.slice(1, 3).map((a) => (
+              <li key={a.url} className="border-t border-ln">
+                <SiteLink
+                  to={a.url}
+                  className="group grid grid-cols-[minmax(0,1fr)_24px] items-center gap-3 py-4 text-ink transition-[padding] duration-300 hover:pl-6"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-[18px] font-medium leading-[1.3] tracking-[-0.02em] group-hover:text-ac">{a.title}</span>
+                    <span className="mt-1 block text-[13px] text-mu">{fmtDate(a.date)}</span>
+                  </span>
+                  <span aria-hidden="true" className="text-mu">↗</span>
+                </SiteLink>
+              </li>
+            ))}
+            <li className="border-y border-ln">
+              <Link to="/beyond" className="grid grid-cols-[minmax(0,1fr)_24px] items-center gap-3 py-4 text-base font-medium text-ac">
+                All posts <span aria-hidden="true">›</span>
+              </Link>
+            </li>
+          </ul>
+        </section>
+      )}
     </div>
   );
 }
