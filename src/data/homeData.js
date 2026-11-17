@@ -5,8 +5,8 @@
 export const home = {
   // A · Editorial / C · Glass: "I build <word>, and the systems that run them."
   rotatingA: ["multimodal models", "AI agents", "fast inference", "VLA models"],
-  // D · Bold: "AI engineer. / Data scientist. / <word>"
-  rotatingD: ["Researcher.", "Agents.", "Multimodal.", "VLA models."],
-  role: "AI engineer, data scientist and researcher",
+  // D · Bold: "Data scientist. / AI engineer. / <word>"
+  rotatingD: ["Agents.", "Inference.", "Multimodal.", "VLA models."],
+  role: "Data scientist and AI engineer",
   introD: "I build multimodal models and the systems that serve them.",
 };

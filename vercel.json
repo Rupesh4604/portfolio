@@ -49,7 +49,7 @@
       ]
     },
     {
-      "source": "/og-share.jpg",
+      "source": "/og-card.jpg",
       "headers": [
         {
           "key": "Cache-Control",

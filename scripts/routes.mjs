@@ -3,7 +3,7 @@
 
 export const SITE = {
   origin: 'https://rupeshmediboyina.dev',
-  defaultImage: '/og-share.jpg',
+  defaultImage: '/og-card.jpg',
   defaultImageType: 'image/jpeg',
   twitterHandle: '@RupeshKumar4604',
 };
@@ -13,7 +13,7 @@ export const routes = [
     path: '/',
     title: 'Rupesh Mediboyina | AI Engineer, Data Scientist & Researcher',
     description:
-      'M Rupesh Kumar Yadav (Rupesh Mediboyina): AI engineer, data scientist and researcher building multimodal and geospatial AI, from vision-language models and agents to remote sensing. Data Scientist at Esri R&D; M.Tech, IIT Bombay.',
+      'AI/ML engineer and researcher at Esri R&D working on multimodal AI, geospatial intelligence, vision-language models, agentic systems, computer vision, and remote sensing.',
     changefreq: 'weekly',
     priority: 1.0,
   },

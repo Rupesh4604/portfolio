@@ -149,7 +149,7 @@ function HomeA() {
               and the systems that run them.
             </h1>
             <p className="m-0 mt-[clamp(14px,2.6vh,24px)] text-[17px] font-medium text-ink">
-              AI engineer, data scientist &amp; researcher{" "}
+              Data scientist and AI engineer{" "}
               <span className="font-normal text-mu">| Esri R&amp;D, GeoAI Division</span>
             </p>
             <p className="m-0 mt-1 max-w-[620px] text-base leading-[1.6] text-i2">
@@ -308,7 +308,7 @@ function HomeC() {
           <div className="gl-inner flex h-full min-h-[300px] flex-col min-[900px]:min-h-[460px] justify-between gap-10 p-[clamp(28px,4vw,52px)]">
             <div className="text-[15px] text-mu">{site.name}</div>
             <div>
-              <h1 className="m-0 max-w-[20ch] text-[clamp(34px,3.8vw,56px)] font-medium leading-[1.06] tracking-[-0.03em]">
+              <h1 className="m-0 max-w-[15ch] text-[clamp(36px,4.2vw,62px)] font-medium leading-[1.06] tracking-[-0.03em]">
                 {home.role} building <RotatingWord words={home.rotatingA} gradient every={2800} />
               </h1>
               <div className="mt-9 flex flex-wrap gap-3">
@@ -412,9 +412,9 @@ function HomeD() {
   return (
     <div className="pt-8">
       <h1 className="m-0 px-5 text-[clamp(44px,13vw,50px)] font-semibold leading-[0.98] tracking-[-0.046em]">
-        AI engineer.
-        <br />
         Data scientist.
+        <br />
+        AI engineer.
         <RotatingWord words={home.rotatingD} mode="slide" className="text-ac" />
       </h1>
       <p className="m-0 mt-[18px] px-5 text-i2">
