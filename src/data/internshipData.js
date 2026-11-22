@@ -17,7 +17,7 @@ export const work = [
   {
     role: "Data Scientist",
     organization: "Esri R&D Center - GeoAI",
-    duration: "Jun 2026 - Present",
+    duration: "Jul 2026 - Present",
     description:
       "Data Scientist on the GeoAI research team, working on generative-AI and LLM-based approaches for geospatial intelligence building, fine-tuning, and deploying models that bring language and multimodal reasoning to spatial data.",
     techStack: ["LLMs", "Generative AI", "Deep Learning", "GeoAI", "Python"]
