@@ -42,7 +42,7 @@ export const routes = [
     priority: 0.7,
   },
   {
-    path: '/beyond',
+    path: '/blog',
     title: 'Blog | M Rupesh Kumar Yadav',
     description:
       'Writing by M Rupesh Kumar Yadav: notes, research reviews and tutorials on geospatial foundation models, remote sensing and vision-language models, plus GeoFM Lab and Quantum AI Hub.',

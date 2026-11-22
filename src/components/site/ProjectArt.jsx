@@ -80,12 +80,11 @@ function AgentRetrieval() {
           ))}
         </g>
       ))}
-      <text x="258" y="26" className={T}>Re-ranked</text>
+      <text x="258" y="26" className={T}>Re-ranked by relevance</text>
       {bars.map((v, i) => (
         <g key={i} transform={`translate(258 ${40 + i * 36})`}>
           <rect width="100" height="24" rx="6" className="fill-ac/10" />
           <rect width={100 * v} height="24" rx="6" className={i === 0 ? "fill-ac" : "fill-ac/45"} />
-          <text x="108" y="16" className={T}>{v.toFixed(2)}</text>
         </g>
       ))}
       <text x="18" y="226" className={T}>Two-source retrieval</text>
@@ -104,8 +103,9 @@ function AgentGuardrail() {
       ))}
       <path d="M296 40l52 18v40c0 34-24 56-52 68-28-12-52-34-52-68V58z" className="fill-ac/15 stroke-ac" strokeWidth="1.5" />
       <path d="M278 100l13 13 25-27" fill="none" className="stroke-ac" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <text x="296" y="190" textAnchor="middle" className={T}>{checks.slice(0, 2).join(" · ")}</text>
-      <text x="296" y="205" textAnchor="middle" className={T}>{checks[2]}</text>
+      {checks.map((c, k) => (
+        <text key={c} x="296" y={182 + k * 14} textAnchor="middle" className="fill-mu text-[10.5px]">{c}</text>
+      ))}
       <text x="22" y="226" className={T}>Guardrail check</text>
     </Frame>
   );
@@ -236,21 +236,26 @@ function ArchPrompt() {
 }
 
 function ArchBench() {
+  // Illustrative only: bar lengths show "compare, then pick", not real results.
   const rows = [
     ["Siamese U-Net", 0.86, true],
-    ["ChangeFormer", 0.82],
-    ["FC-EF", 0.71],
+    ["ChangeFormer", 0.78],
+    ["FC-EF", 0.64],
   ];
   return (
-    <Frame label="Three candidate architectures benchmarked by F1 score, with the best one selected">
-      <text x="24" y="40" className={TI}>Benchmark · F1</text>
+    <Frame label="Candidate architectures are compared on the same evaluation and the best one is selected">
+      <text x="24" y="40" className={TI}>Compare candidates</text>
       {rows.map(([name, v, best], i) => (
         <g key={name} transform={`translate(24 ${62 + i * 46})`}>
           <text x="0" y="14" className={best ? "fill-ink text-[12px] font-medium" : "fill-i2 text-[12px]"}>{name}</text>
           <rect x="112" y="2" width="210" height="18" rx="5" className="fill-ac/10" />
           <rect x="112" y="2" width={210 * v} height="18" rx="5" className={best ? "fill-ac" : "fill-ac/40"} />
-          <text x="330" y="15" className={T}>{v.toFixed(2)}</text>
-          {best && <circle cx="360" cy="11" r="7" className="fill-ac/20 stroke-ac" strokeWidth="1.2" />}
+          {best && (
+            <g transform="translate(346 11)">
+              <circle r="9" className="fill-ac/20 stroke-ac" strokeWidth="1.2" />
+              <path d="M-4 0l3 3 5-6" fill="none" className="stroke-ac" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
+          )}
         </g>
       ))}
       <text x="24" y="226" className={T}>Pick the model, keep the evidence</text>

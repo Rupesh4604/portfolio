@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SiteLink from "./SiteLink.jsx";
 import { GithubIcon, ScholarIcon, LinkedinIcon, MailIcon } from "./Icons.jsx";
@@ -21,6 +22,38 @@ function Clock() {
     <span>
       {site.city} · <time suppressHydrationWarning>{time}</time> IST
     </span>
+  );
+}
+
+// The address as plain, selectable text with a Copy button, for visitors who don't use a mail app.
+function EmailCopy({ className = "" }) {
+  const [copied, setCopied] = useState(false);
+  const t = useRef();
+  useEffect(() => () => clearTimeout(t.current), []);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(site.email);
+      setCopied(true);
+      clearTimeout(t.current);
+      t.current = setTimeout(() => setCopied(false), 1600);
+    } catch {
+      /* clipboard blocked: the address is still selectable */
+    }
+  };
+  return (
+    <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] ${className}`}>
+      <span className="select-all break-all text-i2">{site.email}</span>
+      <button
+        type="button"
+        onClick={copy}
+        className={`inline-flex h-8 cursor-pointer items-center rounded-full border px-3 text-[13px] transition-colors ${
+          copied ? "border-ac bg-tint text-acink" : "border-ln bg-transparent text-mu hover:border-ac hover:text-ink"
+        }`}
+      >
+        {copied ? "Copied" : "Copy"}
+      </button>
+      <span className="sr-only" role="status" aria-live="polite">{copied ? "Email address copied" : ""}</span>
+    </div>
   );
 }
 
@@ -92,6 +125,7 @@ function FooterA({ isPhone }) {
           <SiteLink to={links.email} className="mt-3 inline-flex min-h-11 items-center text-base text-ac hover:text-ac-hover">
             Email me →
           </SiteLink>
+          <EmailCopy className="mt-1" />
         </div>
         <PhoneBase />
       </footer>
@@ -111,6 +145,7 @@ function FooterA({ isPhone }) {
             <SiteLink to={links.email} className="mt-6 inline-flex min-h-11 items-center gap-2.5 text-[17px] text-ac hover:text-ac-hover">
               Email me →
             </SiteLink>
+            <EmailCopy className="mt-1" />
           </div>
           <Columns
             labelClass="mb-2.5 text-[13px] text-mu lg:pl-12"
@@ -140,6 +175,7 @@ function FooterC() {
             >
               Email me
             </SiteLink>
+            <EmailCopy className="mt-4" />
           </div>
           <Columns labelClass="mb-2.5 text-[13px] text-ac" linkClass="block text-[15px] leading-[2.2] text-mu hover:text-ink" />
         </div>

@@ -100,7 +100,7 @@ function FeaturedCard({ p }) {
           <div className="mt-4 text-sm text-ac">
             {p.cta}{" "}
             <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-[5px]">
-              →
+              {/^https?:/.test(p.to) ? "↗" : "→"}
             </span>
           </div>
         )}

@@ -76,7 +76,7 @@ export function Shell() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/career" element={<Experience />} />
           <Route path="/research" element={<Publications />} />
-          <Route path="/beyond" element={<Beyond />} />
+          <Route path="/blog" element={<Beyond />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

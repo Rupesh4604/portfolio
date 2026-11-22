@@ -1,6 +1,6 @@
 // src/data/beyondData.js
 // External sites, writing, and other places I exist on the web.
-// Add a new entry here and it shows up on the /beyond page automatically.
+// Add a new entry here and it shows up on the /blog page automatically.
 // {
 //   title: "Display name",
 //   url: "https://...",

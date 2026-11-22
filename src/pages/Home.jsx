@@ -128,6 +128,19 @@ function GithubMark() {
   );
 }
 
+// Author list as surnames ("Pai, Mediboyina, Buddhiraju, Durbha"); long lists end in "et al.".
+const surnames = (authors = "") => {
+  const names = authors
+    .replace(/\s*\(co-author\)\s*/gi, "")
+    .replace(/\s+et al\.?$/i, "")
+    .split(/\s*,\s*/)
+    .filter(Boolean)
+    .map((a) => a.trim().split(/\s+/).pop());
+  return names.length > 4 ? [...names.slice(0, 4), "et al."] : names;
+};
+const pill =
+  "inline-flex h-6 items-center rounded-full border border-ln px-2 text-[12px] text-i2 transition-colors hover:border-ac hover:text-ac";
+
 const h2A = "display m-0 text-[clamp(30px,3.4vw,42px)] leading-[1.05] tracking-[-0.01em]";
 
 function HomeA() {
@@ -164,6 +177,7 @@ function HomeA() {
               </Link>
               <SiteLink to={site.cv} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac hover:text-ac-hover">CV</SiteLink>
               <SiteLink to={links.github} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac hover:text-ac-hover">GitHub</SiteLink>
+              <SiteLink to={links.linkedin} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac hover:text-ac-hover">LinkedIn</SiteLink>
               <SiteLink to={links.scholar} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac hover:text-ac-hover">Scholar</SiteLink>
             </div>
           </div>
@@ -218,16 +232,20 @@ function HomeA() {
                 </h3>
                 <p className="m-0 mt-2 text-sm leading-[1.55] text-mu">{p.description}</p>
                 <div className="mt-2 flex flex-wrap gap-x-5 text-[13px] text-mu">
+                  {/* Same order on every card: external links with ↗, then Details → (on this site). */}
                   {p.link?.includes("github.com") && (
                     <SiteLink to={p.link} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">
-                      <GithubMark /> GitHub
+                      <GithubMark /> GitHub <span aria-hidden="true">↗</span>
                     </SiteLink>
                   )}
-                  {p.paper ? (
-                    <SiteLink to={p.paper} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">↗ Paper</SiteLink>
-                  ) : (
-                    <Link to={p.href} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">↗ Details</Link>
+                  {p.paper && (
+                    <SiteLink to={p.paper} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">
+                      Paper <span aria-hidden="true">↗</span>
+                    </SiteLink>
                   )}
+                  <Link to={p.href} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">
+                    Details <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
               </div>
             </li>
@@ -256,8 +274,18 @@ function HomeA() {
                   <h3 className="display m-0 text-[18px] font-normal leading-[1.35]">
                     <SiteLink to={x.link || x.doi || "/research"} className="text-ink hover:text-ac">{x.title}</SiteLink>
                   </h3>
-                  <p className="m-0 mt-0.5 text-[13px] text-mu">
-                    {venueShort(x.venue)} · {x.year}
+                  <p className="m-0 mt-1 text-[13px] text-i2">
+                    {surnames(x.authors).map((n, k, all) => (
+                      <span key={n + k}>
+                        {n === "Mediboyina" ? <strong className="font-medium text-ink">{n}</strong> : n}
+                        {k < all.length - 1 ? ", " : ""}
+                      </span>
+                    ))}
+                  </p>
+                  <p className="m-0 mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-mu">
+                    <span>{venueShort(x.venue)} · {x.year}</span>
+                    {x.doi && <SiteLink to={x.doi} className={pill}>DOI ↗</SiteLink>}
+                    {x.pdf && <SiteLink to={x.pdf} className={pill}>PDF ↗</SiteLink>}
                   </p>
                 </div>
               </li>
@@ -272,7 +300,7 @@ function HomeA() {
           <div>
             <h2 id="writing-a" className={h2A}>Writing &amp; Technical Notes</h2>
             <p className="m-0 mt-3 text-[15px] leading-[1.6] text-i2">In-depth notes, research reviews and tutorials.</p>
-            <Link to="/beyond" className={`${outlineBtn} mt-5`}>Explore blog →</Link>
+            <Link to="/blog" className={`${outlineBtn} mt-5`}>Explore blog →</Link>
           </div>
           <ul className="m-0 grid list-none border-b border-ln p-0 xl:grid-cols-3 xl:border-b-0">
             {articles.slice(0, 3).map((a) => (
@@ -397,7 +425,7 @@ function HomeC() {
                   {fmtDate(articles[0].date)}
                 </span>
               </SiteLink>
-              <Link to="/beyond" className="whitespace-nowrap text-sm text-mu hover:text-ink">All posts →</Link>
+              <Link to="/blog" className="whitespace-nowrap text-sm text-mu hover:text-ink">All posts →</Link>
             </div>
           </SpotlightCard>
         )}
@@ -495,7 +523,7 @@ function HomeD() {
               </li>
             ))}
             <li className="border-y border-ln">
-              <Link to="/beyond" className="grid grid-cols-[minmax(0,1fr)_24px] items-center gap-3 py-4 text-base font-medium text-ac">
+              <Link to="/blog" className="grid grid-cols-[minmax(0,1fr)_24px] items-center gap-3 py-4 text-base font-medium text-ac">
                 All posts <span aria-hidden="true">›</span>
               </Link>
             </li>

@@ -23,7 +23,7 @@ const LAYOUTS = {
     b(700, 700, { right: -240, top: -280 }, TEAL, 0.5),
     b(560, 560, { left: -220, top: 1100 }, BLUE, 0.35, "-9s"),
   ],
-  "/beyond": [
+  "/blog": [
     b(720, 620, { left: "30%", top: -340 }, TEAL, 0.5),
     b(520, 520, { left: -220, top: 900 }, BLUE, 0.3, "-9s"),
   ],

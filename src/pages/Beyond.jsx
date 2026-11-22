@@ -15,7 +15,7 @@ const featured = articles[0];
 const topics = [...new Set(posts.map((p) => p.tags[0]).filter(Boolean))];
 const elsewhere = beyondLinks.filter((l) => l.category !== "Writing");
 
-const META = routeMeta("/beyond");
+const META = routeMeta("/blog");
 
 function Meta() {
   return (
@@ -25,10 +25,10 @@ function Meta() {
         name="description"
         content={META.description}
       />
-      <link rel="canonical" href="https://rupeshmediboyina.dev/beyond" />
+      <link rel="canonical" href="https://rupeshmediboyina.dev/blog" />
       <meta property="og:title" content={META.title} />
       <meta property="og:description" content={META.description} />
-      <meta property="og:url" content="https://rupeshmediboyina.dev/beyond" />
+      <meta property="og:url" content="https://rupeshmediboyina.dev/blog" />
       <meta name="twitter:title" content={META.title} />
       <meta name="twitter:description" content={META.description} />
       <link rel="alternate" type="application/atom+xml" title="Rupesh's Blog" href={feedUrl} />
@@ -38,7 +38,7 @@ function Meta() {
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://rupeshmediboyina.dev/" },
-            { "@type": "ListItem", position: 2, name: "Blog", item: "https://rupeshmediboyina.dev/beyond" },
+            { "@type": "ListItem", position: 2, name: "Blog", item: "https://rupeshmediboyina.dev/blog" },
           ],
         })}
       </script>
