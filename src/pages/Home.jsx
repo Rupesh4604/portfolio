@@ -199,7 +199,7 @@ function HomeA() {
                   {f.to ? (
                     // Whole item is clickable through the stretched link.
                     <Link to={f.to} className="text-ink transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-ac">
-                      {f.title} <span aria-hidden="true" className="inline-block text-[18px] transition-transform group-hover:translate-x-1">→</span>
+                      {f.title}
                     </Link>
                   ) : (
                     f.title
