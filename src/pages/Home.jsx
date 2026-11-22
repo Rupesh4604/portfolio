@@ -102,6 +102,7 @@ const FOCUS = [
   },
   {
     title: "Research",
+    to: "/research",
     text: "Computer vision, remote sensing, geospatial AI and quantum ML.",
     icon: (
       <>
@@ -122,24 +123,12 @@ const outlineBtn =
 
 function GithubMark() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    // Sized to the text's cap height and nudged up 1px so the mark sits on the same optical line as "GitHub".
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="block flex-none -translate-y-px">
       <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z" />
     </svg>
   );
 }
-
-// Author list as surnames ("Pai, Mediboyina, Buddhiraju, Durbha"); long lists end in "et al.".
-const surnames = (authors = "") => {
-  const names = authors
-    .replace(/\s*\(co-author\)\s*/gi, "")
-    .replace(/\s+et al\.?$/i, "")
-    .split(/\s*,\s*/)
-    .filter(Boolean)
-    .map((a) => a.trim().split(/\s+/).pop());
-  return names.length > 4 ? [...names.slice(0, 4), "et al."] : names;
-};
-const pill =
-  "inline-flex h-6 items-center rounded-full border border-ln px-2 text-[12px] text-i2 transition-colors hover:border-ac hover:text-ac";
 
 const h2A = "display m-0 text-[clamp(30px,3.4vw,42px)] leading-[1.05] tracking-[-0.01em]";
 
@@ -198,7 +187,7 @@ function HomeA() {
           {FOCUS.map((f, i) => (
             <li
               key={f.title}
-              className={`flex gap-4 py-5 md:py-2 md:pr-6 ${i > 0 ? "border-t border-ln md:border-l md:border-t-0 md:pl-7" : ""}`}
+              className={`relative flex gap-4 py-5 md:py-2 md:pr-6 ${f.to ? "group" : ""} ${i > 0 ? "border-t border-ln md:border-l md:border-t-0 md:pl-7" : ""}`}
             >
               <span className="grid h-11 w-11 flex-none place-items-center rounded-full bg-tint text-ac" aria-hidden="true">
                 <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -206,7 +195,16 @@ function HomeA() {
                 </svg>
               </span>
               <div>
-                <h2 className="display m-0 text-[22px] leading-tight">{f.title}</h2>
+                <h2 className="display m-0 text-[22px] leading-tight">
+                  {f.to ? (
+                    // Whole item is clickable through the stretched link.
+                    <Link to={f.to} className="text-ink transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-ac">
+                      {f.title} <span aria-hidden="true" className="inline-block text-[18px] transition-transform group-hover:translate-x-1">→</span>
+                    </Link>
+                  ) : (
+                    f.title
+                  )}
+                </h2>
                 <p className="m-0 mt-1 text-sm leading-[1.55] text-mu">{f.text}</p>
               </div>
             </li>
@@ -235,7 +233,9 @@ function HomeA() {
                   {/* Same order on every card: external links with ↗, then Details → (on this site). */}
                   {p.link?.includes("github.com") && (
                     <SiteLink to={p.link} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">
-                      <GithubMark /> GitHub <span aria-hidden="true">↗</span>
+                      <GithubMark />
+                      <span>GitHub</span>
+                      <span aria-hidden="true">↗</span>
                     </SiteLink>
                   )}
                   {p.paper && (
@@ -274,18 +274,8 @@ function HomeA() {
                   <h3 className="display m-0 text-[18px] font-normal leading-[1.35]">
                     <SiteLink to={x.link || x.doi || "/research"} className="text-ink hover:text-ac">{x.title}</SiteLink>
                   </h3>
-                  <p className="m-0 mt-1 text-[13px] text-i2">
-                    {surnames(x.authors).map((n, k, all) => (
-                      <span key={n + k}>
-                        {n === "Mediboyina" ? <strong className="font-medium text-ink">{n}</strong> : n}
-                        {k < all.length - 1 ? ", " : ""}
-                      </span>
-                    ))}
-                  </p>
-                  <p className="m-0 mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-mu">
-                    <span>{venueShort(x.venue)} · {x.year}</span>
-                    {x.doi && <SiteLink to={x.doi} className={pill}>DOI ↗</SiteLink>}
-                    {x.pdf && <SiteLink to={x.pdf} className={pill}>PDF ↗</SiteLink>}
+                  <p className="m-0 mt-0.5 text-[13px] text-mu">
+                    {venueShort(x.venue)} · {x.year}
                   </p>
                 </div>
               </li>
