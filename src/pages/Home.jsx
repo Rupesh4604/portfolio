@@ -294,7 +294,7 @@ function HomeA() {
           </div>
           <ul className="m-0 grid list-none border-b border-ln p-0 xl:grid-cols-3 xl:border-b-0">
             {articles.slice(0, 3).map((a) => (
-              <li key={a.url} className="border-t border-ln xl:border-l xl:border-t-0 xl:px-5">
+              <li key={a.title} className="border-t border-ln xl:border-l xl:border-t-0 xl:px-5">
                 <SiteLink
                   to={a.url}
                   className="row-indent group flex items-center justify-between gap-6 py-4 text-ink xl:block xl:py-1 xl:hover:pl-0"
@@ -499,7 +499,7 @@ function HomeD() {
           </SiteLink>
           <ul className="m-0 mt-3 list-none p-0">
             {articles.slice(1, 3).map((a) => (
-              <li key={a.url} className="border-t border-ln">
+              <li key={a.title} className="border-t border-ln">
                 <SiteLink
                   to={a.url}
                   className="group grid grid-cols-[minmax(0,1fr)_24px] items-center gap-3 py-4 text-ink transition-[padding] duration-300 hover:pl-6"

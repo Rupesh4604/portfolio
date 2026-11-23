@@ -152,7 +152,7 @@ export default function Experience() {
                     {e.degreeShort}, {e.short}
                   </h3>
                   <div className="mt-1 text-base text-i2">
-                    {e.dept} · {e.grade.replace(":", "")}
+                    {e.dept}
                   </div>
                 </TimelineItem>
               ))}

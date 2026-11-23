@@ -115,7 +115,7 @@ export default function Beyond() {
         </div>
         <ul className="m-0 list-none border-b border-ln p-0">
           {rows.map((p) => (
-            <li key={p.url} className="border-t border-ln">
+            <li key={p.title} className="border-t border-ln">
               <SiteLink
                 to={p.url}
                 className="row-indent grid grid-cols-[minmax(0,1fr)_24px] items-baseline gap-6 py-7 text-ink md:grid-cols-[120px_minmax(0,1fr)_28px]"

@@ -8,7 +8,6 @@ export const education = [
     from: "2024",
     year: "2026",
     dept: "Centre of Studies in Resources Engineering",
-    grade: "CGPA: 9.45",
   },
   {
     school: "National Institute of Technology, Andhra Pradesh",
@@ -18,11 +17,10 @@ export const education = [
     from: "2020",
     year: "2024",
     dept: "Computer Science and Engineering",
-    grade: "CGPA: 8.56",
   },
 ];
 
 export const schools = [
-  { school: "Sri Chaitanya Junior College", level: "Intermediate", year: "2020", grade: "CGPA: 9.86" },
-  { school: "Narayana E.M High School", level: "Secondary", year: "2018", grade: "CGPA: 10" },
+  { school: "Sri Chaitanya Junior College", level: "Intermediate", year: "2020" },
+  { school: "Narayana E.M High School", level: "Secondary", year: "2018" },
 ];
