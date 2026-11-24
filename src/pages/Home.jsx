@@ -139,12 +139,22 @@ function HomeA() {
       <section className="wrap max-w-[1240px] pt-[clamp(24px,min(6vw,5vh),72px)]">
         <div className="grid items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(200px,270px)] md:gap-16">
           <div className="min-w-0">
-            {currentRole && (
-              <span className="inline-flex items-center gap-2 rounded-full bg-tint px-3 py-1 text-xs font-medium text-acink">
-                <span className="pulse-dot" aria-hidden="true" />
-                {currentRole.role} @ {currentRole.org} · GeoAI
-              </span>
-            )}
+            {/* Phones and small tablets: a small round photo beside the badge keeps the headline on the first screen. */}
+            <div className="flex items-center gap-3">
+              <img
+                src="/profile.jpg"
+                alt={`Portrait of ${site.name}`}
+                width="56"
+                height="56"
+                className="h-14 w-14 flex-none rounded-full bg-white object-cover object-top shadow-[0_6px_16px_rgba(28,41,32,.12)] md:hidden"
+              />
+              {currentRole && (
+                <span className="inline-flex items-center gap-2 rounded-full bg-tint px-3 py-1 text-xs font-medium text-acink">
+                  <span className="pulse-dot" aria-hidden="true" />
+                  {currentRole.role} @ {currentRole.org} · GeoAI
+                </span>
+              )}
+            </div>
             <h1 className="display m-0 mt-[clamp(14px,2.2vh,20px)] text-[clamp(38px,min(5.4vw,7.4vh),74px)] leading-[1.02] tracking-[-0.02em]">
               I build{" "}
               <RotatingWord words={home.rotatingA} className="italic text-ac" suffix="," />
@@ -171,7 +181,7 @@ function HomeA() {
               <SiteLink to={links.scholar} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac hover:text-ac-hover">Scholar</SiteLink>
             </div>
           </div>
-          <div className="row-start-1 w-[150px] md:row-start-auto md:w-full md:max-w-[min(270px,44vh)] md:justify-self-end">
+          <div className="hidden md:block md:w-full md:max-w-[min(270px,32vh)] md:justify-self-end">
             <div className="overflow-hidden rounded-[15px] bg-white pt-[11%] shadow-[0_14px_36px_rgba(28,41,32,.10)]">
               <img
                 src="/profile.jpg"
@@ -184,7 +194,7 @@ function HomeA() {
           </div>
         </div>
 
-        <ul className="m-0 mt-[clamp(28px,min(5vw,5vh),64px)] grid list-none p-0 md:grid-cols-3">
+        <ul className="m-0 mt-[clamp(24px,min(5vw,4vh),64px)] grid list-none p-0 md:grid-cols-3">
           {FOCUS.map((f, i) => (
             <li
               key={f.title}
@@ -213,7 +223,7 @@ function HomeA() {
         </ul>
       </section>
 
-      <section aria-labelledby="work-a" className="wrap max-w-[1240px] pt-[clamp(56px,7vw,88px)]">
+      <section aria-labelledby="work-a" className="wrap max-w-[1240px] pt-[clamp(40px,min(7vw,7vh),88px)]">
         <div className="mb-6 flex items-center justify-between gap-4">
           <h2 id="work-a" className={h2A}>Selected projects</h2>
           <Link to="/projects" className="inline-flex min-h-11 items-center whitespace-nowrap text-sm font-medium text-ac hover:text-ac-hover">View all projects →</Link>
