@@ -205,7 +205,7 @@ function HomeA() {
           </div>
         </div>
 
-        <ul className="m-0 mt-[clamp(28px,min(5vw,5vh),64px)] grid list-none p-0 md:grid-cols-3">
+        <ul id="focus-a" className="m-0 mt-[clamp(28px,min(5vw,5vh),64px)] grid list-none p-0 md:grid-cols-3">
           {FOCUS.map((f, i) => (
             <li
               key={f.title}
@@ -234,7 +234,7 @@ function HomeA() {
         </ul>
       </section>
 
-      <ScrollCue target="work-a" />
+      <ScrollCue target="work-a" avoid="focus-a" />
 
       <section aria-labelledby="work-a" className="wrap max-w-[1240px] pt-[clamp(56px,7vw,88px)]">
         <div className="mb-6 flex items-center justify-between gap-4">
