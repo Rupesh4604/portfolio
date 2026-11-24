@@ -1,6 +1,6 @@
 // Single source of truth for the colour theme.
 // The inline script in index.html applies the initial class before paint
-// (light unless the visitor chose dark with the toggle); this module only reads and changes it.
+// (the visitor's toggle choice if any, else dark on phones and light elsewhere); this module only reads and changes it.
 
 const root = () => document.documentElement;
 
