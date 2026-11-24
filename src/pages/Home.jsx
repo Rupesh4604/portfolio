@@ -138,7 +138,7 @@ function HomeA() {
   return (
     <>
       <section className="wrap max-w-[1240px] pt-[clamp(24px,min(6vw,5vh),72px)]">
-        <div className="grid items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(200px,270px)] md:gap-16">
+        <div className="grid items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(200px,270px)] md:gap-10 lg:gap-16">
           <div className="min-w-0">
             {/* Phones and small tablets: a small round photo beside the badge keeps the headline on the first screen. */}
             <div className="flex items-center gap-4">
@@ -159,7 +159,7 @@ function HomeA() {
                     </span>
                     <span className="mt-0.5 block pl-4 text-sm text-mu">{currentRole.org} · GeoAI</span>
                   </span>
-                  <span className="hidden items-center gap-2 rounded-full bg-tint px-3 py-1 text-xs font-medium text-acink md:inline-flex">
+                  <span className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-tint px-3 py-1 text-xs font-medium text-acink md:inline-flex">
                     <span className="pulse-dot" aria-hidden="true" />
                     {currentRole.role} @ {currentRole.org} · GeoAI
                   </span>

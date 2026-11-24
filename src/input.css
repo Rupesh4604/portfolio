@@ -30,6 +30,8 @@
   --radius-btn: 8px;
   --ease-out: cubic-bezier(.2, .7, .2, 1);
   --ease-swap: cubic-bezier(.7, 0, .2, 1);
+  /* The full (laptop) layout holds down to 600px wide, about a third of a desktop screen. */
+  --breakpoint-md: 37.5rem;
 }
 
 @layer base {
@@ -39,7 +41,7 @@
      will get a different layout (dark mode or a phone), keep it hidden until the app takes over.
      Bots and no-JS visitors never get html.js, so they always see it. */
   html.js.dark #root[data-ssr] { visibility: hidden; }
-  @media (max-width: 767.98px) {
+  @media (max-width: 599.98px) {
     html.js #root[data-ssr] { visibility: hidden; }
   }
   body {
@@ -221,7 +223,7 @@
   }
   .snap-row::-webkit-scrollbar { display: none; }
   .snap-row > * { scroll-snap-align: start; flex: none; }
-  @media (max-width: 767.98px) {
+  @media (max-width: 599.98px) {
     .page-enter { animation: page-in .45s var(--ease-out); }
   }
 

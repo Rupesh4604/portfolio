@@ -5,11 +5,11 @@ import { isDark, subscribeTheme } from "../lib/theme.js";
 //   light                                   -> 'A' Editorial (all widths)
 //   dark, phone (touch screen under 600px)  -> 'D' Bold
 //   dark, anything else                     -> 'C' Glass (tablets, laptops, narrow windows)
-// isPhone is the LAYOUT breakpoint (< 768px: phone header bar, menu sheet, stacked footer),
+// isPhone is the LAYOUT breakpoint (< 600px: phone header bar, menu sheet, stacked footer),
 // independent of the variant, so a narrow laptop window shows Glass in the compact layout.
 // Colours come from CSS tokens (src/styles/tokens.css uses the same PHONE query).
 
-const WIDE = "(min-width: 768px)";
+const WIDE = "(min-width: 600px)";
 const PHONE = "(max-width: 599.98px) and (pointer: coarse)";
 
 const mq = (q) => (typeof window !== "undefined" && window.matchMedia ? window.matchMedia(q) : null);
