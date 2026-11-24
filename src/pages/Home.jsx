@@ -23,6 +23,7 @@ import Marquee from "../components/site/Marquee.jsx";
 import SpotlightCard from "../components/site/SpotlightCard.jsx";
 import { ArrowRight } from "../components/site/Icons.jsx";
 import { ArtCarousel } from "../components/site/ProjectArt.jsx";
+import ScrollCue from "../components/site/ScrollCue.jsx";
 import { glass } from "../data/glassCopy";
 import { routeMeta } from "../lib/seo";
 
@@ -232,6 +233,8 @@ function HomeA() {
           ))}
         </ul>
       </section>
+
+      <ScrollCue target="work-a" />
 
       <section aria-labelledby="work-a" className="wrap max-w-[1240px] pt-[clamp(56px,7vw,88px)]">
         <div className="mb-6 flex items-center justify-between gap-4">
