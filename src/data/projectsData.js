@@ -55,6 +55,18 @@ export const projects = [
     featured: { cta: "Visit website" },
   },
   {
+    title: "ProdHub productivity app",
+    tag: "Systems",
+    stack: "Full stack, Gemini",
+    description: "Projects, tasks, habits and calendar in one app, with Gemini turning goals into steps.",
+    longDescription:
+      "<p>A serverless React and Firebase app for managing projects, tasks, habits and a calendar in one place. Gemini breaks a goal into concrete tasks, and Google Calendar shows them in your schedule through client-side OAuth.</p>"
+      + "<p>Firestore security rules keep each person's data private.</p>",
+    techStack: ["React", "Firebase", "Gemini API"],
+    link: "https://github.com/Rupesh4604/ProdHub",
+    image: "https://raw.githubusercontent.com/Rupesh4604/ProdHub/main/images/dashboard_2.png",
+  },
+  {
     title: "Quantum CNN for slum classification",
     tag: "Models",
     stack: "Paper, TFQ",
@@ -122,18 +134,6 @@ export const projects = [
     techStack: ["Hugging Face", "FinBERT", "PyTorch"],
     link: "https://github.com/Rupesh4604/Financial-News-Sentiment-Analysis",
     image: "https://opengraph.githubassets.com/1/Rupesh4604/Financial-News-Sentiment-Analysis",
-  },
-  {
-    title: "ProdHub productivity app",
-    tag: "Systems",
-    stack: "Full stack, Gemini",
-    description: "Projects, tasks, habits and calendar in one app, with Gemini turning goals into steps.",
-    longDescription:
-      "<p>A serverless React and Firebase app for managing projects, tasks, habits and a calendar in one place. Gemini breaks a goal into concrete tasks, and Google Calendar shows them in your schedule through client-side OAuth.</p>"
-      + "<p>Firestore security rules keep each person's data private.</p>",
-    techStack: ["React", "Firebase", "Gemini API"],
-    link: "https://github.com/Rupesh4604/ProdHub",
-    image: "https://raw.githubusercontent.com/Rupesh4604/ProdHub/main/images/dashboard_2.png",
   },
   {
     title: "Paraphrase detection with a Siamese LSTM",
