@@ -232,6 +232,11 @@ function HomeA() {
                 <p className="m-0 mt-2 text-sm leading-[1.55] text-mu">{p.description}</p>
                 <div className="mt-2 flex flex-wrap gap-x-5 text-[13px] text-mu">
                   {/* Same order on every card: external links with ↗, then Details → (on this site). */}
+                  {p.site && (
+                    <SiteLink to={p.site} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">
+                      Website <span aria-hidden="true">↗</span>
+                    </SiteLink>
+                  )}
                   {p.link?.includes("github.com") && (
                     <SiteLink to={p.link} className="inline-flex min-h-10 items-center gap-1.5 hover:text-ac">
                       <GithubMark />
@@ -497,6 +502,11 @@ function HomeD() {
                         </ul>
                       )}
                       <div className="mt-3 flex flex-wrap gap-x-5">
+                        {p.site && (
+                          <SiteLink to={p.site} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac">
+                            Visit website&nbsp;<span aria-hidden="true">↗</span>
+                          </SiteLink>
+                        )}
                         {p.link?.includes("github.com") && (
                           <SiteLink to={p.link} className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-medium text-ac">
                             <GithubMark /> View on GitHub <span aria-hidden="true">↗</span>

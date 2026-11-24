@@ -78,6 +78,7 @@ const featured = featuredProjects.map((p) => {
   const to =
     p.featured.cta === "Read the paper" ? paper?.link || paper?.doi || "/research"
     : p.featured.cta === "View on GitHub" ? p.link
+    : p.featured.cta === "Visit website" ? p.site
     : `/projects#${slugify(p.title)}`;
   return { key: p.title, to, image: p.image, tag: p.tag, title: p.title, desc: p.description, cta: p.featured.cta };
 });
@@ -142,6 +143,11 @@ function ProjectRow({ p, open, onToggle }) {
                   <li key={t} className="tag-line">{t}</li>
                 ))}
               </ul>
+            )}
+            {p.site && (
+              <SiteLink to={p.site} className="lk mt-2 mr-5">
+                Visit website ↗
+              </SiteLink>
             )}
             {p.link && (
               <SiteLink to={p.link} className="lk mt-2">

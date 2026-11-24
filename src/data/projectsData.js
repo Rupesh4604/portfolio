@@ -50,8 +50,9 @@ export const projects = [
       + "</ul>",
     techStack: ["Python", "PyTorch", "Agent skill", "Remote sensing"],
     link: "https://github.com/Rupesh4604/rs-dl-architect",
+    site: "https://blog.rupeshmediboyina.dev/rs-dl-architect/",
     image: "https://raw.githubusercontent.com/Rupesh4604/rs-dl-architect/main/images/rl-ds.png",
-    featured: { cta: "View on GitHub" },
+    featured: { cta: "Visit website" },
   },
   {
     title: "Quantum CNN for slum classification",
