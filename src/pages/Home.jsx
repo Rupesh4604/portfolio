@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { featuredProjects } from "../data/projectsData";
@@ -436,6 +437,7 @@ const papersD = [
 ].filter(Boolean);
 
 function HomeD() {
+  const [open, setOpen] = useState(null);
   return (
     <div className="pt-8">
       <h1 className="m-0 px-5 text-[clamp(44px,13vw,50px)] font-semibold leading-[0.98] tracking-[-0.046em]">
@@ -461,23 +463,57 @@ function HomeD() {
       <section aria-labelledby="work-d" className="px-5">
         <h2 id="work-d" className="m-0 mb-2.5 mt-11 text-sm font-normal text-mu">Selected work</h2>
         <ul className="m-0 list-none p-0">
-          {selected.map((p, n) => (
-            <li key={p.title} className="border-t border-ln">
-              <Link
-                to={p.href}
-                className="group grid grid-cols-[30px_minmax(0,1fr)_24px] items-center gap-3 py-4 text-ink transition-[padding] duration-300 hover:pl-6"
-              >
-                <span className="self-start pt-[5px] text-[13px] text-mu">{String(n + 1).padStart(2, "0")}</span>
-                <span className="min-w-0">
-                  <span className="block text-[13px] text-ac">{p.tag}</span>
-                  <span className="mt-0.5 block text-[21px] font-medium leading-[1.3] tracking-[-0.03em] group-hover:text-ac">
-                    {p.title}
+          {/* Each row opens in place: short description, tools, and the project's own links. */}
+          {selected.map((p, n) => {
+            const id = `work-d-${slugify(p.title)}`;
+            const isOpen = open === p.title;
+            return (
+              <li key={p.title} className="border-t border-ln">
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={id}
+                  onClick={() => setOpen(isOpen ? null : p.title)}
+                  className="group grid w-full cursor-pointer grid-cols-[30px_minmax(0,1fr)_24px] items-center gap-3 border-0 bg-transparent py-4 text-left text-ink"
+                >
+                  <span className="self-start pt-[5px] text-[13px] text-mu">{String(n + 1).padStart(2, "0")}</span>
+                  <span className="min-w-0">
+                    <span className="block text-[13px] text-ac">{p.tag}</span>
+                    <span className={`mt-0.5 block text-[21px] font-medium leading-[1.3] tracking-[-0.03em] group-hover:text-ac ${isOpen ? "text-ac" : ""}`}>
+                      {p.title}
+                    </span>
                   </span>
-                </span>
-                <span aria-hidden="true" className="text-mu">›</span>
-              </Link>
-            </li>
-          ))}
+                  <span className="chev justify-self-end text-mu" aria-hidden="true" />
+                </button>
+                <div id={id} className={`disc ${isOpen ? "is-open" : ""}`} inert={!isOpen ? true : undefined}>
+                  <div>
+                    <div className="pb-5 pl-[42px]">
+                      <p className="m-0 text-[15px] leading-[1.55] text-i2">{p.description}</p>
+                      {p.techStack?.length > 0 && (
+                        <ul className="m-0 mt-3 flex list-none flex-wrap gap-2 p-0">
+                          {p.techStack.map((t) => (
+                            <li key={t} className="tag-line">{t}</li>
+                          ))}
+                        </ul>
+                      )}
+                      <div className="mt-3 flex flex-wrap gap-x-5">
+                        {p.link?.includes("github.com") && (
+                          <SiteLink to={p.link} className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-medium text-ac">
+                            <GithubMark /> View on GitHub <span aria-hidden="true">↗</span>
+                          </SiteLink>
+                        )}
+                        {p.paper && (
+                          <SiteLink to={p.paper} className="inline-flex min-h-11 items-center text-[15px] font-medium text-ac">
+                            Read the paper&nbsp;<span aria-hidden="true">↗</span>
+                          </SiteLink>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
           <li className="border-y border-ln">
             <Link to="/projects" className="grid grid-cols-[minmax(0,1fr)_24px] items-center gap-3 py-4 text-base font-medium text-ac">
               All projects <span aria-hidden="true">›</span>

@@ -19,7 +19,7 @@ export const projects = [
     techStack: ["LangChain", "Gemini", "FAISS", "RAG"],
     link: "https://github.com/Rupesh4604/Intelligent-Multi-Agent-Knowledge-Assistant",
     image: "https://raw.githubusercontent.com/Rupesh4604/images/main/assets_portfolio/agent.png",
-    featured: { cta: "Case study" },
+    featured: { cta: "View on GitHub" },
   },
   {
     title: "CNN and ViT for hyperspectral imagery",
